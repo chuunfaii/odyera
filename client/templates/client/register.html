@@ -22,12 +22,12 @@
                     <ul class="flex items-center gap-6 text-sm">
                         <li>
                             <a class="text-gray-800 transition hover:text-gray-800/75" href="/">
-                                Home {{ first_name }}
+                                Home
                             </a>
                         </li>
                         <li>
                             <a class="text-gray-800 transition hover:text-gray-800/75" href="/">
-                                Restaurants {{ last_name }}
+                                Restaurants
                             </a>
                         </li>
                     </ul>
@@ -55,35 +55,57 @@
                 <h1 class="text-2xl font-bold sm:text-3xl">Sign Up</h1>
             </div>
 
-            <form action="/postRegister" method="POST" class="mx-auto mt-8 mb-0 max-w-md">
+            <form action="/register" method="POST" class="mx-auto mt-8 mb-0 max-w-md">
                 {% csrf_token %}
                 <div class="grid grid-cols-2 gap-10">
                     <div class="z-0 mb-2 w-full group">
                         <label for="first_name" class="block text-gray-500 text-sm mb-2">First Name</label>
                         <input type="text" name="first_name" id="first_name"
-                            class="bg-white p-2.5 w-full border border-gray-100" placeholder="" required />
+                            class="bg-white p-2.5 w-full border border-gray-100" placeholder="" value="{{ first_name }}"
+                            required />
                     </div>
                     <div class="z-0 mb-2 w-full group">
                         <label for="last_name" class="block text-gray-500 text-sm mb-2">Last Name</label>
                         <input type="text" name="last_name" id="last_name"
-                            class="bg-white p-2.5 w-full border border-gray-100" placeholder="" required />
+                            class="bg-white p-2.5 w-full border border-gray-100" placeholder="" value="{{ last_name }}"
+                            required />
                     </div>
                 </div>
                 <div class="z-0 mb-2 w-full group">
                     <label for="email_address" class="block text-gray-500 text-sm mb-2">Email Address</label>
                     <input type="email" name="email_address" id="email_address"
-                        class="bg-white p-2.5 w-full border border-gray-100" placeholder="" required />
+                        class="bg-white p-2.5 w-full border border-gray-100 {% if 'existing_email_error' in errors %} border-red-600 {% endif %}"
+                        placeholder="" value="{{ email_address }}" required />
                 </div>
+                {% if 'existing_email_error' in errors %}
+                <div class="z-0 my-4 w-full group">
+                    <p class="text-sm text-red-600">{{ errors.existing_email_error }}</p>
+                </div>
+                {% endif %}
                 <div class="z-0 mb-2 w-full group">
                     <label for="password" class="block text-gray-500 text-sm mb-2">Password</label>
                     <input type="password" name="password" id="password"
-                        class="bg-white p-2.5 w-full border border-gray-100" placeholder="" required />
+                        class="bg-white p-2.5 w-full border border-gray-100 {% if 'password_validation_errors' in errors %} border-red-600 {% endif %}"
+                        placeholder="" required />
                 </div>
+                {% if 'password_validation_errors' in errors %}
+                <div class="z-0 my-4 w-full group">
+                    {% for error in errors.password_validation_errors %}
+                    <p class="mb-2 text-sm text-red-600">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 <div class="z-0 mb-2 w-full group">
                     <label for="password_confirmation" class="block text-gray-500 text-sm mb-2">Confirm Password</label>
                     <input type="password" name="password_confirmation" id="password_confirmation"
-                        class="bg-white p-2.5 w-full border border-gray-100" placeholder="" required />
+                        class="bg-white p-2.5 w-full border border-gray-100 {% if 'password_validation_errors' in errors %} border-red-600 {% endif %}"
+                        placeholder="" required />
                 </div>
+                {% if 'password_confirmation_error' in errors %}
+                <div class="z-0 my-4 w-full group">
+                    <p class="text-sm text-red-600">{{ errors.password_confirmation_error }}</p>
+                </div>
+                {% endif %}
                 <div class="mt-6 flex items-center justify-between">
                     <p class="text-sm text-gray-500">
                         Already have an account?
