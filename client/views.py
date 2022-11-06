@@ -19,10 +19,19 @@ database = firebase.database()
 
 
 def index(request):
+    if 'uid' in request.session:
+        uid = request.session['uid']
+        user = database.child('customers').child(uid).get().val()
+        full_name = user['first_name'] + ' ' + user['last_name']
+        return HttpResponse('hello world, you are logged in as ' + full_name)
     return HttpResponse("Hello, world. You're at the client index.")
 
 
 def register(request):
+    # If a user is already logged in, redirect back to homepage
+    if 'uid' in request.session:
+        return redirect('/')
+
     # Only goes through if the user is making a POST request via submitting the form
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -69,4 +78,38 @@ def register(request):
 
 
 def login(request):
-    return HttpResponse('This is the login page.')
+    # If a user is already logged in, redirect back to homepage
+    if 'uid' in request.session:
+        return redirect('/')
+
+    # Only goes through if the user is making a POST request via submitting the form
+    if request.method == 'POST':
+        email_address = request.POST.get('email_address')
+        password = request.POST.get('password')
+        data = {
+            'email_address': email_address
+        }
+
+        # Try logging into the user account by comparing account details from Firebase Authentication
+        try:
+            user = auth.sign_in_with_email_and_password(
+                email_address, password)
+        # Fails if no email address and/or password match with the stored accounts in Firebase Authentication
+        except:
+            data['invalid_credentials_error'] = 'Invalid email or password. Please try again.'
+            return render(request, 'client/login.html', data)
+        # Stores logged in user account details into current session
+        uid = user['localId']
+        request.session['uid'] = str(uid)
+        return redirect('/')
+    # Everything else goes through here, which only renders the page and nothing else
+    else:
+        return render(request, 'client/login.html')
+
+
+def logout(request):
+    try:
+        del request.session['uid']
+    except:
+        pass
+    return redirect('/login')

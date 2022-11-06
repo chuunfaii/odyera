@@ -843,6 +843,18 @@ select {
   width: 100%;
 }
 
+.min-w-\[500px\] {
+  min-width: 500px;
+}
+
+.min-w-\[280px\] {
+  min-width: 280px;
+}
+
+.min-w-\[28rem\] {
+  min-width: 28rem;
+}
+
 .max-w-screen-xl {
   max-width: 1280px;
 }
