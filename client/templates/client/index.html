@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Odyera | Login to your account</title>
+    <title>Odyera</title>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -73,43 +74,10 @@
     </header>
 
     <main class="flex flex-grow">
-        <div class="m-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-            <div class="mx-auto max-w-lg text-center">
-                <h1 class="text-2xl font-bold sm:text-3xl">Sign In</h1>
-            </div>
 
-            <form action="/login" method="POST" class="mx-auto mt-8 mb-0 min-w-[28rem]">
-                {% csrf_token %}
-                <div class="z-0 mb-2 w-full group">
-                    <label for="email_address" class="block text-gray-500 text-sm mb-2">Email Address</label>
-                    <input type="email" name="email_address" id="email_address"
-                        class="bg-white p-2.5 w-full border border-gray-100 {% if invalid_credentials_error %} border-red-600 {% endif %}"
-                        placeholder="" value="{{ email_address }}" required />
-                </div>
-                <div class="z-0 mb-2 w-full group">
-                    <label for="password" class="block text-gray-500 text-sm mb-2">Password</label>
-                    <input type="password" name="password" id="password"
-                        class="bg-white p-2.5 w-full border border-gray-100 {% if invalid_credentials_error %} border-red-600 {% endif %}"
-                        placeholder="" required />
-                </div>
-                {% if invalid_credentials_error %}
-                <div class="z-0 my-4 w-full group">
-                    <p class="text-sm text-red-600">{{ invalid_credentials_error }}</p>
-                </div>
-                {% endif %}
-                <div class="mt-6 flex items-center justify-between">
-                    <p class="text-sm text-gray-500">
-                        Do not have an account yet?
-                        <a class="underline transition hover:text-gray-700" href="/register">Sign up</a>
-                    </p>
-                    <button type="submit"
-                        class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700">
-                        Sign in
-                    </button>
-                </div>
-            </form>
-        </div>
     </main>
+
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 
 </body>
 

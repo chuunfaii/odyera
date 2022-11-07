@@ -19,12 +19,7 @@ database = firebase.database()
 
 
 def index(request):
-    if 'uid' in request.session:
-        uid = request.session['uid']
-        user = database.child('customers').child(uid).get().val()
-        full_name = user['first_name'] + ' ' + user['last_name']
-        return HttpResponse('hello world, you are logged in as ' + full_name)
-    return HttpResponse("Hello, world. You're at the client index.")
+    return render(request, 'client/index.html')
 
 
 def register(request):
@@ -100,7 +95,10 @@ def login(request):
             return render(request, 'client/login.html', data)
         # Stores logged in user account details into current session
         uid = user['localId']
+        user = database.child('customers').child(uid).get().val()
+        username = user['first_name'] + ' ' + user['last_name']
         request.session['uid'] = str(uid)
+        request.session['username'] = str(username)
         return redirect('/')
     # Everything else goes through here, which only renders the page and nothing else
     else:
@@ -110,6 +108,7 @@ def login(request):
 def logout(request):
     try:
         del request.session['uid']
+        del request.session['username']
     except:
         pass
     return redirect('/login')
