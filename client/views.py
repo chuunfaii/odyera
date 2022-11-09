@@ -96,9 +96,8 @@ def login(request):
         # Stores logged in user account details into current session
         uid = user['localId']
         user = database.child('customers').child(uid).get().val()
-        username = user['first_name'] + ' ' + user['last_name']
         request.session['uid'] = str(uid)
-        request.session['username'] = str(username)
+        request.session['user'] = user
         return redirect('/')
     # Everything else goes through here, which only renders the page and nothing else
     else:
@@ -108,7 +107,15 @@ def login(request):
 def logout(request):
     try:
         del request.session['uid']
-        del request.session['username']
+        del request.session['user']
     except:
         pass
     return redirect('/login')
+
+
+def account(request):
+    # If a user is not logged in, redirect back to homepage
+    if 'uid' not in request.session:
+        return redirect('/')
+
+    return render(request, 'client/account.html')
