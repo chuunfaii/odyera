@@ -76,7 +76,7 @@
     <main class="flex flex-grow">
         <div class="m-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-lg text-center">
-                <h1 class="text-2xl font-bold sm:text-3xl">Sign Up</h1>
+                <h1 class="text-2xl font-bold sm:text-3xl">Edit Account</h1>
             </div>
 
             <form action="/register" method="POST" class="mx-auto mt-8 mb-0 min-w-[28rem]">
@@ -85,13 +85,13 @@
                     <div class="z-0 mb-2 w-full group">
                         <label for="first_name" class="block text-gray-500 text-sm mb-2">First Name</label>
                         <input type="text" name="first_name" id="first_name"
-                            class="bg-white p-2.5 w-full border border-gray-100" placeholder="" value="{{ first_name }}"
+                            class="bg-white p-2.5 w-full border border-gray-100" placeholder="" value="{{ request.session.user.first_name }}"
                             required />
                     </div>
                     <div class="z-0 mb-2 w-full group">
                         <label for="last_name" class="block text-gray-500 text-sm mb-2">Last Name</label>
                         <input type="text" name="last_name" id="last_name"
-                            class="bg-white p-2.5 w-full border border-gray-100" placeholder="" value="{{ last_name }}"
+                            class="bg-white p-2.5 w-full border border-gray-100" placeholder="" value="{{ request.session.user.last_name }}"
                             required />
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                     <label for="email_address" class="block text-gray-500 text-sm mb-2">Email Address</label>
                     <input type="email" name="email_address" id="email_address"
                         class="bg-white p-2.5 w-full border border-gray-100 {% if 'existing_email_error' in errors %} border-red-600 {% endif %}"
-                        placeholder="" value="{{ email_address }}" required />
+                        placeholder="" value="{{ request.session.user.email_address }}" required />
                 </div>
                 {% if 'existing_email_error' in errors %}
                 <div class="z-0 my-4 w-full group">
@@ -131,10 +131,10 @@
                 </div>
                 {% endif %}
                 <div class="mt-6 flex items-center justify-between">
-                    <p class="text-sm text-gray-500">
-                        Already have an account?
-                        <a class="underline transition hover:text-gray-700" href="/login">Sign in</a>
-                    </p>
+                    <button type="submit"
+                        class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700">
+                        back to homepage
+                    </button>
                     <button type="submit"
                         class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700">
                         Sign up

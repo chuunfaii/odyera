@@ -118,4 +118,27 @@ def account(request):
     if 'uid' not in request.session:
         return redirect('/')
 
-    return render(request, 'client/account.html')
+    # Only goes through if the user is making a POST request via submitting the form
+    if request.method == 'POST':
+        uid = request.session['uid']
+        old_email_address = request.session.user.email_address
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email_address = request.POST.get('email_address')
+        password = request.POST.get('password')
+        password_confirmation = request.POST.get('password_confirmation')
+        errorsDict = {}
+
+        # Compares whether password and password confirmation match
+        if password != password_confirmation:
+            errorsDict['password_confirmation_error'] = 'Password and password confirmation do not match.'
+
+        try:
+            user = auth.sign_in_with_email_and_password(
+                old_email_address, password)
+        except:
+            errorsDict['invalid_credentials_error'] = 'Incorrect password. Please try again.'
+            return render(request, 'client/account.html')
+    # Everything else goes through here, which only renders the page and nothing else
+    else:
+        return render(request, 'client/account.html')
