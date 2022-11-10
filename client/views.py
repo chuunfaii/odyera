@@ -142,3 +142,6 @@ def account(request):
     # Everything else goes through here, which only renders the page and nothing else
     else:
         return render(request, 'client/account.html')
+
+def restaurant_list(request):
+    return render(request, 'client/restaurant_list.html')
