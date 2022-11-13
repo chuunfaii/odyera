@@ -1,5 +1,6 @@
 from django.shortcuts import HttpResponse, render, redirect
 from .functions import password_check
+from .models import Customer
 import pyrebase
 
 config = {
@@ -61,6 +62,8 @@ def register(request):
                 email_address, password)
             uid = user['localId']
             database.child('customers').child(uid).set(data)
+            Customer.objects.create(
+                first_name=first_name, last_name=last_name, email=email_address, password=password)
             return redirect('/login')
         # Fails if the email entered already exists in the Firebase Authentication database
         except:
@@ -142,6 +145,7 @@ def account(request):
     # Everything else goes through here, which only renders the page and nothing else
     else:
         return render(request, 'client/account.html')
+
 
 def restaurant_list(request):
     return render(request, 'client/restaurant_list.html')
