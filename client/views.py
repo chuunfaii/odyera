@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
 from .functions import password_check
@@ -58,6 +59,7 @@ def register(request):
         hashed_password = make_password(password)
         Customer.objects.create(
             first_name=first_name, last_name=last_name, email=email_address, password=hashed_password)
+        messages.success(request, 'You have successfully created an account.')
         return redirect('/login')
     # Everything else goes through here, which only renders the page and nothing else
     else:
@@ -87,6 +89,8 @@ def login(request):
             else:
                 uid = customer.id
                 request.session['uid'] = uid
+                messages.success(
+                    request, 'You have successfully logged into your account.')
                 return redirect('/')
         except Customer.DoesNotExist:
             data['invalid_credentials_error'] = 'Invalid email or password. Please try again.'
