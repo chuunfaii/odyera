@@ -114,7 +114,7 @@
                 <div class="z-0 mb-2 w-full group">
                     <label for="password" class="block text-gray-500 text-sm mb-2">Password</label>
                     <input type="password" name="password" id="password"
-                        class="bg-white p-2.5 w-full border border-gray-100 {% if 'password_validation_errors' in errors %} border-red-600 {% endif %}"
+                        class="bg-white p-2.5 w-full border border-gray-100 {% if 'password_validation_errors' in errors or 'password_confirmation_error' in errors %} border-red-600 {% endif %}"
                         placeholder="" required />
                 </div>
                 {% if 'password_validation_errors' in errors %}
@@ -127,7 +127,7 @@
                 <div class="z-0 mb-2 w-full group">
                     <label for="password_confirmation" class="block text-gray-500 text-sm mb-2">Confirm Password</label>
                     <input type="password" name="password_confirmation" id="password_confirmation"
-                        class="bg-white p-2.5 w-full border border-gray-100 {% if 'password_validation_errors' in errors %} border-red-600 {% endif %}"
+                        class="bg-white p-2.5 w-full border border-gray-100 {% if 'password_validation_errors' in errors or 'password_confirmation_error' in errors %} border-red-600 {% endif %}"
                         placeholder="" required />
                 </div>
                 {% if 'password_confirmation_error' in errors %}
