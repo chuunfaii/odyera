@@ -1,116 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Odyera | Login to your account</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+{% block title %}
+Odyera - Login
+{% endblock %}
 
-<body class="flex flex-col h-screen bg-slate-50">
-
-    <header class="bg-slate-100">
-        <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-            <a class="block text-black text-xl font-bold" href="/">
-                Odyera
-            </a>
-
-            <div class="flex flex-1 items-center justify-end md:justify-between">
-                <nav aria-label="Site Nav" class="hidden md:block">
-                    <ul class="flex items-center gap-6 text-sm">
-                        <li>
-                            <a class="text-gray-800 transition hover:text-gray-800/75" href="/">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-gray-800 transition hover:text-gray-800/75" href="/">
-                                Restaurants
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                {% if 'user' not in request.session %}
-                    <div class="flex items-center gap-4">
-                        <div class="sm:flex sm:gap-4">
-                            <a class="hidden rounded-md px-5 py-2.5 text-sm font-medium text-gray-800 transition hover:text-gray-800/75 sm:block"
-                                href="/login">
-                                Login
-                            </a>
-                            <a class="block rounded-md bg-gray-800 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-700"
-                                href="/register">
-                                Register
-                            </a>
-                        </div>
-                    </div>
-                {% else %}
-                    <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-gray-800 hover:text-gray-800/75 px-4 py-2.5 text-center text-sm inline-flex items-center" type="button">
-                        {{ request.session.user.first_name }} {{ request.session.user.last_name }}
-                        <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div id="dropdown" class="hidden z-10 w-44 bg-slate-50 rounded divide-y divide-gray-200 shadow" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 10px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
-                        <ul class="py-1 text-sm text-gray-800" aria-labelledby="dropdownDividerButton">
-                            <li>
-                                <a href="/" class="transition block py-2 px-4 hover:text-gray-800/75">Order History</a>
-                            </li>
-                            <li>
-                                <a href="/" class="transition block py-2 px-4 hover:text-gray-800/75">Edit Account</a>
-                            </li>
-                        </ul>
-                        <div class="py-1">
-                            <a href="/logout" class="transition block py-2 px-4 text-sm text-red-500 hover:text-red-700">Logout</a>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
+{% block content %}
+    <div class="m-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-lg text-center">
+            <h1 class="text-2xl font-bold sm:text-3xl">Sign In</h1>
         </div>
-    </header>
 
-    <main class="flex flex-grow">
-        <div class="m-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-            <div class="mx-auto max-w-lg text-center">
-                <h1 class="text-2xl font-bold sm:text-3xl">Sign In</h1>
+        <form action="/login" method="POST" class="mx-auto mt-8 mb-0 min-w-[28rem]">
+            {% csrf_token %}
+            <div class="z-0 mb-2 w-full group">
+                <label for="email_address" class="block text-gray-500 text-sm mb-2">Email Address</label>
+                <input type="email" name="email_address" id="email_address"
+                    class="bg-white p-2.5 w-full border border-gray-100 {% if invalid_credentials_error %} border-red-600 {% endif %}"
+                    placeholder="" value="{{ email_address }}" required />
             </div>
-
-            <form action="/login" method="POST" class="mx-auto mt-8 mb-0 min-w-[28rem]">
-                {% csrf_token %}
-                <div class="z-0 mb-2 w-full group">
-                    <label for="email_address" class="block text-gray-500 text-sm mb-2">Email Address</label>
-                    <input type="email" name="email_address" id="email_address"
-                        class="bg-white p-2.5 w-full border border-gray-100 {% if invalid_credentials_error %} border-red-600 {% endif %}"
-                        placeholder="" value="{{ email_address }}" required />
-                </div>
-                <div class="z-0 mb-2 w-full group">
-                    <label for="password" class="block text-gray-500 text-sm mb-2">Password</label>
-                    <input type="password" name="password" id="password"
-                        class="bg-white p-2.5 w-full border border-gray-100 {% if invalid_credentials_error %} border-red-600 {% endif %}"
-                        placeholder="" required />
-                </div>
-                {% if invalid_credentials_error %}
-                <div class="z-0 my-4 w-full group">
-                    <p class="text-sm text-red-600">{{ invalid_credentials_error }}</p>
-                </div>
-                {% endif %}
-                <div class="mt-6 flex items-center justify-between">
-                    <p class="text-sm text-gray-500">
-                        Do not have an account yet?
-                        <a class="underline transition hover:text-gray-700" href="/register">Sign up</a>
-                    </p>
-                    <button type="submit"
-                        class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700">
-                        Sign in
-                    </button>
-                </div>
-            </form>
-        </div>
-    </main>
-
-</body>
-
-</html>
+            <div class="z-0 mb-2 w-full group">
+                <label for="password" class="block text-gray-500 text-sm mb-2">Password</label>
+                <input type="password" name="password" id="password"
+                    class="bg-white p-2.5 w-full border border-gray-100 {% if invalid_credentials_error %} border-red-600 {% endif %}"
+                    placeholder="" required />
+            </div>
+            {% if invalid_credentials_error %}
+            <div class="z-0 my-4 w-full group">
+                <p class="text-sm text-red-600">{{ invalid_credentials_error }}</p>
+            </div>
+            {% endif %}
+            <div class="mt-6 flex items-center justify-between">
+                <p class="text-sm text-gray-500">
+                    Do not have an account yet?
+                    <a class="underline transition hover:text-gray-700" href="/register">Sign up</a>
+                </p>
+                <button type="submit"
+                    class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700">
+                    Sign in
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

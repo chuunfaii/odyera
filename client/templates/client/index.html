@@ -1,210 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Odyera</title>
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="flex flex-col h-screen bg-slate-50">
-
-    <header class="bg-slate-100">
-        <div class="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-            <a class="block text-black text-xl font-bold" href="/">
-                Odyera
-            </a>
-
-            <div class="flex flex-1 items-center justify-end md:justify-between">
-                <nav aria-label="Site Nav" class="hidden md:block">
-                    <ul class="flex items-center gap-6 text-sm">
-                        <li>
-                            <a class="text-gray-800 transition hover:text-gray-800/75" href="/">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-gray-800 transition hover:text-gray-800/75" href="/">
-                                Restaurants
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-
-                {% if 'uid' not in request.session %}
-                    <div class="flex items-center gap-4">
-                        <div class="sm:flex sm:gap-4">
-                            <a class="hidden rounded-md px-5 py-2.5 text-sm font-medium text-gray-800 transition hover:text-gray-800/75 sm:block"
-                                href="/login">
-                                Login
-                            </a>
-                            <a class="block rounded-md bg-gray-800 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-700"
-                                href="/register">
-                                Register
-                            </a>
-                        </div>
-                    </div>
-                {% else %}
-                    <button id="dropdownDefault" data-dropdown-toggle="dropdown" class="text-gray-800 hover:text-gray-800/75 px-4 py-2.5 text-center text-sm inline-flex items-center" type="button">
-                        {{ customer.first_name }} {{ customer.last_name }}
-                        <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div id="dropdown" class="hidden z-10 w-44 bg-slate-50 rounded divide-y divide-gray-200 shadow" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 10px);" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
-                        <ul class="py-1 text-sm text-gray-800" aria-labelledby="dropdownDividerButton">
-                            <li>
-                                <a href="/" class="transition block py-2 px-4 hover:text-gray-800/75">Order History</a>
-                            </li>
-                            <li>
-                                <a href="/account" class="transition block py-2 px-4 hover:text-gray-800/75">Edit Account</a>
-                            </li>
-                        </ul>
-                        <div class="py-1">
-                            <a href="/logout" class="transition block py-2 px-4 text-sm text-red-500 hover:text-red-700">Logout</a>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <div class="mx-auto flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-        {% comment %} Search Bar {% endcomment %}
-            <form class="w-full mt-8">
-                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-                <div class="relative">
-                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </div>
-                    <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-slate-50 rounded-lg border border-gray-300 focus:bg-slate-100 focus:ring-transparent focus:border-gray-300" placeholder="Search for restaurants..." required />
-                    <button type="submit" class="text-gray-500 hover:text-gray-800 absolute right-2.5 bottom-2.5 bg-transparent text-sm px-4 py-2">Search</button>
+{% block content %}
+    <div class="mx-auto flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+    {% comment %} Search Bar {% endcomment %}
+        <form class="w-full mt-8">
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+            <div class="relative">
+                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-            </form>
+                <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-slate-50 rounded-lg border border-gray-300 focus:bg-slate-100 focus:ring-transparent focus:border-gray-300" placeholder="Search for restaurants..." required />
+                <button type="submit" class="text-gray-500 hover:text-gray-800 absolute right-2.5 bottom-2.5 bg-transparent text-sm px-4 py-2">Search</button>
+            </div>
+        </form>
 
-            {% comment %} Featured Restaurants {% endcomment %}
-            <div class="w-full mt-4">
-                <h1 class="text-xl font-semibold mb-4">Featured Restaurants</h1>
-                <div class="flex gap-5">
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+        {% comment %} Featured Restaurants {% endcomment %}
+        <div class="w-full mt-4">
+            <h1 class="text-xl font-semibold mb-4">Featured Restaurants</h1>
+            <div class="flex gap-5">
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
                         <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
                         </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                        <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                        </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                        <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                        </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                        <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                        </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                        <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                        </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
                     </div>
                 </div>
-            </div>
-
-            {% comment %} Recommended for You {% endcomment %}
-            <div class="w-full mt-4 pb-12">
-                <h1 class="text-xl font-semibold mb-4">Recommended for You</h1>
-                <div class="flex gap-5">
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
                         <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
                         </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
                     </div>
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                </div>
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
                         <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
                         </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
                     </div>
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                </div>
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
                         <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
                         </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
                     </div>
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                </div>
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
                         <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
                         </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                        <a href="/">
-                            <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                        </a>
-                        <div class="flex flex-col flex-1 justify-center p-2">
-                            <a href="/">
-                                <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
 
-    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
-
-</body>
-
-</html>
+        {% comment %} Recommended for You {% endcomment %}
+        <div class="w-full mt-4 pb-12">
+            <h1 class="text-xl font-semibold mb-4">Recommended for You</h1>
+            <div class="flex gap-5">
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
+                        <a href="/">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
+                        <a href="/">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
+                        <a href="/">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
+                        <a href="/">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                    <div class="flex flex-col flex-1 justify-center p-2">
+                        <a href="/">
+                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
