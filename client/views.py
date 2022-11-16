@@ -220,6 +220,9 @@ def password(request):
 def restaurant_list(request):
     return render(request, 'client/restaurant_list.html')
 
+def restaurant_detail(request):
+    return render(request, 'client/restaurant_detail.html')
+
 
 def payment(request):
     data = {}
@@ -264,3 +267,9 @@ def payment(request):
         return redirect('/')
     else:
         return render(request, 'client/payment.html')
+
+def foodTrend_whole(request):
+    return render(request, 'client/foodTrend_whole.html')
+
+def foodTrend_particular(request):
+    return render(request, 'client/foodTrend_particular.html')
