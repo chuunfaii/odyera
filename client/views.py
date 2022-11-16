@@ -56,9 +56,8 @@ def register(request):
             return render(request, 'client/register.html', data)
 
         # Register a new customer account into the database
-        hashed_password = make_password(password)
         Customer.objects.create(
-            first_name=first_name, last_name=last_name, email_address=email_address, password=hashed_password)
+            first_name=first_name, last_name=last_name, email_address=email_address, password=make_password(password))
         messages.success(request, 'You have successfully created an account.')
         return redirect('/login')
     # Everything else goes through here, which only renders the page and nothing else
@@ -103,6 +102,8 @@ def login(request):
 def logout(request):
     try:
         del request.session['uid']
+        messages.success(
+            request, 'You have successfully logged out of your account.')
     except:
         pass
     return redirect('/login')
@@ -165,6 +166,54 @@ def profile(request):
     # Everything else goes through here, which only renders the page and nothing else
     else:
         return render(request, 'client/profile.html', data)
+
+
+def password(request):
+    # If a user is not logged in, redirect back to homepage
+    if 'uid' not in request.session:
+        return redirect('/')
+
+    data = {}
+    errors = {}
+
+    uid = request.session['uid']
+    customer = Customer.objects.get(id=uid)
+    data['customer'] = customer
+
+    # Only goes through if the user is making a POST request via submitting the form
+    if request.method == 'POST':
+        password = request.POST.get('password')
+        new_password = request.POST.get('new_password')
+        password_confirmation = request.POST.get('password_confirmation')
+
+        # Validates password using custom regex checking function
+        password_validation_errors = password_check(new_password)
+        if len(password_validation_errors) != 0:
+            errors['password_validation_errors'] = password_validation_errors
+
+        # Compares whether password and password confirmation match
+        if new_password != password_confirmation:
+            errors['password_confirmation_error'] = 'New password and password confirmation do not match.'
+
+        # If there are error messages, re-renders the page with the already filled in user account details and error messages
+        if errors:
+            data['errors'] = errors
+            return render(request, 'client/password.html', data)
+
+        # Checks if the hashed password in the database matches the entered password
+        is_matched = check_password(password, customer.password)
+        if not is_matched:
+            data['invalid_password_error'] = 'Invalid password. Please try again.'
+            return render(request, 'client/password.html', data)
+        else:
+            customer.password = make_password(new_password)
+            customer.save()
+            messages.success(
+                request, 'Your password has been updated successfully.')
+            return render(request, 'client/password.html', data)
+    # Everything else goes through here, which only renders the page and nothing else
+    else:
+        return render(request, 'client/password.html', data)
 
 
 def restaurant_list(request):
