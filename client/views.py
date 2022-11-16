@@ -1,3 +1,4 @@
+import re
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
@@ -218,3 +219,48 @@ def password(request):
 
 def restaurant_list(request):
     return render(request, 'client/restaurant_list.html')
+
+
+def payment(request):
+    data = {}
+    errors = {}
+
+    if request.method == 'POST':
+        card_no = request.POST.get('card_no')
+        expiration_date = request.POST.get('expiration_date')
+        cvv = request.POST.get('cvv')
+        postal_code = request.POST.get('postal_code')
+
+        data['card_no'] = card_no
+        data['expiration_date'] = expiration_date
+        data['cvv'] = cvv
+        data['postal_code'] = postal_code
+
+        # Regex patterns for credit card number, expiration date, CVV and Malaysia's postal code
+        card_no_pattern = re.compile(r"^4[0-9]{12}(?:[0-9]{3})?$")
+        expiration_date_pattern = re.compile(
+            r"^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$")
+        cvv_pattern = re.compile(r"^[0-9]{3,4}$")
+        postal_code_pattern = re.compile(r"^[0-9]{5}$")
+
+        if not re.fullmatch(card_no_pattern, card_no):
+            errors['invalid_card_error'] = 'Invalid credit card number.'
+
+        if not re.fullmatch(expiration_date_pattern, expiration_date):
+            errors['invalid_expiration_date_error'] = 'Invalid card expiration date.'
+
+        if not re.fullmatch(cvv_pattern, cvv):
+            errors['invalid_cvv_error'] = 'Invalid CVV.'
+
+        if not re.fullmatch(postal_code_pattern, postal_code):
+            errors['invalid_postal_error'] = 'Invalid postal code.'
+
+        # If there are error messages, re-renders the page with the already filled in user account details and error messages
+        if errors:
+            data['errors'] = errors
+            return render(request, 'client/payment.html', data)
+
+        messages.success(request, 'Your order has been placed successfully.')
+        return redirect('/')
+    else:
+        return render(request, 'client/payment.html')
