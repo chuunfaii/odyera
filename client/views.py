@@ -217,8 +217,9 @@ def password(request):
         return render(request, 'client/password.html', data)
 
 
-def restaurant_list(request):
-    return render(request, 'client/restaurant_list.html')
+def restaurants(request):
+    return render(request, 'client/restaurants.html')
+
 
 def restaurant_detail(request):
     return render(request, 'client/restaurant_detail.html')
@@ -268,8 +269,10 @@ def payment(request):
     else:
         return render(request, 'client/payment.html')
 
+
 def foodTrend_whole(request):
     return render(request, 'client/foodTrend_whole.html')
+
 
 def foodTrend_particular(request):
     return render(request, 'client/foodTrend_particular.html')

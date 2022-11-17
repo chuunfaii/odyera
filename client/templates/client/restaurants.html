@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content%}
+    <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 justify-between">
+        {% comment %} Search Bar {% endcomment %}
+        <form class="w-full mt-8 ">
+            <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+            <div class="relative">
+                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-slate-50 rounded-lg border border-gray-300 focus:bg-slate-100 focus:ring-transparent focus:border-gray-300" placeholder="Search for restaurants..." required />
+                <button type="submit" class="text-gray-500 hover:text-gray-800 absolute right-2.5 bottom-2.5 bg-transparent text-sm px-4 py-2">Search</button>
+            </div>
+        </form>
+
+        {% comment %} Restaurants Listing {% endcomment %}
+        <div class="w-full mt-4 pb-12">
+            <h1 class="text-xl font-semibold mb-4">Restaurant Listing</h1>
+            <div class="flex flex-col gap-8 w-full">
+                <div class="flex justify-between gap-8 max-w-screen-xl">
+                    <div class="">
+                        <a href="/">
+                            <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                        </a>
+                    </div>
+                    <div>
+                        <h5 class="font-bold mb-4">ABC Restaurant</h5>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique. Provident sapiente dolores error facilis repellat sequi saepe reiciendis vero, corporis quasi!</p>
+                    </div>
+                    <div class="flex flex-col min-w-max">
+                        <div class="flex justify-end mb-4">
+                            <p class="mr-2 text-sm font-bold text-gray-900">4.95</p>
+                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                                <title>Rating star</title>
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                        </div>
+                        <a href="#" class="text-sm font-medium text-gray-900 hover:underline">73 reviews</a>
+                    </div>
+                </div>
+                <div class="flex justify-between gap-8 max-w-screen-xl">
+                    <div class="">
+                        <a href="/">
+                            <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                        </a>
+                    </div>
+                    <div class="">
+                        <h5 class="font-bold mb-4">ABC Restaurant</h5>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique. Provident sapiente dolores error facilis repellat sequi saepe reiciendis vero, corporis quasi!</p>
+                    </div>
+                    <div class="flex flex-col min-w-max">
+                        <div class="flex justify-end mb-4">
+                            <p class="mr-2 text-sm font-bold text-gray-900">4.95</p>
+                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                                <title>Rating star</title>
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                        </div>
+                        <a href="#" class="text-sm font-medium text-gray-900 hover:underline">73 reviews</a>
+                    </div>
+                </div>
+                <div class="flex justify-between gap-8 max-w-screen-xl">
+                    <div class="">
+                        <a href="/">
+                            <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                        </a>
+                    </div>
+                    <div class="">
+                        <h5 class="font-bold mb-4">ABC Restaurant</h5>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique. Provident sapiente dolores error facilis repellat sequi saepe reiciendis vero, corporis quasi!</p>
+                    </div>
+                    <div class="flex flex-col min-w-max">
+                        <div class="flex justify-end mb-4">
+                            <p class="mr-2 text-sm font-bold text-gray-900">4.95</p>
+                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                                <title>Rating star</title>
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                        </div>
+                        <a href="#" class="text-sm font-medium text-gray-900 hover:underline">73 reviews</a>
+                    </div>
+                </div>
+                <div class="flex justify-between gap-8 max-w-screen-xl">
+                    <div class="">
+                        <a href="/">
+                            <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                        </a>
+                    </div>
+                    <div class="">
+                        <h5 class="font-bold mb-4">ABC Restaurant</h5>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique. Provident sapiente dolores error facilis repellat sequi saepe reiciendis vero, corporis quasi!</p>
+                    </div>
+                    <div class="flex flex-col min-w-max">
+                        <div class="flex justify-end mb-4">
+                            <p class="mr-2 text-sm font-bold text-gray-900">4.95</p>
+                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                                <title>Rating star</title>
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                        </div>
+                        <a href="#" class="text-sm font-medium text-gray-900 hover:underline">73 reviews</a>
+                    </div>
+                </div>
+                <div class="flex justify-between gap-8 max-w-screen-xl">
+                    <div class="">
+                        <a href="/">
+                            <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                        </a>
+                    </div>
+                    <div class="">
+                        <h5 class="font-bold mb-4">ABC Restaurant</h5>
+                        <p class="text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique. Provident sapiente dolores error facilis repellat sequi saepe reiciendis vero, corporis quasi!</p>
+                    </div>
+                    <div class="flex flex-col min-w-max">
+                        <div class="flex justify-end mb-4">
+                            <p class="mr-2 text-sm font-bold text-gray-900">4.95</p>
+                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                                <title>Rating star</title>
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                        </div>
+                        <a href="#" class="text-sm font-medium text-gray-900 hover:underline">73 reviews</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
