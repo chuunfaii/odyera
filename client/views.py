@@ -225,6 +225,10 @@ def restaurant(request, id):
     return render(request, 'client/restaurant.html')
 
 
+def menu(request, id):
+    return render(request, 'client/menu.html')
+
+
 def payment(request):
     data = {}
     errors = {}

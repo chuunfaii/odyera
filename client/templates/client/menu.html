@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center px-4 sm:px-6 lg:px-8 justify-between">
+        <img class="bg-cover h-52 w-full mt-8" src="https://via.placeholder.com/1920" alt="Restaurant image">
+
+        <div class="flex justify-between w-full mt-8 mb-4">
+            <h1 class="font-bold">ABC Restaurant</h1>
+            <div class="flex justify-end">
+                <p class="mr-2 text-sm font-bold text-gray-900">4.95</p>
+                <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                    <title>Rating star</title>
+                    <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+
+        <p class="text-gray-700 self-start mb-8">
+            Food Menu
+        </p>
+
+        <form method="GET" class="flex flex-col gap-8 pb-8">
+            <div class="flex justify-between gap-8 max-w-screen-xl">
+                <div class="">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                </div>
+                <div class="flex flex-col justify-between">
+                    <h5 class="font-bold mb-4">Caesar Salad</h5>
+                    <p class="text-gray-700 h-full">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique.</p>
+                    <p><span class="font-bold">RM</span> 38.80</p>
+                </div>
+                <div class="flex flex-col justify-center min-w-max">
+                    <div class="custom-number-input h-10 w-32">
+                        <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                          <button data-action="decrement" class="h-full text-gray-700 w-20 cursor-pointer outline-none transition hover:text-black">
+                            <span class="m-auto text-2xl font-thin">−</span>
+                          </button>
+                          <input type="number" class="bg-transparent focus:bg-transparent transition border-none text-center w-full font-semibold text-md hover:text-black focus:text-black flex items-center text-gray-700" name="1qty" value="0" min="0" max="99" required />
+                            <button data-action="increment" class="h-full text-gray-700 w-20 cursor-pointer outline-none transition hover:text-black">
+                                <span class="m-auto text-2xl font-thin">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between gap-8 max-w-screen-xl">
+                <div class="">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                </div>
+                <div class="flex flex-col justify-between">
+                    <h5 class="font-bold mb-4">Caesar Salad</h5>
+                    <p class="text-gray-700 h-full">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique.</p>
+                    <p><span class="font-bold">RM</span> 38.80</p>
+                </div>
+                <div class="flex flex-col justify-center min-w-max">
+                    <div class="custom-number-input h-10 w-32">
+                        <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                          <button data-action="decrement" class="h-full text-gray-700 w-20 cursor-pointer outline-none transition hover:text-black">
+                            <span class="m-auto text-2xl font-thin">−</span>
+                          </button>
+                          <input type="number" class="bg-transparent focus:bg-transparent transition border-none text-center w-full font-semibold text-md hover:text-black focus:text-black flex items-center text-gray-700" name="1qty" value="0" min="0" max="99" required />
+                            <button data-action="increment" class="h-full text-gray-700 w-20 cursor-pointer outline-none transition hover:text-black">
+                                <span class="m-auto text-2xl font-thin">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between gap-8 max-w-screen-xl">
+                <div class="">
+                    <a href="/">
+                        <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                    </a>
+                </div>
+                <div class="flex flex-col justify-between">
+                    <h5 class="font-bold mb-4">Caesar Salad</h5>
+                    <p class="text-gray-700 h-full">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique.</p>
+                    <p><span class="font-bold">RM</span> 38.80</p>
+                </div>
+                <div class="flex flex-col justify-center min-w-max">
+                    <div class="custom-number-input h-10 w-32">
+                        <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                          <button data-action="decrement" class="h-full text-gray-700 w-20 cursor-pointer outline-none transition hover:text-black">
+                            <span class="m-auto text-2xl font-thin">−</span>
+                          </button>
+                          <input type="number" class="bg-transparent focus:bg-transparent transition border-none text-center w-full font-semibold text-md hover:text-black focus:text-black flex items-center text-gray-700" name="1qty" value="0" min="0" max="99" required />
+                            <button data-action="increment" class="h-full text-gray-700 w-20 cursor-pointer outline-none transition hover:text-black">
+                                <span class="m-auto text-2xl font-thin">+</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <a href="/"
+                    class="flex text-sm items-center font-medium text-gray-500 transition hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+                    </svg>
+                    <span class="ml-2">Back to restaurant details</span>
+                </a>
+                <button type="submit"
+                    class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700">
+                    View order details
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <style>
+        input[type='number']::-webkit-inner-spin-button,
+        input[type='number']::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        .custom-number-input input:focus {
+          outline: none !important;
+        }
+
+        .custom-number-input button:focus {
+          outline: none !important;
+        }
+    </style>
+
+    <script>
+        function decrement(e) {
+            e.preventDefault();
+          const btn = e.target.parentNode.parentElement.querySelector(
+            'button[data-action="decrement"]'
+          );
+          const target = btn.nextElementSibling;
+          let value = Number(target.value);
+          if (value != 0) {
+              value--;
+              target.value = value;
+          }
+        }
+
+        function increment(e) {
+            e.preventDefault();
+          const btn = e.target.parentNode.parentElement.querySelector(
+            'button[data-action="decrement"]'
+          );
+          const target = btn.nextElementSibling;
+          let value = Number(target.value);
+          if (value != 99) {
+              value++;
+              target.value = value;
+          }
+        }
+
+        const decrementButtons = document.querySelectorAll(
+          `button[data-action="decrement"]`
+        );
+
+        const incrementButtons = document.querySelectorAll(
+          `button[data-action="increment"]`
+        );
+
+        decrementButtons.forEach(btn => {
+          btn.addEventListener("click", decrement);
+        });
+
+        incrementButtons.forEach(btn => {
+          btn.addEventListener("click", increment);
+        });
+    </script>
+{% endblock %}

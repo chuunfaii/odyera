@@ -11,6 +11,7 @@ urlpatterns = [
     path('password', views.password, name='password'),
     path('restaurants', views.restaurants, name='restaurants'),
     path('restaurant/<int:id>', views.restaurant, name='restaurant'),
+    path('restaurant/<int:id>/menu', views.menu, name='menu'),
     path('payment', views.payment, name='payment'),
     path('foodTrend_particular', views.foodTrend_particular,
          name='foodTrend_particular'),
