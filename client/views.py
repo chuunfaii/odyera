@@ -221,7 +221,7 @@ def restaurants(request):
     return render(request, 'client/restaurants.html')
 
 
-def restaurant(request):
+def restaurant(request, id):
     return render(request, 'client/restaurant.html')
 
 
