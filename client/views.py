@@ -221,8 +221,8 @@ def restaurants(request):
     return render(request, 'client/restaurants.html')
 
 
-def restaurant_detail(request):
-    return render(request, 'client/restaurant_detail.html')
+def restaurant(request):
+    return render(request, 'client/restaurant.html')
 
 
 def payment(request):
