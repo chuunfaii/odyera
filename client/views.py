@@ -241,7 +241,12 @@ def restaurants(request):
 
 
 def restaurant(request, id):
-    return render(request, 'client/restaurant.html')
+    data = {}
+
+    restaurant = Restaurant.objects.get(id=id)
+    data['restaurant'] = restaurant
+
+    return render(request, 'client/restaurant.html', data)
 
 
 def menu(request, id):

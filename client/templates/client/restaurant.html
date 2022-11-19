@@ -2,10 +2,12 @@
 
 {% block content %}
     <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center px-4 sm:px-6 lg:px-8 justify-between">
+        {% comment %} TODO: display restaurant image {% endcomment %}
         <img class="bg-cover h-52 w-full mt-8" src="https://via.placeholder.com/1920" alt="Restaurant image">
 
         <div class="flex justify-between w-full mt-8 mb-4">
-            <h1 class="font-bold">ABC Restaurant</h1>
+            <h1 class="font-bold">{{ restaurant.name }}</h1>
+            {% comment %} TODO: display restaurant rating {% endcomment %}
             <div class="flex justify-end">
                 <p class="mr-2 text-sm font-bold text-gray-900">4.95</p>
                 <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
@@ -19,13 +21,14 @@
         </div>
 
         <p class="text-gray-700 text-justify mb-8">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sed laboriosam, dicta distinctio ad laudantium modi aperiam. Obcaecati sint id quisquam rerum illo suscipit, officiis recusandae cumque maxime nam quod ipsam vitae eos deleniti quibusdam natus optio similique. Provident sapiente dolores error facilis repellat sequi saepe reiciendis vero, corporis quasi!
+            {{ restaurant.description }}
         </p>
 
         <a href="/" class="block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700 self-start mb-8">
             Order now
         </a>
 
+        {% comment %} TODO: display amount of restaurant reviews {% endcomment %}
         <h2 class="text-lg w-full mb-4">73 Review(s)</h2>
 
         <form class="w-full">
@@ -56,6 +59,7 @@
 
         {% comment %} Reviews {% endcomment %}
         <div>
+            {% comment %} TODO: display restaurant reviews {% endcomment %}
             <div class="w-full mb-8">
                 <div class="flex mt-4">
                     <h3 class="mr-4">Person A</h3>
