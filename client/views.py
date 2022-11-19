@@ -223,6 +223,12 @@ def restaurants(request):
     data = {}
 
     restaurants = Restaurant.objects.all()
+
+    if request.method == 'GET' and request.GET.get('q'):
+        query = request.GET.get('q')
+        data['query'] = query
+        restaurants = Restaurant.objects.filter(name__icontains=query)
+
     data['restaurants'] = restaurants
 
     # If a customer is already logged in, retrieve the customer details
