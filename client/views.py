@@ -3,20 +3,22 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
 from .functions import password_check
-from .models import Customer
+from .models import Customer, Restaurant
 
 
 def index(request):
     data = {}
+
+    restaurants = Restaurant.objects.all()
+    data['restaurants'] = restaurants
 
     # If a customer is already logged in, retrieve the customer details
     if 'uid' in request.session:
         uid = request.session['uid']
         customer = Customer.objects.get(id=uid)
         data['customer'] = customer
-        return render(request, 'client/index.html', data)
 
-    return render(request, 'client/index.html')
+    return render(request, 'client/index.html', data)
 
 
 def register(request):

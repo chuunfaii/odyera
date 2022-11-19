@@ -18,56 +18,20 @@
         <div class="w-full mt-4">
             <h1 class="text-xl font-semibold mb-4">Featured Restaurants</h1>
             <div class="flex gap-5">
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
+                {% for restaurant in restaurants %}
+                    {% if forloop.counter <= 5 %}
+                        <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                            <a href="/restaurant/{{ restaurant.id }}">
+                                <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                            </a>
+                            <div class="flex flex-col flex-1 justify-center p-2">
+                                <a href="/restaurant/{{ restaurant.id }}">
+                                    <h5 class="text-sm tracking-tight text-gray-900">{{ restaurant.name }}</h5>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
 
@@ -75,56 +39,20 @@
         <div class="w-full mt-4 pb-12">
             <h1 class="text-xl font-semibold mb-4">Recommended for You</h1>
             <div class="flex gap-5">
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
-                    <a href="/">
-                        <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
-                    </a>
-                    <div class="flex flex-col flex-1 justify-center p-2">
-                        <a href="/">
-                            <h5 class="text-sm tracking-tight text-gray-900">Restaurant ABC</h5>
-                        </a>
-                    </div>
-                </div>
+                {% for restaurant in restaurants %}
+                    {% if forloop.counter <= 5 %}
+                        <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                            <a href="/restaurant/{{ restaurant.id }}">
+                                <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                            </a>
+                            <div class="flex flex-col flex-1 justify-center p-2">
+                                <a href="/restaurant/{{ restaurant.id }}">
+                                    <h5 class="text-sm tracking-tight text-gray-900">{{ restaurant.name }}</h5>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
