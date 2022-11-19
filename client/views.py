@@ -229,6 +229,10 @@ def menu(request, id):
     return render(request, 'client/menu.html')
 
 
+def order(request, id):
+    return render(request, 'client/order.html')
+
+
 def payment(request):
     data = {}
     errors = {}
