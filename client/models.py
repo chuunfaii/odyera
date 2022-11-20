@@ -20,6 +20,7 @@ class Restaurant(models.Model):
     location_lat = models.CharField(max_length=254)
     operating_hours_start = models.CharField(max_length=254)
     operating_hours_end = models.CharField(max_length=254)
+    image_url = models.CharField(max_length=254)
     owner = models.ForeignKey(RestaurantOwner, on_delete=models.CASCADE)
 
 
