@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
 from .functions import password_check
-from .models import Customer, Restaurant
+from .models import Customer, Restaurant, Review
 
 
 def index(request):
@@ -244,7 +244,19 @@ def restaurant(request, id):
     data = {}
 
     restaurant = Restaurant.objects.get(id=id)
+    reviews = Review.objects.filter(restaurant_id=id)
+
+    total_ratings = 0
+    ratings_amount = 0
+
+    for review in reviews:
+        total_ratings += review.rating
+        ratings_amount += 1
+
     data['restaurant'] = restaurant
+    data['reviews'] = reviews
+    data['average_rating'] = total_ratings / ratings_amount
+    data['ratings_amount'] = ratings_amount
 
     # If a customer is already logged in, retrieve the customer details
     if 'uid' in request.session:
