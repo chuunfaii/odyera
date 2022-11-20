@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
     <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
     {% comment %} Search Bar {% endcomment %}
@@ -22,8 +24,7 @@
                     {% if forloop.counter <= 5 %}
                         <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
                             <a href="/restaurant/{{ restaurant.id }}">
-                                {% comment %} TODO: display respective restaurant image {% endcomment %}
-                                <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                                <img class="bg-cover h-[180px] w-full" src="{% static '/images/' %}{{ restaurant.image_url }}" alt="Restaurant image">
                             </a>
                             <div class="flex flex-col flex-1 justify-center p-2">
                                 <a href="/restaurant/{{ restaurant.id }}">
@@ -44,7 +45,7 @@
                     {% if forloop.counter <= 5 %}
                         <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
                             <a href="/restaurant/{{ restaurant.id }}">
-                                <img class="bg-cover h-[180px] w-full" src="https://via.placeholder.com/1920" alt="Restaurant image">
+                                <img class="bg-cover h-[180px] w-full" src="{% static '/images/' %}{{ restaurant.image_url }}" alt="Restaurant image">
                             </a>
                             <div class="flex flex-col flex-1 justify-center p-2">
                                 <a href="/restaurant/{{ restaurant.id }}">
