@@ -246,6 +246,12 @@ def restaurant(request, id):
     restaurant = Restaurant.objects.get(id=id)
     data['restaurant'] = restaurant
 
+    # If a customer is already logged in, retrieve the customer details
+    if 'uid' in request.session:
+        uid = request.session['uid']
+        customer = Customer.objects.get(id=uid)
+        data['customer'] = customer
+
     return render(request, 'client/restaurant.html', data)
 
 
