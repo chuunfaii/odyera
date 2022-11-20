@@ -223,13 +223,33 @@ def restaurants(request):
     data = {}
 
     restaurants = Restaurant.objects.all()
+    details = []
 
     if request.method == 'GET' and request.GET.get('q'):
         query = request.GET.get('q')
         data['query'] = query
         restaurants = Restaurant.objects.filter(name__icontains=query)
 
-    data['restaurants'] = restaurants
+    for restaurant in restaurants:
+        reviews = Review.objects.filter(restaurant_id=restaurant.id)
+        total_ratings = 0
+        reviews_amount = 0
+
+        for review in reviews:
+            total_ratings += review.rating
+            reviews_amount += 1
+
+        average_rating = total_ratings / reviews_amount
+
+        details.append(
+            {
+                'average_rating': average_rating,
+                'reviews_amount': reviews_amount
+            }
+        )
+
+    restaurant_extras = zip(restaurants, details)
+    data['restaurant_extras'] = restaurant_extras
 
     # If a customer is already logged in, retrieve the customer details
     if 'uid' in request.session:

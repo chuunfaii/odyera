@@ -18,7 +18,7 @@
         <div class="w-full mt-4 pb-12">
             <h1 class="text-xl font-semibold mb-4">Restaurant Listing</h1>
             <div class="flex flex-col gap-8 w-full">
-                {% for restaurant in restaurants %}
+                {% for restaurant, details in restaurant_extras %}
                     <div class="flex justify-between gap-8 max-w-screen-xl">
                         <a href="/restaurant/{{ restaurant.id }}">
                             <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="{% static '/images/' %}{{ restaurant.image_url }}" alt="restaurant image">
@@ -27,10 +27,9 @@
                             <a href="/restaurant/{{ restaurant.id }}" class="block font-bold mb-4">{{ restaurant.name }}</a>
                             <p class="text-gray-700">{{ restaurant.description }}</p>
                         </div>
-                        {% comment %} TODO: display respective rating and amount of reviews {% endcomment %}
-                        <div class="flex flex-col min-w-max">
+                        <div class="flex flex-col items-end min-w-max">
                             <div class="flex justify-end mb-4">
-                                <p class="mr-2 text-sm font-bold text-gray-900">4.95</p>
+                                <p class="mr-2 text-sm text-gray-900"><span class="font-bold">{{ details.average_rating|floatformat:"1" }}</span> / 5</p>
                                 <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                     <title>Rating star</title>
@@ -39,7 +38,7 @@
                                     </path>
                                 </svg>
                             </div>
-                            <a href="/restaurant/{{ restaurant.id }}" class="text-sm font-medium text-gray-900 hover:underline">73 reviews</a>
+                            <a href="/restaurant/{{ restaurant.id }}" class="text-sm text-gray-900 hover:underline"><span class="font-bold">{{ details.reviews_amount }}</span> review{% if details.reviews_amount != 1 %}s{% endif %}</a>
                         </div>
                     </div>
                 {% empty %}
