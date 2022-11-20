@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
     <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center px-4 sm:px-6 lg:px-8 justify-between">
-        {% comment %} TODO: display restaurant image {% endcomment %}
-        <img class="bg-cover h-52 w-full mt-8" src="https://via.placeholder.com/1920" alt="Restaurant image">
+        <img class="object-cover bg-center h-52 w-full mt-8" src="{% static '/images/' %}{{ restaurant.image_url }}" alt="Restaurant image">
 
         <div class="flex justify-between w-full mt-8 mb-4">
             <h1 class="font-bold">{{ restaurant.name }}</h1>
