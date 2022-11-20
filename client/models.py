@@ -27,6 +27,7 @@ class Restaurant(models.Model):
 class Review(models.Model):
     rating = models.IntegerField()
     text = models.CharField(max_length=254)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     author = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 
