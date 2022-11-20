@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
-{% block content%}
+{% load static %}
+
+{% block content %}
     <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 justify-between">
-        {% comment %} Search Bar {% endcomment %}
         <form action="/restaurants" class="w-full mt-8" method="GET">
             <label for="q" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
             <div class="relative">
@@ -14,15 +15,13 @@
             </div>
         </form>
 
-        {% comment %} Restaurants Listing {% endcomment %}
         <div class="w-full mt-4 pb-12">
             <h1 class="text-xl font-semibold mb-4">Restaurant Listing</h1>
             <div class="flex flex-col gap-8 w-full">
                 {% for restaurant in restaurants %}
                     <div class="flex justify-between gap-8 max-w-screen-xl">
                         <a href="/restaurant/{{ restaurant.id }}">
-                            {% comment %} TODO: display respective restaurant image {% endcomment %}
-                            <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="https://via.placeholder.com/1920" alt="restaurant image">
+                            <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="{% static '/images/' %}{{ restaurant.image_url }}" alt="restaurant image">
                         </a>
                         <div>
                             <a href="/restaurant/{{ restaurant.id }}" class="block font-bold mb-4">{{ restaurant.name }}</a>
