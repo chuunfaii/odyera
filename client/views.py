@@ -222,7 +222,7 @@ def password(request):
 def restaurants(request):
     data = {}
 
-    restaurants = Restaurant.objects.all()
+    restaurants = Restaurant.objects.order_by('?')
     details = []
 
     if request.method == 'GET' and request.GET.get('q'):
