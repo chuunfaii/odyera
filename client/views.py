@@ -346,3 +346,6 @@ def foodTrend_whole(request):
 
 def foodTrend_particular(request):
     return render(request, 'client/foodTrend_particular.html')
+
+def order_history(request):
+    return render(request, 'client/order_history.html')
