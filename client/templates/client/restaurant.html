@@ -85,6 +85,8 @@
                         {{ review.text }}
                     </p>
                 </div>
+            {% empty %}
+                <h2 class="mt-16 text-center text-gray-700 text-2xl">No reviews posted for this restaurant yet.</h2>
             {% endfor %}
         </div>
     </div>
