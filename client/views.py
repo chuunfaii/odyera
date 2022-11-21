@@ -263,6 +263,20 @@ def restaurants(request):
 def restaurant(request, id):
     data = {}
 
+    # If a customer is already logged in, retrieve the customer details
+    if 'uid' in request.session:
+        uid = request.session['uid']
+        customer = Customer.objects.get(id=uid)
+        data['customer'] = customer
+
+    if request.method == 'POST':
+        review = request.POST.get('review')
+        rating = request.POST.get('rating')
+        Review.objects.create(rating=rating, text=review,
+                              author_id=customer.id, restaurant_id=id)
+        messages.success(
+            request, 'You have posted your review for this restaurant.')
+
     restaurant = Restaurant.objects.get(id=id)
     reviews = Review.objects.filter(restaurant_id=id)
 
@@ -277,12 +291,6 @@ def restaurant(request, id):
     data['reviews'] = reviews
     data['average_rating'] = total_ratings / ratings_amount
     data['ratings_amount'] = ratings_amount
-
-    # If a customer is already logged in, retrieve the customer details
-    if 'uid' in request.session:
-        uid = request.session['uid']
-        customer = Customer.objects.get(id=uid)
-        data['customer'] = customer
 
     return render(request, 'client/restaurant.html', data)
 
