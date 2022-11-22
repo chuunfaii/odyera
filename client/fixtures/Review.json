@@ -1,0 +1,172 @@
+[
+    {
+        "model": "client.Review",
+        "pk": 1,
+        "fields": {
+            "rating": 4.0,
+            "text": "non nisi est sit amet facilisis magna etiam tempor orci",
+            "author_id": 1,
+            "restaurant_id": 1
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 2,
+        "fields": {
+            "rating": 5.0,
+            "text": "adipiscing enim eu turpis egestas pretium aenean pharetra magna ac",
+            "author_id": 2,
+            "restaurant_id": 1
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 3,
+        "fields": {
+            "rating": 4.5,
+            "text": "pretium nibh ipsum consequat nisl vel pretium lectus quam pk",
+            "author_id": 3,
+            "restaurant_id": 1
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 4,
+        "fields": {
+            "rating": 4.0,
+            "text": "non nisi est sit amet facilisis magna etiam tempor orci",
+            "author_id": 1,
+            "restaurant_id": 2
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 5,
+        "fields": {
+            "rating": 5.0,
+            "text": "adipiscing enim eu turpis egestas pretium aenean pharetra magna ac",
+            "author_id": 2,
+            "restaurant_id": 2
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 6,
+        "fields": {
+            "rating": 4.5,
+            "text": "pretium nibh ipsum consequat nisl vel pretium lectus quam pk",
+            "author_id": 3,
+            "restaurant_id": 2
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 7,
+        "fields": {
+            "rating": 4.0,
+            "text": "non nisi est sit amet facilisis magna etiam tempor orci",
+            "author_id": 1,
+            "restaurant_id": 3
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 8,
+        "fields": {
+            "rating": 5.0,
+            "text": "adipiscing enim eu turpis egestas pretium aenean pharetra magna ac",
+            "author_id": 2,
+            "restaurant_id": 3
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 9,
+        "fields": {
+            "rating": 4.5,
+            "text": "pretium nibh ipsum consequat nisl vel pretium lectus quam pk",
+            "author_id": 3,
+            "restaurant_id": 3
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 10,
+        "fields": {
+            "rating": 4.0,
+            "text": "non nisi est sit amet facilisis magna etiam tempor orci",
+            "author_id": 1,
+            "restaurant_id": 4
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 11,
+        "fields": {
+            "rating": 5.0,
+            "text": "adipiscing enim eu turpis egestas pretium aenean pharetra magna ac",
+            "author_id": 2,
+            "restaurant_id": 4
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 12,
+        "fields": {
+            "rating": 4.5,
+            "text": "pretium nibh ipsum consequat nisl vel pretium lectus quam pk",
+            "author_id": 3,
+            "restaurant_id": 4
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 13,
+        "fields": {
+            "rating": 4.0,
+            "text": "non nisi est sit amet facilisis magna etiam tempor orci",
+            "author_id": 1,
+            "restaurant_id": 5
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 14,
+        "fields": {
+            "rating": 5.0,
+            "text": "adipiscing enim eu turpis egestas pretium aenean pharetra magna ac",
+            "author_id": 2,
+            "restaurant_id": 5
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 15,
+        "fields": {
+            "rating": 4.5,
+            "text": "pretium nibh ipsum consequat nisl vel pretium lectus quam pk",
+            "author_id": 3,
+            "restaurant_id": 5
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 16,
+        "fields": {
+            "rating": 4.5,
+            "text": "Best restaurant ever with affordable and delicious options. Must try! The only small downside would be the waiting time takes a bit long given the size of the restaurant.",
+            "author_id": 1,
+            "restaurant_id": 1
+        }
+    },
+    {
+        "model": "client.Review",
+        "pk": 17,
+        "fields": {
+            "rating": 4.0,
+            "text": "Decent food options. The foods were great, the only complaint I have is the price. With that price, we expected a larger portion of the foods but no, kinda disappointing. However, the foods were delicious.",
+            "author_id": 2,
+            "restaurant_id": 2
+        }
+    }
+]

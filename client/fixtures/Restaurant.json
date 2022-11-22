@@ -1,0 +1,72 @@
+[
+    {
+        "model": "client.Restaurant",
+        "pk": 1,
+        "fields": {
+            "name": "Restaurant A",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget lorem rhoncus, consequat urna non, commodo arcu. Phasellus sapien urna, lacinia in lacus quis, hendrerit vestibulum nisl. Aliquam efficitur odio.",
+            "location_lon": 51.5944418,
+            "location_lat": 4.7491974,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 1,
+            "image_url": "restaurant.png"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 2,
+        "fields": {
+            "name": "Restaurant B",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porta turpis non posuere malesuada. Proin vehicula laoreet tempor. Aliquam feugiat fermentum dui ut lacinia. Nunc ac gravida metus, non cursus.",
+            "location_lon": 51.5944418,
+            "location_lat": 4.7491974,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 1,
+            "image_url": "restaurant.png"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 3,
+        "fields": {
+            "name": "Restaurant C",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet tempor ex. Cras non rhoncus dui. Nunc convallis iaculis orci, ac convallis dui vulputate sit amet. Mauris pretium orci.",
+            "location_lon": 51.5944418,
+            "location_lat": 4.7491974,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 1,
+            "image_url": "restaurant.png"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 4,
+        "fields": {
+            "name": "Restaurant D",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales dui urna, a suscipit eros interdum feugiat. Nam at velit ut mi vehicula dapibus vitae eu velit. Vivamus maximus tincidunt.",
+            "location_lon": 51.5944418,
+            "location_lat": 4.7491974,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 1,
+            "image_url": "restaurant.png"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 5,
+        "fields": {
+            "name": "Restaurant E",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales dui urna, a suscipit eros interdum feugiat. Nam at velit ut mi vehicula dapibus vitae eu velit. Vivamus maximus tincidunt.",
+            "location_lon": 51.5944418,
+            "location_lat": 4.7491974,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 1,
+            "image_url": "restaurant.png"
+        }
+    }
+]

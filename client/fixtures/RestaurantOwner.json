@@ -1,0 +1,10 @@
+[
+    {
+        "model": "client.RestaurantOwner",
+        "pk": 1,
+        "fields": {
+            "email_address": "owner@restaurant.com",
+            "password": "pbkdf2_sha256$390000$cDytuhqJIIM1Qt6cnJF9fL$JJKUi5zLybWpVIyzZtlr15D5ujO092HcaPVqi2t6kYE="
+        }
+    }
+]
