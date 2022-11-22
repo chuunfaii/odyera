@@ -35,15 +35,12 @@ class Cuisine(models.Model):
     name = models.CharField(max_length=254)
 
 
-class Menu(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-
-
 class MenuItem(models.Model):
     name = models.CharField(max_length=254)
     description = models.CharField(max_length=254)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
 
 class Order(models.Model):
