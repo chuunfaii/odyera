@@ -18,4 +18,7 @@ urlpatterns = [
          name='foodTrend_particular'),
     path('foodTrend_whole', views.foodTrend_whole, name='foodTrend_whole'),
     path('order_history', views.order_history, name='order_history'),
+    path('report_whole', views.report_whole, name = 'report_whole'),
+    path('report_particular', views.report_particular, name = 'report_particular'),
+
 ]
