@@ -44,3 +44,22 @@ class MenuItem(models.Model):
     description = models.CharField(max_length=254)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE)
+
+
+class Order(models.Model):
+    date_time = models.DateTimeField(auto_now_add=True)
+    total_price = models.DecimalField(max_digits=6, decimal_places=2)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+
+class OrderDetail(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    subtotal_price = models.DecimalField(max_digits=6, decimal_places=2)
+
+
+class Payment(models.Model):
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    date_time = models.DateTimeField(auto_now_add=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
