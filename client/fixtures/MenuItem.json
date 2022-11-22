@@ -1,0 +1,167 @@
+[
+    {
+        "model": "client.MenuItem",
+        "pk": 1,
+        "fields": {
+            "name": "Burger A",
+            "description": "A delicious burger made with sauce A.",
+            "price": 15.90,
+            "cuisine_id": 1,
+            "restaurant_id": 1
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 2,
+        "fields": {
+            "name": "Burger B",
+            "description": "A delicious burger made with sauce B.",
+            "price": 15.90,
+            "cuisine_id": 1,
+            "restaurant_id": 1
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 3,
+        "fields": {
+            "name": "Burger C",
+            "description": "A delicious burger made with sauce C.",
+            "price": 15.90,
+            "cuisine_id": 1,
+            "restaurant_id": 1
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 4,
+        "fields": {
+            "name": "Spaghetti A",
+            "description": "A delicious spaghetti made with sauce A.",
+            "price": 17.90,
+            "cuisine_id": 1,
+            "restaurant_id": 2
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 5,
+        "fields": {
+            "name": "Spaghetti B",
+            "description": "A delicious spaghetti made with sauce B.",
+            "price": 17.90,
+            "cuisine_id": 1,
+            "restaurant_id": 2
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 6,
+        "fields": {
+            "name": "Spaghetti C",
+            "description": "A delicious spaghetti made with sauce C.",
+            "price": 17.90,
+            "cuisine_id": 1,
+            "restaurant_id": 2
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 7,
+        "fields": {
+            "name": "Chicken Chop A",
+            "description": "A delicious chicken chop made with sauce A.",
+            "price": 19.90,
+            "cuisine_id": 1,
+            "restaurant_id": 3
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 8,
+        "fields": {
+            "name": "Chicken Chop B",
+            "description": "A delicious chicken chop made with sauce B.",
+            "price": 19.90,
+            "cuisine_id": 1,
+            "restaurant_id": 3
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 9,
+        "fields": {
+            "name": "Chicken Chop C",
+            "description": "A delicious chicken chop made with sauce C.",
+            "price": 19.90,
+            "cuisine_id": 1,
+            "restaurant_id": 3
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 10,
+        "fields": {
+            "name": "Lamb Chop A",
+            "description": "A delicious lamb chop made with sauce A.",
+            "price": 21.90,
+            "cuisine_id": 1,
+            "restaurant_id": 4
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 11,
+        "fields": {
+            "name": "Lamb Chop B",
+            "description": "A delicious lamb chop made with sauce B.",
+            "price": 21.90,
+            "cuisine_id": 1,
+            "restaurant_id": 4
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 12,
+        "fields": {
+            "name": "Lamb Chop C",
+            "description": "A delicious lamb chop made with sauce C.",
+            "price": 21.90,
+            "cuisine_id": 1,
+            "restaurant_id": 4
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 13,
+        "fields": {
+            "name": "Mushroom Soup A",
+            "description": "A delicious mushroom soup made with sauce A.",
+            "price": 9.90,
+            "cuisine_id": 1,
+            "restaurant_id": 5
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 14,
+        "fields": {
+            "name": "Mushroom Soup B",
+            "description": "A delicious mushroom soup made with sauce B.",
+            "price": 9.90,
+            "cuisine_id": 1,
+            "restaurant_id": 5
+        }
+    },
+    {
+        "model": "client.MenuItem",
+        "pk": 15,
+        "fields": {
+            "name": "Mushroom Soup C",
+            "description": "A delicious mushroom soup made with sauce C.",
+            "price": 9.90,
+            "cuisine_id": 1,
+            "restaurant_id": 5
+        }
+    }
+]

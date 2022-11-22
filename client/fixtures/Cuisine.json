@@ -1,0 +1,9 @@
+[
+    {
+        "model": "client.Cuisine",
+        "pk": 1,
+        "fields": {
+            "name": "Western"
+        }
+    }
+]
