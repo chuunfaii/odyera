@@ -29,8 +29,8 @@
             {{ restaurant.description }}
         </p>
 
-        <a href="/" class="block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700 self-start mb-8">
-            Order now
+        <a href="/restaurant/{{ restaurant.id }}/menu" class="block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700 self-start mb-8">
+            View menu
         </a>
 
         <h2 class="text-lg w-full mb-4"><span class="font-bold">{{ ratings_amount }}</span> review{% if ratings_amount != 1 %}s{% endif %}</h2>
