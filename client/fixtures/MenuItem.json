@@ -6,6 +6,7 @@
             "name": "Burger A",
             "description": "A delicious burger made with sauce A.",
             "price": 15.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 1
         }
@@ -17,6 +18,7 @@
             "name": "Burger B",
             "description": "A delicious burger made with sauce B.",
             "price": 15.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 1
         }
@@ -28,6 +30,7 @@
             "name": "Burger C",
             "description": "A delicious burger made with sauce C.",
             "price": 15.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 1
         }
@@ -39,6 +42,7 @@
             "name": "Spaghetti A",
             "description": "A delicious spaghetti made with sauce A.",
             "price": 17.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 2
         }
@@ -50,6 +54,7 @@
             "name": "Spaghetti B",
             "description": "A delicious spaghetti made with sauce B.",
             "price": 17.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 2
         }
@@ -61,6 +66,7 @@
             "name": "Spaghetti C",
             "description": "A delicious spaghetti made with sauce C.",
             "price": 17.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 2
         }
@@ -72,6 +78,7 @@
             "name": "Chicken Chop A",
             "description": "A delicious chicken chop made with sauce A.",
             "price": 19.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 3
         }
@@ -83,6 +90,7 @@
             "name": "Chicken Chop B",
             "description": "A delicious chicken chop made with sauce B.",
             "price": 19.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 3
         }
@@ -94,6 +102,7 @@
             "name": "Chicken Chop C",
             "description": "A delicious chicken chop made with sauce C.",
             "price": 19.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 3
         }
@@ -105,6 +114,7 @@
             "name": "Lamb Chop A",
             "description": "A delicious lamb chop made with sauce A.",
             "price": 21.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 4
         }
@@ -116,6 +126,7 @@
             "name": "Lamb Chop B",
             "description": "A delicious lamb chop made with sauce B.",
             "price": 21.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 4
         }
@@ -127,6 +138,7 @@
             "name": "Lamb Chop C",
             "description": "A delicious lamb chop made with sauce C.",
             "price": 21.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 4
         }
@@ -138,6 +150,7 @@
             "name": "Mushroom Soup A",
             "description": "A delicious mushroom soup made with sauce A.",
             "price": 9.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 5
         }
@@ -149,6 +162,7 @@
             "name": "Mushroom Soup B",
             "description": "A delicious mushroom soup made with sauce B.",
             "price": 9.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 5
         }
@@ -160,6 +174,7 @@
             "name": "Mushroom Soup C",
             "description": "A delicious mushroom soup made with sauce C.",
             "price": 9.90,
+            "image_url": "food.png",
             "cuisine_id": 1,
             "restaurant_id": 5
         }
