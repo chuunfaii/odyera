@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
 from .functions import password_check
-from .models import Customer, Restaurant, Review
+from .models import Customer, Restaurant, Review, MenuItem
 
 
 def index(request):
@@ -296,7 +296,30 @@ def restaurant(request, id):
 
 
 def menu(request, id):
-    return render(request, 'client/menu.html')
+    data = {}
+
+    # If a customer is already logged in, retrieve the customer details
+    if 'uid' in request.session:
+        uid = request.session['uid']
+        customer = Customer.objects.get(id=uid)
+        data['customer'] = customer
+
+    restaurant = Restaurant.objects.get(id=id)
+    reviews = Review.objects.filter(restaurant_id=id)
+    menu_items = MenuItem.objects.filter(restaurant_id=id)
+
+    total_ratings = 0
+    ratings_amount = 0
+
+    for review in reviews:
+        total_ratings += review.rating
+        ratings_amount += 1
+
+    data['restaurant'] = restaurant
+    data['menu_items'] = menu_items
+    data['average_rating'] = total_ratings / ratings_amount
+
+    return render(request, 'client/menu.html', data)
 
 
 def order(request, id):
@@ -355,11 +378,14 @@ def foodTrend_whole(request):
 def foodTrend_particular(request):
     return render(request, 'client/foodTrend_particular.html')
 
+
 def order_history(request):
     return render(request, 'client/order_history.html')
 
+
 def report_whole(request):
     return render(request, 'client/report_whole.html')
+
 
 def report_particular(request):
     return render(request, 'client/report_particular.html')
