@@ -61,8 +61,11 @@
                     </svg>
                     <span class="ml-2">Back to restaurant details</span>
                 </a>
+                {% if 'uid' not in request.session %}
+                    <span class="text-sm text-red-400">You must be logged in to place an order.</span>
+                {% endif %}
                 <button type="submit"
-                    class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700">
+                    class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700" {% if 'uid' not in request.session %} disabled {% endif %}>
                     View order details
                 </button>
             </div>
