@@ -6,7 +6,7 @@
             <h1 class="text-2xl font-bold sm:text-3xl">Payment Details</h1>
         </div>
 
-        <form action="/payment" method="POST" class="mx-auto mt-8 mb-0 min-w-[28rem]">
+        <form action="/restaurant/{{ restaurant.id }}/payment" method="POST" class="mx-auto mt-8 mb-0 min-w-[28rem]">
             {% csrf_token %}
             <div class="z-0 mb-2 w-full group">
                 <label for="card_no" class="block text-gray-500 text-sm mb-2">Card Number</label>

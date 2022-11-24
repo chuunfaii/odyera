@@ -374,10 +374,21 @@ def order(request, id):
 
 
 def payment(request, id):
+    if 'uid' not in request.session:
+        return redirect(f'/restaurant/{id}menu')
+
     data = {}
     errors = {}
 
-    if request.method == 'POST':
+    uid = request.session['uid']
+    customer = Customer.objects.get(id=uid)
+
+    restaurant = Restaurant.objects.get(id=id)
+
+    data['customer'] = customer
+    data['restaurant'] = restaurant
+
+    if request.method == 'POST' and request.META.get('HTTP_REFERER').endswith('payment'):
         card_no = request.POST.get('card_no')
         expiration_date = request.POST.get('expiration_date')
         cvv = request.POST.get('cvv')
@@ -415,7 +426,7 @@ def payment(request, id):
         messages.success(request, 'Your order has been placed successfully.')
         return redirect('/')
     else:
-        return render(request, 'client/payment.html')
+        return render(request, 'client/payment.html', data)
 
 
 def foodTrend_whole(request):
