@@ -323,10 +323,57 @@ def menu(request, id):
 
 
 def order(request, id):
-    return render(request, 'client/order.html')
+    if 'uid' not in request.session:
+        return redirect(f'/restaurant/{id}/menu')
+
+    if request.method == 'POST':
+        data = {}
+
+        uid = request.session['uid']
+        customer = Customer.objects.get(id=uid)
+        data['customer'] = customer
+
+        restaurant = Restaurant.objects.get(id=id)
+        reviews = Review.objects.filter(restaurant_id=id)
+
+        total_ratings = 0
+        ratings_amount = 0
+
+        for review in reviews:
+            total_ratings += review.rating
+            ratings_amount += 1
+
+        menu_items = []
+        quantities = []
+        indiv_subtotals = []
+        subtotal = 0
+
+        for key, value in request.POST.items():
+            if key != 'csrfmiddlewaretoken':
+                quantity = int(value)
+                menu_item = MenuItem.objects.get(id=int(key))
+                indiv_subtotal = menu_item.price * quantity
+                subtotal += float(indiv_subtotal)
+                menu_items.append(menu_item)
+                quantities.append(quantity)
+                indiv_subtotals.append(indiv_subtotal)
+
+        tax = subtotal * 0.06
+        total = subtotal + tax
+
+        data['restaurant'] = restaurant
+        data['average_rating'] = total_ratings / ratings_amount
+        data['menu_items'] = zip(menu_items, quantities, indiv_subtotals)
+        data['subtotal'] = subtotal
+        data['tax'] = tax
+        data['total'] = total
+
+        return render(request, 'client/order.html', data)
+
+    return redirect(f'/restaurant/{id}/menu')
 
 
-def payment(request):
+def payment(request, id):
     data = {}
     errors = {}
 
