@@ -29,7 +29,8 @@
             Food Menu
         </p>
 
-        <form method="GET" class="flex flex-col gap-8 pb-8 w-full">
+        <form method="POST" class="flex flex-col gap-8 pb-8 w-full" action="/restaurant/{{ restaurant.id }}/order">
+            {% csrf_token %}
             {% for menu_item in menu_items %}
                 <div class="flex justify-between gap-8 max-w-screen-xl">
                     <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="{% static '/images/' %}{{ menu_item.image_url }}" alt="Menu item image">
@@ -44,7 +45,7 @@
                                 <button data-action="decrement" class="h-full text-gray-700 w-20 cursor-pointer outline-none transition hover:text-black">
                                     <span class="m-auto text-2xl font-thin">−</span>
                                 </button>
-                                <input type="number" class="bg-transparent focus:bg-transparent transition border-none text-center w-full font-semibold text-md hover:text-black focus:text-black flex items-center text-gray-700" name="1qty" value="0" min="0" max="99" required />
+                                <input type="number" class="bg-transparent focus:bg-transparent transition border-none text-center w-full font-semibold text-md hover:text-black focus:text-black flex items-center text-gray-700" name="{{ menu_item.id }}" value="0" min="0" max="99" required />
                                 <button data-action="increment" class="h-full text-gray-700 w-20 cursor-pointer outline-none transition hover:text-black">
                                     <span class="m-auto text-2xl font-thin">+</span>
                                 </button>
@@ -64,8 +65,8 @@
                 {% if 'uid' not in request.session %}
                     <span class="text-sm text-red-400">You must be logged in to place an order.</span>
                 {% endif %}
-                <button type="submit"
-                    class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700" {% if 'uid' not in request.session %} disabled {% endif %}>
+                <button type="submit" id="orderBtn"
+                    class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700 disabled:bg-gray-200 disabled:text-gray-400" disabled>
                     View order details
                 </button>
             </div>
@@ -100,6 +101,19 @@
               value--;
               target.value = value;
           }
+            {% if 'uid' in request.session %}
+                orderBtn = document.querySelector('#orderBtn');
+                quantityInputs = document.querySelectorAll('input[type="number"]');
+                isValid = false;
+                for (let i = 0; i < quantityInputs.length; i++) {
+                    if (quantityInputs[i].value > 0) {
+                        isValid = true;
+                        break;
+                    }
+                }
+                if (isValid) orderBtn.disabled = false;
+                else orderBtn.disabled = true;
+            {% endif %}
         }
 
         function increment(e) {
@@ -113,6 +127,19 @@
               value++;
               target.value = value;
           }
+            {% if 'uid' in request.session %}
+                orderBtn = document.querySelector('#orderBtn');
+                quantityInputs = document.querySelectorAll('input[type="number"]');
+                isValid = false;
+                for (let i = 0; i < quantityInputs.length; i++) {
+                    if (quantityInputs[i].value > 0) {
+                        isValid = true;
+                        break;
+                    }
+                }
+                if (isValid) orderBtn.disabled = false;
+                else orderBtn.disabled = true;
+            {% endif %}
         }
 
         const decrementButtons = document.querySelectorAll(
