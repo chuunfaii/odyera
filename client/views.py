@@ -248,11 +248,17 @@ def restaurants(request):
     restaurant_extras = zip(restaurants, details)
     data['restaurant_extras'] = restaurant_extras
 
-    # If a customer is already logged in, retrieve the customer details
     if 'uid' in request.session:
         uid = request.session['uid']
-        customer = Customer.objects.get(id=uid)
-        data['customer'] = customer
+
+        if request.session['type'] == 'customer':
+            customer = Customer.objects.get(id=uid)
+            data['customer'] = customer
+        else:
+            owner = RestaurantOwner.objects.get(id=uid)
+            restaurant = Restaurant.objects.filter(owner_id=uid).first()
+            owner.restaurant = restaurant
+            data['owner'] = owner
 
     return render(request, 'client/restaurants.html', data)
 
@@ -260,11 +266,17 @@ def restaurants(request):
 def restaurant(request, id):
     data = {}
 
-    # If a customer is already logged in, retrieve the customer details
     if 'uid' in request.session:
         uid = request.session['uid']
-        customer = Customer.objects.get(id=uid)
-        data['customer'] = customer
+
+        if request.session['type'] == 'customer':
+            customer = Customer.objects.get(id=uid)
+            data['customer'] = customer
+        else:
+            owner = RestaurantOwner.objects.get(id=uid)
+            restaurant = Restaurant.objects.filter(owner_id=uid).first()
+            owner.restaurant = restaurant
+            data['owner'] = owner
 
     if request.method == 'POST':
         review = request.POST.get('review')
@@ -295,11 +307,17 @@ def restaurant(request, id):
 def menu(request, id):
     data = {}
 
-    # If a customer is already logged in, retrieve the customer details
     if 'uid' in request.session:
         uid = request.session['uid']
-        customer = Customer.objects.get(id=uid)
-        data['customer'] = customer
+
+        if request.session['type'] == 'customer':
+            customer = Customer.objects.get(id=uid)
+            data['customer'] = customer
+        else:
+            owner = RestaurantOwner.objects.get(id=uid)
+            restaurant = Restaurant.objects.filter(owner_id=uid).first()
+            owner.restaurant = restaurant
+            data['owner'] = owner
 
     restaurant = Restaurant.objects.get(id=id)
     reviews = Review.objects.filter(restaurant_id=id)
@@ -320,7 +338,7 @@ def menu(request, id):
 
 
 def order(request, id):
-    if 'uid' not in request.session:
+    if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect(f'/restaurant/{id}/menu')
 
     if request.method == 'POST':
@@ -372,7 +390,7 @@ def order(request, id):
 
 
 def payment(request, id):
-    if 'uid' not in request.session:
+    if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect(f'/restaurant/{id}menu')
 
     data = {}
@@ -409,7 +427,6 @@ def payment(request, id):
         data['cvv'] = cvv
         data['postal_code'] = postal_code
 
-        # Regex patterns for credit card number, expiration date, CVV and Malaysia's postal code
         card_no_pattern = re.compile(r"^4[0-9]{12}(?:[0-9]{3})?$")
         expiration_date_pattern = re.compile(
             r"^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$")
@@ -428,7 +445,6 @@ def payment(request, id):
         if not re.fullmatch(postal_code_pattern, postal_code):
             errors['invalid_postal_error'] = 'Invalid postal code.'
 
-        # If there are error messages, re-renders the page with the already filled in user account details and error messages
         if errors:
             data['errors'] = errors
             return render(request, 'client/payment.html', data)
@@ -452,8 +468,8 @@ def payment(request, id):
 
         messages.success(request, 'Your order has been placed successfully.')
         return redirect('/')
-    else:
-        return render(request, 'client/payment.html', data)
+
+    return render(request, 'client/payment.html', data)
 
 
 def foodTrend_whole(request):
