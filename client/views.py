@@ -490,3 +490,11 @@ def report_whole(request):
 
 def report_particular(request):
     return render(request, 'client/report_particular.html')
+
+
+def malaysia_food_trend(request):
+    return render(request, 'client/foodTrend_whole.html')
+
+
+def food_trend(request):
+    return render(request, 'client/foodTrend_particular.html')

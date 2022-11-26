@@ -72,6 +72,15 @@
                                     <a href="/password" class="transition block py-2 px-4 hover:text-gray-800/75">Edit Password</a>
                                 </li>
                             </ul>
+                        {% elif request.session.type == 'owner' %}
+                            <ul class="py-1 text-sm text-gray-800" aria-labelledby="dropdownDividerButton">
+                                <li>
+                                    <a href="/malaysia-food-trend" class="transition block py-2 px-4 hover:text-gray-800/75">Malaysia Food Trend</a>
+                                </li>
+                                <li>
+                                    <a href="/food-trend" class="transition block py-2 px-4 hover:text-gray-800/75">Own Food Trend</a>
+                                </li>
+                            </ul>
                         {% endif %}
                         <div class="py-1">
                             <a href="/logout" class="transition block py-2 px-4 text-sm text-red-500 hover:text-red-700">Logout</a>
