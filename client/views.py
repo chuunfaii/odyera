@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
 from .functions import password_check
-from .models import Customer, Restaurant, Review, MenuItem, Order, OrderDetail, Payment
+from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Order, OrderDetail, Payment
 
 
 def index(request):
@@ -12,11 +12,17 @@ def index(request):
     restaurants = Restaurant.objects.all()
     data['restaurants'] = restaurants
 
-    # If a customer is already logged in, retrieve the customer details
     if 'uid' in request.session:
         uid = request.session['uid']
-        customer = Customer.objects.get(id=uid)
-        data['customer'] = customer
+
+        if request.session['type'] == 'customer':
+            customer = Customer.objects.get(id=uid)
+            data['customer'] = customer
+        else:
+            owner = RestaurantOwner.objects.get(id=uid)
+            restaurant = Restaurant.objects.filter(owner_id=uid).first()
+            owner.restaurant = restaurant
+            data['owner'] = owner
 
     return render(request, 'client/index.html', data)
 
@@ -69,21 +75,20 @@ def register(request):
 
 
 def login(request):
-    # If a user is already logged in, redirect back to homepage
     if 'uid' in request.session:
         return redirect('/')
 
-    # Only goes through if the user is making a POST request via submitting the form
     if request.method == 'POST':
+        data = {}
+
         email_address = request.POST.get('email_address')
         password = request.POST.get('password')
-        data = {
-            'email_address': email_address
-        }
+
+        data['email_address'] = email_address
 
         try:
             customer = Customer.objects.get(email_address=email_address)
-            # Checks if the hashed password in the database matches the entered password
+
             is_matched = check_password(password, customer.password)
             if not is_matched:
                 data['invalid_credentials_error'] = 'Invalid email or password. Please try again.'
@@ -91,15 +96,32 @@ def login(request):
             else:
                 uid = customer.id
                 request.session['uid'] = uid
+                request.session['type'] = 'customer'
                 messages.success(
                     request, 'You have successfully logged into your account.')
                 return redirect('/')
         except Customer.DoesNotExist:
-            data['invalid_credentials_error'] = 'Invalid email or password. Please try again.'
-            return render(request, 'client/login.html', data)
-    # Everything else goes through here, which only renders the page and nothing else
-    else:
-        return render(request, 'client/login.html')
+            try:
+                owner = RestaurantOwner.objects.get(
+                    email_address=email_address)
+
+                is_matched = check_password(
+                    password, owner.password)
+                if not is_matched:
+                    data['invalid_credentials_error'] = 'Invalid email or password. Please try again.'
+                    return render(request, 'client/login.html', data)
+                else:
+                    uid = owner.id
+                    request.session['uid'] = uid
+                    request.session['type'] = 'owner'
+                    messages.success(
+                        request, 'You have successfully logged into your account.')
+                    return redirect('/')
+            except RestaurantOwner.DoesNotExist:
+                data['invalid_credentials_error'] = 'Invalid email or password. Please try again.'
+                return render(request, 'client/login.html', data)
+
+    return render(request, 'client/login.html')
 
 
 def logout(request):
