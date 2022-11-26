@@ -62,8 +62,8 @@
                     </svg>
                     <span class="ml-2">Back to restaurant details</span>
                 </a>
-                {% if 'uid' not in request.session %}
-                    <span class="text-sm text-red-400">You must be logged in to place an order.</span>
+                {% if 'uid' not in request.session or request.session.type == 'owner' %}
+                    <span class="text-sm text-red-400">You must be logged in as a customer to place an order.</span>
                 {% endif %}
                 <button type="submit" id="orderBtn"
                     class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700 disabled:bg-gray-200 disabled:text-gray-400" disabled>
@@ -92,16 +92,16 @@
     <script>
         function decrement(e) {
             e.preventDefault();
-          const btn = e.target.parentNode.parentElement.querySelector(
-            'button[data-action="decrement"]'
-          );
-          const target = btn.nextElementSibling;
-          let value = Number(target.value);
-          if (value != 0) {
-              value--;
-              target.value = value;
-          }
-            {% if 'uid' in request.session %}
+            const btn = e.target.parentNode.parentElement.querySelector('button[data-action="decrement"]');
+            const target = btn.nextElementSibling;
+            let value = Number(target.value);
+            if (value != 0) {
+                value--;
+                target.value = value;
+            }
+
+            {% if 'uid' in request.session and request.session.type == 'customer' %}
+                console.log('{{ request.session.type }}')
                 orderBtn = document.querySelector('#orderBtn');
                 quantityInputs = document.querySelectorAll('input[type="number"]');
                 isValid = false;
@@ -118,16 +118,15 @@
 
         function increment(e) {
             e.preventDefault();
-          const btn = e.target.parentNode.parentElement.querySelector(
-            'button[data-action="decrement"]'
-          );
-          const target = btn.nextElementSibling;
-          let value = Number(target.value);
-          if (value != 99) {
-              value++;
-              target.value = value;
-          }
-            {% if 'uid' in request.session %}
+            const btn = e.target.parentNode.parentElement.querySelector('button[data-action="decrement"]');
+            const target = btn.nextElementSibling;
+            let value = Number(target.value);
+            if (value != 99) {
+                value++;
+                target.value = value;
+            }
+
+            {% if 'uid' in request.session and request.session.type == 'customer' %}
                 orderBtn = document.querySelector('#orderBtn');
                 quantityInputs = document.querySelectorAll('input[type="number"]');
                 isValid = false;
@@ -143,19 +142,19 @@
         }
 
         const decrementButtons = document.querySelectorAll(
-          `button[data-action="decrement"]`
+            `button[data-action="decrement"]`
         );
 
         const incrementButtons = document.querySelectorAll(
-          `button[data-action="increment"]`
+            `button[data-action="increment"]`
         );
 
         decrementButtons.forEach(btn => {
-          btn.addEventListener("click", decrement);
+            btn.addEventListener("click", decrement);
         });
 
         incrementButtons.forEach(btn => {
-          btn.addEventListener("click", increment);
+            btn.addEventListener("click", increment);
         });
     </script>
 {% endblock %}

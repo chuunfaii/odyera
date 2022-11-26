@@ -55,10 +55,10 @@
                         <input type="radio" id="star1" name="rating" value="1" /><label class="full hover:cursor-pointer" for="star1"></label>
                         <input type="radio" id="star0.5" name="rating" value="0.5" /><label class="half hover:cursor-pointer" for="star0.5"></label>
                     </fieldset>
-                    {% if 'uid' not in request.session %}
-                        <span class="text-sm text-red-400">You must be logged in to write a review.</span>
+                    {% if 'uid' not in request.session or request.session.type == 'owner' %}
+                        <span class="text-sm text-red-400">You must be logged in as a customer to write a review.</span>
                     {% endif %}
-                    <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-gray-800 transition hover:bg-gray-700 rounded-lg disabled:bg-gray-200 disabled:text-gray-400" {% if 'uid' not in request.session %} disabled {% endif %}>
+                    <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-gray-800 transition hover:bg-gray-700 rounded-lg disabled:bg-gray-200 disabled:text-gray-400" {% if 'uid' not in request.session or request.session.type == 'owner' %} disabled {% endif %}>
                         Post review
                     </button>
                 </div>
