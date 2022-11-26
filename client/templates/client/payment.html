@@ -8,6 +8,10 @@
 
         <form action="/restaurant/{{ restaurant.id }}/payment" method="POST" class="mx-auto mt-8 mb-0 min-w-[28rem]">
             {% csrf_token %}
+            {% for menu_item, quantity in menu_items %}
+                <input type="hidden" name="{{ menu_item.id }}" value="{{ quantity }}" />
+            {% endfor %}
+            <input type="hidden" name="total" value="{{ total }}" />
             <div class="z-0 mb-2 w-full group">
                 <label for="card_no" class="block text-gray-500 text-sm mb-2">Card Number</label>
                 <input type="text" name="card_no" id="card_no"

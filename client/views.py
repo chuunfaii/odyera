@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.shortcuts import render, redirect
 from .functions import password_check
-from .models import Customer, Restaurant, Review, MenuItem
+from .models import Customer, Restaurant, Review, MenuItem, Order, OrderDetail, Payment
 
 
 def index(request):
@@ -380,13 +380,25 @@ def payment(request, id):
     data = {}
     errors = {}
 
+    menu_items = []
+    quantities = []
+
     uid = request.session['uid']
     customer = Customer.objects.get(id=uid)
-
     restaurant = Restaurant.objects.get(id=id)
+
+    for key, value in request.POST.items():
+        if key.isnumeric():
+            quantity = int(value)
+            menu_item = MenuItem.objects.get(id=int(key))
+
+            quantities.append(quantity)
+            menu_items.append(menu_item)
 
     data['customer'] = customer
     data['restaurant'] = restaurant
+    data['menu_items'] = zip(menu_items, quantities)
+    data['total'] = request.POST.get('total')
 
     if request.method == 'POST' and request.META.get('HTTP_REFERER').endswith('payment'):
         card_no = request.POST.get('card_no')
@@ -422,6 +434,23 @@ def payment(request, id):
         if errors:
             data['errors'] = errors
             return render(request, 'client/payment.html', data)
+
+        Order.objects.create(
+            total_price=data['total'], customer_id=data['customer'].id)
+
+        latest_order_id = Order.objects.latest('id').id
+
+        Payment.objects.create(amount=data['total'], order_id=latest_order_id)
+
+        menu_items = data['menu_items']
+
+        for menu_item, quantity in menu_items:
+            print('inside for loop')
+            print(menu_item)
+            print(quantity)
+            subtotal = menu_item.price * quantity
+            OrderDetail.objects.create(order_id=latest_order_id, menu_item_id=menu_item.id,
+                                       quantity=quantity, subtotal_price=subtotal)
 
         messages.success(request, 'Your order has been placed successfully.')
         return redirect('/')
