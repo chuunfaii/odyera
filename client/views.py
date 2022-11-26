@@ -354,9 +354,10 @@ def order(request, id):
                 menu_item = MenuItem.objects.get(id=int(key))
                 indiv_subtotal = menu_item.price * quantity
                 subtotal += float(indiv_subtotal)
-                menu_items.append(menu_item)
-                quantities.append(quantity)
-                indiv_subtotals.append(indiv_subtotal)
+                if quantity > 0:
+                    menu_items.append(menu_item)
+                    quantities.append(quantity)
+                    indiv_subtotals.append(indiv_subtotal)
 
         tax = subtotal * 0.06
         total = subtotal + tax
