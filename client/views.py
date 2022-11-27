@@ -473,7 +473,38 @@ def payment(request, id):
 
 
 def order_history(request):
-    return render(request, 'client/order_history.html')
+    if 'uid' not in request.session or request.session['type'] == 'owner':
+        return redirect('/')
+
+    data = {}
+
+    uid = request.session['uid']
+    customer = Customer.objects.get(id=uid)
+    data['customer'] = customer
+
+    orders = Order.objects.filter(customer_id=uid)
+
+    restaurants = []
+    order_details = []
+
+    for order in orders:
+        order_items = OrderDetail.objects.filter(order_id=order.id)
+        items = []
+        restaurant = None
+        for order_item in order_items:
+            item = MenuItem.objects.get(id=order_item.menu_item_id)
+            items.append({
+                'quantity': order_item.quantity,
+                'subtotal': order_item.quantity * item.price,
+                'item': item
+            })
+            restaurant = Restaurant.objects.get(id=item.restaurant_id)
+        order_details.append(items)
+        restaurants.append(restaurant)
+
+    data['orders'] = zip(orders, order_details, restaurants)
+
+    return render(request, 'client/order_history.html', data)
 
 
 def malaysia_food_trend(request):

@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 
-{% block content%}
-
-    <div class="mx-auto w-full  h-16 max-w-screen-xl  px-4 sm:px-6 lg:px-8 justify-between ">
+{% block content %}
+    <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 justify-between">
         <h1 class="text-2xl font-bold mt-8 mb-4">Order History</h1>
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-md sm:rounded-lg">
-            <thead class="text-xs text-gray-700 uppercase bg-slate-100 dark:bg-gray-700 dark:text-gray-400">
+        <table class="w-full text-sm text-left text-gray-500 shadow-md sm:rounded-lg">
+            <thead class="text-xs text-gray-700 uppercase bg-slate-100">
                 <tr>
                     <th scope="col" class="py-3 px-6">
                         Order No
@@ -14,7 +13,7 @@
                         Order Date
                     </th>
                     <th scope="col" class="py-3 px-6">
-                        Total
+                        Total (RM)
                     </th>
                     <th scope="col" class="py-3 ">
                         <span class="sr-only">View Details</span>
@@ -22,55 +21,41 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        S0001
-                    </th>
-                    <td class="py-4 px-6">
-                        6/7/2021
-                    </td>
-                    <td class="py-4 px-6">
-                        100.00
-                    </td>
-                    
-                    <td class="py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View Details</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        S0001
-                    </th>
-                    <td class="py-4 px-6">
-                        6/7/2021
-                    </td>
-                    <td class="py-4 px-6">
-                        100.00
-                    </td>
-                    
-                    <td class="py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View Details</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        S0001
-                    </th>
-                    <td class="py-4 px-6">
-                        6/7/2021
-                    </td>
-                    <td class="py-4 px-6">
-                        100.00
-                    </td>
-                    
-                    <td class="py-4">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View Details</a>
-                    </td>
-                </tr>
-                
+                {% for order, details, restaurant in orders %}
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                            {{ order.id }}
+                        </th>
+                        <td class="py-4 px-6">
+                            {{ order.date_time|date:'d-m-Y' }}
+                        </td>
+                        <td class="py-4 px-6">
+                            {{ order.total_price }}
+                        </td>
+
+                        <td class="py-4">
+                            <button data-popover-target="details-popover-{{ order.id }}" data-popover-trigger="click" type="button" class="font-medium text-blue-600 hover:underline">View Details</button>
+                            <div data-popover id="details-popover-{{ order.id }}" role="tooltip" class="absolute z-10 invisible inline-block w-fit text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0">
+                                <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg">
+                                    <h3 class="font-semibold text-gray-900">{{ restaurant.name }}</h3>
+                                </div>
+                                <div class="px-3 py-2">
+                                    {% for detail in details %}
+                                        <div class="flex gap-8 py-2">
+                                            <p>
+                                                <span class="font-semibold">{{ detail.item.name }}</span> -
+                                                RM {{ detail.item.price }} x {{ detail.quantity }}
+                                            </p>
+                                            <p>RM {{ detail.subtotal }}</p>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div data-popper-arrow></div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
-
-
 {% endblock %}
