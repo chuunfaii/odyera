@@ -472,29 +472,101 @@ def payment(request, id):
     return render(request, 'client/payment.html', data)
 
 
-def foodTrend_whole(request):
-    return render(request, 'client/foodTrend_whole.html')
-
-
-def foodTrend_particular(request):
-    return render(request, 'client/foodTrend_particular.html')
-
-
 def order_history(request):
     return render(request, 'client/order_history.html')
 
 
-def report_whole(request):
-    return render(request, 'client/report_whole.html')
-
-
-def report_particular(request):
-    return render(request, 'client/report_particular.html')
-
-
 def malaysia_food_trend(request):
-    return render(request, 'client/foodTrend_whole.html')
+    if 'uid' not in request.session or request.session['type'] == 'customer':
+        return redirect('/')
+
+    data = {}
+
+    uid = request.session['uid']
+    owner = RestaurantOwner.objects.get(id=uid)
+    restaurant = Restaurant.objects.filter(owner_id=uid).first()
+    owner.restaurant = restaurant
+    data['owner'] = owner
+
+    if request.method == 'GET' and request.GET.get('m'):
+        m = request.GET.get('m')
+
+        if m == 'all':
+            month = 'All Time'
+        elif m == 'jan':
+            month = 'January'
+        elif m == 'feb':
+            month = 'February'
+        elif m == 'mar':
+            month = 'March'
+        elif m == 'apr':
+            month = 'April'
+        elif m == 'may':
+            month = 'May'
+        elif m == 'jun':
+            month = 'June'
+        elif m == 'jul':
+            month = 'July'
+        elif m == 'aug':
+            month = 'August'
+        elif m == 'sep':
+            month = 'September'
+        elif m == 'oct':
+            month = 'October'
+        elif m == 'nov':
+            month = 'November'
+        elif m == 'dec':
+            month = 'December'
+
+        data['m'] = m
+        data['month'] = month
+
+    return render(request, 'client/malaysia_food_trend.html', data)
 
 
 def food_trend(request):
-    return render(request, 'client/foodTrend_particular.html')
+    if 'uid' not in request.session or request.session['type'] == 'customer':
+        return redirect('/')
+
+    data = {}
+
+    uid = request.session['uid']
+    owner = RestaurantOwner.objects.get(id=uid)
+    restaurant = Restaurant.objects.filter(owner_id=uid).first()
+    owner.restaurant = restaurant
+    data['owner'] = owner
+
+    if request.method == 'GET' and request.GET.get('m'):
+        m = request.GET.get('m')
+
+        if m == 'all':
+            month = 'All Time'
+        elif m == 'jan':
+            month = 'January'
+        elif m == 'feb':
+            month = 'February'
+        elif m == 'mar':
+            month = 'March'
+        elif m == 'apr':
+            month = 'April'
+        elif m == 'may':
+            month = 'May'
+        elif m == 'jun':
+            month = 'June'
+        elif m == 'jul':
+            month = 'July'
+        elif m == 'aug':
+            month = 'August'
+        elif m == 'sep':
+            month = 'September'
+        elif m == 'oct':
+            month = 'October'
+        elif m == 'nov':
+            month = 'November'
+        elif m == 'dec':
+            month = 'December'
+
+        data['m'] = m
+        data['month'] = month
+
+    return render(request, 'client/food_trend.html', data)
