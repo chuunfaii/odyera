@@ -1,0 +1,2760 @@
+[
+    {
+        "model": "client.Restaurant",
+        "pk": 1,
+        "fields": {
+            "name": "KOPITAN CLASSIC WHITE COFFEE",
+            "description": "An ideal place for students and employees to release stress.",
+            "location_lon": 100.481,
+            "location_lat": 5.17818,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 1,
+            "image_url": "kopitanClassic.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 2,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.438,
+            "location_lat": 5.24431,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 2,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 3,
+        "fields": {
+            "name": "KOPITAN CLASSIC WHITE COFFEE",
+            "description": "An ideal place for students and employees to release stress.",
+            "location_lon": 100.491,
+            "location_lat": 5.27706,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 3,
+            "image_url": "kopitanClassic.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 4,
+        "fields": {
+            "name": "BLACKWOOD COFFEE AND CHOCOLATE",
+            "description": "Blackwood Coffee & Chocolate where everyone craves a trip to cafe every now and then, drinking a good cup of coffee with main course served and some pastry to satisfied a sweet tooth, but too often I felt compelled to abstain.",
+            "location_lon": 100.49,
+            "location_lat": 5.27722,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 4,
+            "image_url": "blackwood.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 5,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.265,
+            "location_lat": 5.30087,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 5,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 6,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.476,
+            "location_lat": 5.31596,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 6,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 7,
+        "fields": {
+            "name": "KOPITAN CLASSIC WHITE COFFEE",
+            "description": "An ideal place for students and employees to release stress.",
+            "location_lon": 100.476,
+            "location_lat": 5.31706,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 7,
+            "image_url": "kopitanClassic.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 8,
+        "fields": {
+            "name": "WINTER WARMERS COFFEE & TEA HOUSE",
+            "description": "Winter Warmers Coffee and Tea House adopted the closed concept that provides a peace and tranquil atmosphere for the customers to relax and enjoy the original English teas.",
+            "location_lon": 100.478,
+            "location_lat": 5.32004,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 8,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 9,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.478,
+            "location_lat": 5.32022,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 9,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 10,
+        "fields": {
+            "name": "ST PRESSO COFFEE",
+            "description": "Est. in Penang in Aug 2014, we focus on serving SANDwich, ice cream and esPRESSO",
+            "location_lon": 100.283,
+            "location_lat": 5.32202,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 10,
+            "image_url": "stPresso.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 11,
+        "fields": {
+            "name": "BREAD KING COFFEE",
+            "description": "BreadKING \u2013 a brand of well-established fast food bakery caf\u00e9 in Penang which sells not only bread but also coffee",
+            "location_lon": 100.282,
+            "location_lat": 5.32419,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 11,
+            "image_url": "breadKing.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 12,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.286,
+            "location_lat": 5.32656,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 12,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 13,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.284,
+            "location_lat": 5.32741,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 13,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 14,
+        "fields": {
+            "name": "WINTER WARMERS COFFEE & TEA HOUSE",
+            "description": "Winter Warmers Coffee and Tea House adopted the closed concept that provides a peace and tranquil atmosphere for the customers to relax and enjoy the original English teas.",
+            "location_lon": 100.306,
+            "location_lat": 5.33217,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 14,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 15,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.306,
+            "location_lat": 5.33254,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 15,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 16,
+        "fields": {
+            "name": "DOME CAFE",
+            "description": "Serving the world\u2019s finest coffees, comfort food and desserts, the philosophy of D\u00d4ME Caf\u00e9 is simple: we want you to leave us with a satisfied smile on your face.",
+            "location_lon": 100.306,
+            "location_lat": 5.33293,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 16,
+            "image_url": "dome.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 17,
+        "fields": {
+            "name": "AUSTIN CHASE COFFEE",
+            "description": "Air flown direct from our roasters in Seattle to Malaysia, you'd be hard pressed to find fresher beans anywhere else in the country.",
+            "location_lon": 100.307,
+            "location_lat": 5.33315,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 17,
+            "image_url": "austinChase.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 18,
+        "fields": {
+            "name": "J.CO DONUTS & COFFEE",
+            "description": "J.CO Donuts & Coffee is a lifestyle cafe retailer in Asia specializing in donuts, coffee and frozen yogurt.",
+            "location_lon": 100.306,
+            "location_lat": 5.33344,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 18,
+            "image_url": "jco.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 19,
+        "fields": {
+            "name": "THE WHITE HOUSE COFFEE",
+            "description": "Truly great coffee for the people. Organic, fresher, and healthier.",
+            "location_lon": 100.291,
+            "location_lat": 5.33391,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 19,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 20,
+        "fields": {
+            "name": "WINTER WARMERS COFFEE & TEA HOUSE",
+            "description": "Winter Warmers Coffee and Tea House adopted the closed concept that provides a peace and tranquil atmosphere for the customers to relax and enjoy the original English teas.",
+            "location_lon": 100.429,
+            "location_lat": 5.33722,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 20,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 21,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.429,
+            "location_lat": 5.3377,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 21,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 22,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.429,
+            "location_lat": 5.3378,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 22,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 23,
+        "fields": {
+            "name": "BREAD KING COFFEE",
+            "description": "BreadKING \u2013 a brand of well-established fast food bakery caf\u00e9 in Penang which sells not only bread but also coffee",
+            "location_lon": 100.309,
+            "location_lat": 5.33911,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 23,
+            "image_url": "breadKing.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 24,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.434,
+            "location_lat": 5.34535,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 24,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 25,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.473,
+            "location_lat": 5.35174,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 25,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 26,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.417,
+            "location_lat": 5.35428,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 26,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 27,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.418,
+            "location_lat": 5.35476,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 27,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 28,
+        "fields": {
+            "name": "ROTI BAKAR KOPITIAM",
+            "description": "Roti Bakar Kopitiam is a coffee shop in Plaza Ivory, Penang.",
+            "location_lon": 100.293,
+            "location_lat": 5.35766,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 28,
+            "image_url": "rotiBakar.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 29,
+        "fields": {
+            "name": "KOPITAN CLASSIC WHITE COFFEE",
+            "description": "An ideal place for students and employees to release stress.",
+            "location_lon": 100.433,
+            "location_lat": 5.3639,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 29,
+            "image_url": "kopitanClassic.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 30,
+        "fields": {
+            "name": "HOMESTYLE KOPITIAM",
+            "description": "Homestyle Kopitiam is a family oriented modern kopitiam serving authentic local Malaysian cuisine.",
+            "location_lon": 100.437,
+            "location_lat": 5.36594,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 30,
+            "image_url": "homestyleKopitiam.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 31,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.437,
+            "location_lat": 5.36774,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 31,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 32,
+        "fields": {
+            "name": "BREAD KING COFFEE",
+            "description": "BreadKING \u2013 a brand of well-established fast food bakery caf\u00e9 in Penang which sells not only bread but also coffee",
+            "location_lon": 100.315,
+            "location_lat": 5.37604,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 32,
+            "image_url": "breadKing.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 33,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.316,
+            "location_lat": 5.37644,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 33,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 34,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.316,
+            "location_lat": 5.3766,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 34,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 35,
+        "fields": {
+            "name": "FRANK LAURENT COFFEE ROASTERS",
+            "description": "In Frank Laurent Coffee Roasters, we are specialised in bean roasting since year 2015.",
+            "location_lon": 100.314,
+            "location_lat": 5.37794,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 35,
+            "image_url": "frankLaurent.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 36,
+        "fields": {
+            "name": "HOMESTYLE KOPITIAM",
+            "description": "Homestyle Kopitiam is a family oriented modern kopitiam serving authentic local Malaysian cuisine.",
+            "location_lon": 100.388,
+            "location_lat": 5.38795,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 36,
+            "image_url": "homestyleKopitiam.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 37,
+        "fields": {
+            "name": "BIG APPLE DONUTS & COFFEE",
+            "description": "BIG APPLE Donuts & Coffee offers a wide selection of premium donuts, with a range of tantalizing coffees and a charming variety of tea creations.",
+            "location_lon": 100.365,
+            "location_lat": 5.39469,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 37,
+            "image_url": "bigApple.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 38,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.365,
+            "location_lat": 5.39487,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 38,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 39,
+        "fields": {
+            "name": "WINTER WARMERS COFFEE & TEA HOUSE",
+            "description": "Winter Warmers Coffee and Tea House adopted the closed concept that provides a peace and tranquil atmosphere for the customers to relax and enjoy the original English teas.",
+            "location_lon": 100.29,
+            "location_lat": 5.39521,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 39,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 40,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.29,
+            "location_lat": 5.39573,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 40,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 41,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.29,
+            "location_lat": 5.39601,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 41,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 42,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.315,
+            "location_lat": 5.39622,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 42,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 43,
+        "fields": {
+            "name": "KOPITAN CLASSIC WHITE COFFEE",
+            "description": "An ideal place for students and employees to release stress.",
+            "location_lon": 100.4,
+            "location_lat": 5.39685,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 43,
+            "image_url": "kopitanClassic.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 44,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.329,
+            "location_lat": 5.39768,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 44,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 45,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.4,
+            "location_lat": 5.3977,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 45,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 46,
+        "fields": {
+            "name": "WINTER WARMERS COFFEE & TEA HOUSE",
+            "description": "Winter Warmers Coffee and Tea House adopted the closed concept that provides a peace and tranquil atmosphere for the customers to relax and enjoy the original English teas.",
+            "location_lon": 100.398,
+            "location_lat": 5.39882,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 46,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 47,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.278,
+            "location_lat": 5.40826,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 47,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 48,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.332,
+            "location_lat": 5.41317,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 48,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 49,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.331,
+            "location_lat": 5.41323,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 49,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 50,
+        "fields": {
+            "name": "PBC COFFEE",
+            "description": "PBC Coffee is a specialty store specializing in the retail of freshly roasted coffee beans and coffee brewing products for the home brewers.",
+            "location_lon": 100.331,
+            "location_lat": 5.41345,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 50,
+            "image_url": "pbc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 51,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.332,
+            "location_lat": 5.41392,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 51,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 52,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.331,
+            "location_lat": 5.41441,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 52,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 53,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.382,
+            "location_lat": 5.41526,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 53,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 54,
+        "fields": {
+            "name": "KOPITAN CLASSIC WHITE COFFEE",
+            "description": "An ideal place for students and employees to release stress.",
+            "location_lon": 100.343,
+            "location_lat": 5.41835,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 54,
+            "image_url": "kopitanClassic.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 55,
+        "fields": {
+            "name": "ST PRESSO COFFEE",
+            "description": "Est. in Penang in Aug 2014, we focus on serving SANDwich, ice cream and esPRESSO",
+            "location_lon": 100.336,
+            "location_lat": 5.41836,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 55,
+            "image_url": "stPresso.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 56,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.339,
+            "location_lat": 5.42127,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 56,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 57,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.32,
+            "location_lat": 5.42753,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 57,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 58,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.311,
+            "location_lat": 5.43185,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 58,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 59,
+        "fields": {
+            "name": "PACIFIC COFFEE COMPANY",
+            "description": "\u201cThe cup, the thought, my way\u201d as our motto, a perfect cup contains not only coffee but also friendship, love and an attitude.",
+            "location_lon": 100.312,
+            "location_lat": 5.43597,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 59,
+            "image_url": "pacific.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 60,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.311,
+            "location_lat": 5.43643,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 60,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 61,
+        "fields": {
+            "name": "WINTER WARMERS COFFEE & TEA HOUSE",
+            "description": "Winter Warmers Coffee and Tea House adopted the closed concept that provides a peace and tranquil atmosphere for the customers to relax and enjoy the original English teas.",
+            "location_lon": 100.312,
+            "location_lat": 5.43677,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 61,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 62,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.309,
+            "location_lat": 5.4368,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 62,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 63,
+        "fields": {
+            "name": "STATION KOPITIAM",
+            "description": "Station Kopitiam is a Halal friendly restaurant in Kuala Lumpur, serving a variety of Malaysian delicacies from rice to noodles along with some western food.",
+            "location_lon": 100.31,
+            "location_lat": 5.43721,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 63,
+            "image_url": "stationKopitiam.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 64,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.309,
+            "location_lat": 5.43741,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 64,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 65,
+        "fields": {
+            "name": "DOME CAFE",
+            "description": "Serving the world\u2019s finest coffees, comfort food and desserts, the philosophy of D\u00d4ME Caf\u00e9 is simple: we want you to leave us with a satisfied smile on your face.",
+            "location_lon": 100.31,
+            "location_lat": 5.43773,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 65,
+            "image_url": "dome.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 66,
+        "fields": {
+            "name": "KOPITAN CLASSIC WHITE COFFEE",
+            "description": "An ideal place for students and employees to release stress.",
+            "location_lon": 100.309,
+            "location_lat": 5.43792,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 66,
+            "image_url": "kopitanClassic.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 67,
+        "fields": {
+            "name": "WINTER WARMERS COFFEE & TEA HOUSE",
+            "description": "Winter Warmers Coffee and Tea House adopted the closed concept that provides a peace and tranquil atmosphere for the customers to relax and enjoy the original English teas.",
+            "location_lon": 100.31,
+            "location_lat": 5.43793,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 67,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 68,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.382,
+            "location_lat": 5.43903,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 68,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 69,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.306,
+            "location_lat": 5.44655,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 69,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 70,
+        "fields": {
+            "name": "WINTER WARMERS COFFEE & TEA HOUSE",
+            "description": "Winter Warmers Coffee and Tea House adopted the closed concept that provides a peace and tranquil atmosphere for the customers to relax and enjoy the original English teas.",
+            "location_lon": 100.313,
+            "location_lat": 5.45774,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 70,
+            "image_url": "winterWarmer.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 71,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.313,
+            "location_lat": 5.45853,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 71,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 72,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.247,
+            "location_lat": 5.47349,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 72,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 73,
+        "fields": {
+            "name": "OLDTOWN WHITE COFFEE",
+            "description": "Malaysia's largest halal-certified kopi tiam restaurant chain. The company also manufactures and sells instant beverage products and mixes.",
+            "location_lon": 100.451,
+            "location_lat": 5.51692,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 73,
+            "image_url": "oldTown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 74,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.431,
+            "location_lat": 5.33845,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 74,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 75,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.306,
+            "location_lat": 5.45065,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 75,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 76,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.31,
+            "location_lat": 5.43279,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 76,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 77,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.307,
+            "location_lat": 5.33182,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 77,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 78,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.307,
+            "location_lat": 5.33203,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 78,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 79,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.306,
+            "location_lat": 5.33404,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 79,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 80,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.31,
+            "location_lat": 5.4378,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 80,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 81,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.313,
+            "location_lat": 5.45833,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 81,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 82,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.266,
+            "location_lat": 5.29258,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 82,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 83,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.32,
+            "location_lat": 5.42714,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 83,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 84,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.316,
+            "location_lat": 5.37633,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 84,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 85,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.438,
+            "location_lat": 5.24431,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 85,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 86,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.33,
+            "location_lat": 5.39791,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 86,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 87,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.282,
+            "location_lat": 5.321,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 87,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 88,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.266,
+            "location_lat": 5.29985,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 88,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 89,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.309,
+            "location_lat": 5.33872,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 89,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 90,
+        "fields": {
+            "name": "MIGLIORE COFFEE",
+            "description": "\u201cDelivering the best experience through ethically-sourced coffee to start your day better.\u201d",
+            "location_lon": 100.42,
+            "location_lat": 5.45375,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 90,
+            "image_url": "maglioreCoffee.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 91,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.266,
+            "location_lat": 5.29253,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 91,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 92,
+        "fields": {
+            "name": "PACIFIC COFFEE COMPANY",
+            "description": "\u201cThe cup, the thought, my way\u201d as our motto, a perfect cup contains not only coffee but also friendship, love and an attitude.",
+            "location_lon": 100.332,
+            "location_lat": 5.41312,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 92,
+            "image_url": "pacific.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 93,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.31,
+            "location_lat": 5.43812,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 93,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 94,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.382,
+            "location_lat": 5.44031,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 94,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 95,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.383,
+            "location_lat": 5.44006,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 95,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 96,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.217,
+            "location_lat": 5.36932,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 96,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 97,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.434,
+            "location_lat": 5.34527,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 97,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 98,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.29,
+            "location_lat": 5.3956,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 98,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 99,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.275,
+            "location_lat": 5.3297,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 99,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 100,
+        "fields": {
+            "name": "THE COFFEE BEAN & TEA LEAF",
+            "description": "The Coffee Bean & Tea Leaf is an American coffee shop chain founded in 1963.",
+            "location_lon": 100.282,
+            "location_lat": 5.32427,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 100,
+            "image_url": "coffeeBean.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 101,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.444,
+            "location_lat": 5.23667,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 101,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 102,
+        "fields": {
+            "name": "STARBUCKS COFFEE",
+            "description": "Starbucks Corp (Starbucks) is a specialty coffee retailer.",
+            "location_lon": 100.285,
+            "location_lat": 5.45991,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 102,
+            "image_url": "starbucks.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 103,
+        "fields": {
+            "name": "MARRYBROWN",
+            "description": "Marrybrown's menu consists of burgers, fried chicken, local delights, fish-based meals, kiddy meals, nasi bowls, beverages, desserts, and more.",
+            "location_lon": 100.433,
+            "location_lat": 5.22497,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 103,
+            "image_url": "marrybrown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 104,
+        "fields": {
+            "name": "BASKIN ROBBINS",
+            "description": "Baskin-Robbins\u00a0creates and markets innovative, premium ice cream, specialty frozen desserts and beverages, providing quality and value to consumers at more than 6,700 retail shops in nearly 50 countries.",
+            "location_lon": 100.439,
+            "location_lat": 5.24439,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 104,
+            "image_url": "baskinrobbins.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 105,
+        "fields": {
+            "name": "BURGER KING",
+            "description": "Founded in 1954, Burger King is\u00a0the second largest fast food hamburger chain in the world.",
+            "location_lon": 100.438,
+            "location_lat": 5.24459,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 105,
+            "image_url": "burgerking.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 106,
+        "fields": {
+            "name": "DAVE'S DELI",
+            "description": "Welcome to Dave\u2019s Deli, home of the original \u00bc roast chicken. Our philosophy is to create hearty delicious meals, made to order using only the freshest produce and quality ingredients.",
+            "location_lon": 100.438,
+            "location_lat": 5.24476,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 106,
+            "image_url": "davesdeli.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 107,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.477,
+            "location_lat": 5.27881,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 107,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 108,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.266,
+            "location_lat": 5.29286,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 108,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 109,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.266,
+            "location_lat": 5.29299,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 109,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 110,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.261,
+            "location_lat": 5.30236,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 110,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 111,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.262,
+            "location_lat": 5.30258,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 111,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 112,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.478,
+            "location_lat": 5.31526,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 112,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 113,
+        "fields": {
+            "name": "THE CHICKEN RICE SHOP",
+            "description": "The Chicken Rice Shop\u00a0serves traditionally prepared steamed, roasted, honey barbecued and soy sauce chicken\u00a0as its signature products.",
+            "location_lon": 100.478,
+            "location_lat": 5.31937,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 113,
+            "image_url": "chickenriceshop.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 114,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.478,
+            "location_lat": 5.31942,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 114,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 115,
+        "fields": {
+            "name": "AUNTIE ANNE'S",
+            "description": "Auntie Anne's got its start in 1988 when Anne Beiler bought a stand in a Pennsylvania farmer's market. After some experimentation, \"Auntie\" Anne created a masterpiece \u2014 the same freshly baked goodness you know and love today.",
+            "location_lon": 100.478,
+            "location_lat": 5.3195,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 115,
+            "image_url": "auntieanne's.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 116,
+        "fields": {
+            "name": "SECRET RECIPE",
+            "description": "Secret Recipe\u00a0promises a value lifestyle proposition of great variety and quality food at affordable prices.",
+            "location_lon": 100.478,
+            "location_lat": 5.3197,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 116,
+            "image_url": "secretrecipe.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 117,
+        "fields": {
+            "name": "KENNY ROGERS ROASTERS",
+            "description": "Kenny Rogers ROASTERS is\u00a0a casual dining restaurant with rotisserie-roasted chicken as its main core item complemented by a rich variety of hot and cold side dishes.",
+            "location_lon": 100.478,
+            "location_lat": 5.3197,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 117,
+            "image_url": "kennyrogers.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 118,
+        "fields": {
+            "name": "BASKIN ROBBINS",
+            "description": "Baskin-Robbins\u00a0creates and markets innovative, premium ice cream, specialty frozen desserts and beverages, providing quality and value to consumers at more than 6,700 retail shops in nearly 50 countries.",
+            "location_lon": 100.478,
+            "location_lat": 5.31978,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 118,
+            "image_url": "baskinrobbins.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 119,
+        "fields": {
+            "name": "SUSHI KING",
+            "description": "Sushi King chain of restaurants\u00a0serves quality sushi and other Japanese cuisine at affordable prices\u00a0in a warm and friendly environment.",
+            "location_lon": 100.478,
+            "location_lat": 5.31996,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 119,
+            "image_url": "sushiking.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 120,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.287,
+            "location_lat": 5.32562,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 120,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 121,
+        "fields": {
+            "name": "TEXAS CHICKEN",
+            "description": "Operating one of the largest quick-service chicken restaurants in the world,\u00a0Texas Chicken\u00a0serves big, juicy, crunchy and fresh chicken with signature sides and handcrafted honey-butter biscuits.",
+            "location_lon": 100.287,
+            "location_lat": 5.32569,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 121,
+            "image_url": "texaschicken.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 122,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.286,
+            "location_lat": 5.32571,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 122,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 123,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.287,
+            "location_lat": 5.32577,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 123,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 124,
+        "fields": {
+            "name": "DOMINO'S PIZZA",
+            "description": "It\u00a0provides pizza delivery and carryout services as well as dine-in services through its restaurants.\u00a0",
+            "location_lon": 100.299,
+            "location_lat": 5.33081,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 124,
+            "image_url": "dominos.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 125,
+        "fields": {
+            "name": "PIZZA HUT DELIVERY (PHD)",
+            "description": "Pizza Hut is an\u00a0American multinational restaurant chain and international franchise\u00a0founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.294,
+            "location_lat": 5.33246,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 125,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 126,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.293,
+            "location_lat": 5.33321,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 126,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 127,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.291,
+            "location_lat": 5.33361,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 127,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 128,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.291,
+            "location_lat": 5.33364,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 128,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 129,
+        "fields": {
+            "name": "MARRYBROWN",
+            "description": "Marrybrown's menu consists of burgers, fried chicken, local delights, fish-based meals, kiddy meals, nasi bowls, beverages, desserts, and more.",
+            "location_lon": 100.291,
+            "location_lat": 5.33394,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 129,
+            "image_url": "marrybrown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 130,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.429,
+            "location_lat": 5.33706,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 130,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 131,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.43,
+            "location_lat": 5.33735,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 131,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 132,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.46,
+            "location_lat": 5.35078,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 132,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 133,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.299,
+            "location_lat": 5.35185,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 133,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 134,
+        "fields": {
+            "name": "BASKIN ROBBINS",
+            "description": "Baskin-Robbins\u00a0creates and markets innovative, premium ice cream, specialty frozen desserts and beverages, providing quality and value to consumers at more than 6,700 retail shops in nearly 50 countries.",
+            "location_lon": 100.299,
+            "location_lat": 5.35224,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 134,
+            "image_url": "baskinrobbins.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 135,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.299,
+            "location_lat": 5.35243,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 135,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 136,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.3,
+            "location_lat": 5.35261,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 136,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 137,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.416,
+            "location_lat": 5.35538,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 137,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 138,
+        "fields": {
+            "name": "MARRYBROWN",
+            "description": "Marrybrown's menu consists of burgers, fried chicken, local delights, fish-based meals, kiddy meals, nasi bowls, beverages, desserts, and more.",
+            "location_lon": 100.415,
+            "location_lat": 5.36817,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 138,
+            "image_url": "marrybrown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 139,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.418,
+            "location_lat": 5.36894,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 139,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 140,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.382,
+            "location_lat": 5.44009,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 140,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 141,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.43,
+            "location_lat": 5.44533,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 141,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 142,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.306,
+            "location_lat": 5.44954,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 142,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 143,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.308,
+            "location_lat": 5.45603,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 143,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 144,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.313,
+            "location_lat": 5.45759,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 144,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 145,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.251,
+            "location_lat": 5.47526,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 145,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 146,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.252,
+            "location_lat": 5.47572,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 146,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 147,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.444,
+            "location_lat": 5.51698,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 147,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 148,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.45,
+            "location_lat": 5.51754,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 148,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 149,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.425,
+            "location_lat": 5.51814,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 149,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 150,
+        "fields": {
+            "name": "MARRYBROWN",
+            "description": "Marrybrown's menu consists of burgers, fried chicken, local delights, fish-based meals, kiddy meals, nasi bowls, beverages, desserts, and more.",
+            "location_lon": 100.479,
+            "location_lat": 5.51905,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 150,
+            "image_url": "marrybrown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 151,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.415,
+            "location_lat": 5.37061,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 151,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 152,
+        "fields": {
+            "name": "PAPPARICH",
+            "description": "PappaRich personality is a reflection of our aspiration as a company that prides itself on creating wonderful renditions of authentic Malaysian cuisine.",
+            "location_lon": 100.315,
+            "location_lat": 5.37565,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 152,
+            "image_url": "papparich.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 153,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.315,
+            "location_lat": 5.376,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 153,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 154,
+        "fields": {
+            "name": "SECRET RECIPE",
+            "description": "Secret Recipe\u00a0promises a value lifestyle proposition of great variety and quality food at affordable prices.",
+            "location_lon": 100.316,
+            "location_lat": 5.37625,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 154,
+            "image_url": "secretrecipe.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 155,
+        "fields": {
+            "name": "SUSHI KING",
+            "description": "Sushi King chain of restaurants\u00a0serves quality sushi and other Japanese cuisine at affordable prices\u00a0in a warm and friendly environment.",
+            "location_lon": 100.316,
+            "location_lat": 5.37639,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 155,
+            "image_url": "sushiking.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 156,
+        "fields": {
+            "name": "DOMINO'S PIZZA",
+            "description": "It\u00a0provides pizza delivery and carryout services as well as dine-in services through its restaurants.\u00a0",
+            "location_lon": 100.303,
+            "location_lat": 5.37889,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 156,
+            "image_url": "dominos.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 157,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.306,
+            "location_lat": 5.38892,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 157,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 158,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.409,
+            "location_lat": 5.38923,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 158,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 159,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.283,
+            "location_lat": 5.39076,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 159,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 160,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.283,
+            "location_lat": 5.39117,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 160,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 161,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.365,
+            "location_lat": 5.39464,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 161,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 162,
+        "fields": {
+            "name": "AUNTIE ANNE'S",
+            "description": "Auntie Anne's got its start in 1988 when Anne Beiler bought a stand in a Pennsylvania farmer's market. After some experimentation, \"Auntie\" Anne created a masterpiece \u2014 the same freshly baked goodness you know and love today.",
+            "location_lon": 100.365,
+            "location_lat": 5.39474,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 162,
+            "image_url": "auntieanne's.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 163,
+        "fields": {
+            "name": "MARRYBROWN",
+            "description": "Marrybrown's menu consists of burgers, fried chicken, local delights, fish-based meals, kiddy meals, nasi bowls, beverages, desserts, and more.",
+            "location_lon": 100.365,
+            "location_lat": 5.39493,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 163,
+            "image_url": "marrybrown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 164,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.365,
+            "location_lat": 5.39498,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 164,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 165,
+        "fields": {
+            "name": "TEXAS CHICKEN",
+            "description": "Operating one of the largest quick-service chicken restaurants in the world,\u00a0Texas Chicken\u00a0serves big, juicy, crunchy and fresh chicken with signature sides and handcrafted honey-butter biscuits.",
+            "location_lon": 100.29,
+            "location_lat": 5.39573,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 165,
+            "image_url": "texaschicken.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 166,
+        "fields": {
+            "name": "SECRET RECIPE",
+            "description": "Secret Recipe\u00a0promises a value lifestyle proposition of great variety and quality food at affordable prices.",
+            "location_lon": 100.29,
+            "location_lat": 5.39599,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 166,
+            "image_url": "secretrecipe.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 167,
+        "fields": {
+            "name": "SUSHI KING",
+            "description": "Sushi King chain of restaurants\u00a0serves quality sushi and other Japanese cuisine at affordable prices\u00a0in a warm and friendly environment.",
+            "location_lon": 100.29,
+            "location_lat": 5.3961,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 167,
+            "image_url": "sushiking.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 168,
+        "fields": {
+            "name": "PIZZA HUT DELIVERY (PHD)",
+            "description": "Pizza Hut is an\u00a0American multinational restaurant chain and international franchise\u00a0founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.316,
+            "location_lat": 5.39611,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 168,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 169,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.316,
+            "location_lat": 5.39635,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 169,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 170,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.291,
+            "location_lat": 5.39703,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 170,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 171,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.315,
+            "location_lat": 5.39821,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 171,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 172,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.4,
+            "location_lat": 5.39986,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 172,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 173,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.304,
+            "location_lat": 5.40113,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 173,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 174,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.303,
+            "location_lat": 5.40519,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 174,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 175,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.405,
+            "location_lat": 5.40551,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 175,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 176,
+        "fields": {
+            "name": "A&W",
+            "description": "A&W Restaurants is\u00a0an American fast food restaurant chain distinguished by its burgers, draft root beer and root beer floats.",
+            "location_lon": 100.277,
+            "location_lat": 5.40821,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 176,
+            "image_url": "a&w.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 177,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.326,
+            "location_lat": 5.41282,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 177,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 178,
+        "fields": {
+            "name": "A&W",
+            "description": "A&W Restaurants is\u00a0an American fast food restaurant chain distinguished by its burgers, draft root beer and root beer floats.",
+            "location_lon": 100.331,
+            "location_lat": 5.4129,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 178,
+            "image_url": "a&w.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 179,
+        "fields": {
+            "name": "THE CHICKEN RICE SHOP",
+            "description": "The Chicken Rice Shop\u00a0serves traditionally prepared steamed, roasted, honey barbecued and soy sauce chicken\u00a0as its signature products.",
+            "location_lon": 100.331,
+            "location_lat": 5.41294,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 179,
+            "image_url": "chickenriceshop.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 180,
+        "fields": {
+            "name": "TEXAS CHICKEN",
+            "description": "Operating one of the largest quick-service chicken restaurants in the world,\u00a0Texas Chicken\u00a0serves big, juicy, crunchy and fresh chicken with signature sides and handcrafted honey-butter biscuits.",
+            "location_lon": 100.332,
+            "location_lat": 5.4133,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 180,
+            "image_url": "texaschicken.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 181,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.33,
+            "location_lat": 5.41422,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 181,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 182,
+        "fields": {
+            "name": "PIZZA HUT",
+            "description": "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney.",
+            "location_lon": 100.332,
+            "location_lat": 5.41433,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 182,
+            "image_url": "pizzahut.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 183,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.331,
+            "location_lat": 5.41452,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 183,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 184,
+        "fields": {
+            "name": "MARRYBROWN",
+            "description": "Marrybrown's menu consists of burgers, fried chicken, local delights, fish-based meals, kiddy meals, nasi bowls, beverages, desserts, and more.",
+            "location_lon": 100.33,
+            "location_lat": 5.41476,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 184,
+            "image_url": "marrybrown.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 185,
+        "fields": {
+            "name": "DOMINO'S PIZZA",
+            "description": "It\u00a0provides pizza delivery and carryout services as well as dine-in services through its restaurants.\u00a0",
+            "location_lon": 100.381,
+            "location_lat": 5.4204,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 185,
+            "image_url": "dominos.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 186,
+        "fields": {
+            "name": "TEXAS CHICKEN",
+            "description": "Operating one of the largest quick-service chicken restaurants in the world,\u00a0Texas Chicken\u00a0serves big, juicy, crunchy and fresh chicken with signature sides and handcrafted honey-butter biscuits.",
+            "location_lon": 100.383,
+            "location_lat": 5.42697,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 186,
+            "image_url": "texaschicken.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 187,
+        "fields": {
+            "name": "HAAGEN DAZS",
+            "description": "H\u00e4agen-Dazs is\u00a0a brand of ice cream shops and ice cream franchises.",
+            "location_lon": 100.31,
+            "location_lat": 5.4328,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 187,
+            "image_url": "haagendazs.jpeg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 188,
+        "fields": {
+            "name": "KFC",
+            "description": "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation.",
+            "location_lon": 100.306,
+            "location_lat": 5.43324,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 188,
+            "image_url": "kfc.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 189,
+        "fields": {
+            "name": "AUNTIE ANNE'S",
+            "description": "Auntie Anne's got its start in 1988 when Anne Beiler bought a stand in a Pennsylvania farmer's market. After some experimentation, \"Auntie\" Anne created a masterpiece \u2014 the same freshly baked goodness you know and love today.",
+            "location_lon": 100.311,
+            "location_lat": 5.43536,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 189,
+            "image_url": "auntieanne's.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 190,
+        "fields": {
+            "name": "NANDO'S",
+            "description": "Flame-grilled, juicy, spicy... there's a reason Nando's chicken is legendary.\u00a0Always fresh and never frozen, we marinate our chicken in PERi-PERi for 24 hours before it's basted.",
+            "location_lon": 100.309,
+            "location_lat": 5.43691,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 190,
+            "image_url": "nandos.jpeg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 191,
+        "fields": {
+            "name": "SUSHI KING",
+            "description": "Sushi King chain of restaurants\u00a0serves quality sushi and other Japanese cuisine at affordable prices\u00a0in a warm and friendly environment.",
+            "location_lon": 100.31,
+            "location_lat": 5.43713,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 191,
+            "image_url": "sushiking.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 192,
+        "fields": {
+            "name": "MCDONALD'S",
+            "description": "McDonald's is the world's leading quick service restaurant chain with more than 36,000 restaurants worldwide, serving more than 70 million customers daily in over 100 countries.",
+            "location_lon": 100.31,
+            "location_lat": 5.4372,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 192,
+            "image_url": "mcd.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 193,
+        "fields": {
+            "name": "SUBWAY",
+            "description": "Subway is an American multinational fast food restaurant franchise that specializes in submarine sandwiches (subs), wraps, salads and drinks.",
+            "location_lon": 100.309,
+            "location_lat": 5.43731,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 193,
+            "image_url": "subway.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 194,
+        "fields": {
+            "name": "AUNTIE ANNE'S",
+            "description": "Auntie Anne's got its start in 1988 when Anne Beiler bought a stand in a Pennsylvania farmer's market. After some experimentation, \"Auntie\" Anne created a masterpiece \u2014 the same freshly baked goodness you know and love today.",
+            "location_lon": 100.309,
+            "location_lat": 5.43734,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 194,
+            "image_url": "auntieanne's.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 195,
+        "fields": {
+            "name": "BASKIN ROBBINS",
+            "description": "Baskin-Robbins\u00a0creates and markets innovative, premium ice cream, specialty frozen desserts and beverages, providing quality and value to consumers at more than 6,700 retail shops in nearly 50 countries.",
+            "location_lon": 100.309,
+            "location_lat": 5.43757,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 195,
+            "image_url": "baskinrobbins.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 196,
+        "fields": {
+            "name": "THE CHICKEN RICE SHOP",
+            "description": "The Chicken Rice Shop\u00a0serves traditionally prepared steamed, roasted, honey barbecued and soy sauce chicken\u00a0as its signature products.",
+            "location_lon": 100.31,
+            "location_lat": 5.43775,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 196,
+            "image_url": "chickenriceshop.jpg"
+        }
+    },
+    {
+        "model": "client.Restaurant",
+        "pk": 197,
+        "fields": {
+            "name": "SECRET RECIPE",
+            "description": "Secret Recipe\u00a0promises a value lifestyle proposition of great variety and quality food at affordable prices.",
+            "location_lon": 100.31,
+            "location_lat": 5.43812,
+            "operating_hours_start": "10AM",
+            "operating_hours_end": "10PM",
+            "owner_id": 197,
+            "image_url": "secretrecipe.jpg"
+        }
+    }
+]

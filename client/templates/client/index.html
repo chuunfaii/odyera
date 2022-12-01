@@ -55,4 +55,26 @@
             </div>
         </div>
     </div>
+
+    <form id="coords-form" method="POST" action="/">
+        {% csrf_token %}
+        <input id="lat" name="lat" type="hidden" value="" />
+        <input id="long" name="long" type="hidden" value="" />
+    </form>
+
+    <script>
+        const showPosition = async position => {
+            const lat = position.coords.latitude;
+            const long = position.coords.longitude;
+
+            document.querySelector('#lat').value = lat;
+            document.querySelector('#long').value = long;
+
+            document.querySelector('#coords-form').submit();
+        }
+
+        {% if 'lat' not in request.session and 'long' not in request.session %}
+            navigator.geolocation.getCurrentPosition(showPosition);
+        {% endif %}
+    </script>
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.gis.db import models
 
 
 class Customer(models.Model):
@@ -16,8 +17,9 @@ class RestaurantOwner(models.Model):
 class Restaurant(models.Model):
     name = models.CharField(max_length=254)
     description = models.CharField(max_length=254)
-    location_lon = models.CharField(max_length=254)
-    location_lat = models.CharField(max_length=254)
+    location_lon = models.FloatField()
+    location_lat = models.FloatField()
+    location = models.PointField()
     operating_hours_start = models.CharField(max_length=254)
     operating_hours_end = models.CharField(max_length=254)
     image_url = models.CharField(max_length=254)

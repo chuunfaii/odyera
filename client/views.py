@@ -1,6 +1,8 @@
 import re
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.gis.db.models.functions import Distance
+from django.contrib.gis.geos import Point
 from django.shortcuts import render, redirect
 from .functions import password_check
 from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Order, OrderDetail, Payment
@@ -9,7 +11,26 @@ from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Ord
 def index(request):
     data = {}
 
-    restaurants = Restaurant.objects.all()
+    if request.method == 'POST':
+        lat = float(request.POST.get('lat'))
+        long = float(request.POST.get('long'))
+        user_location = Point(long, lat, srid=4326)
+
+        restaurants = Restaurant.objects.annotate(distance=Distance(
+            'location', user_location)).order_by('distance')
+
+        request.session['lat'] = lat
+        request.session['long'] = long
+    elif 'lat' in request.session and 'long' in request.session:
+        lat = float(request.session['lat'])
+        long = float(request.session['long'])
+        user_location = Point(long, lat, srid=4326)
+
+        restaurants = Restaurant.objects.annotate(distance=Distance(
+            'location', user_location)).order_by('distance')
+    else:
+        restaurants = Restaurant.objects.all()
+
     data['restaurants'] = restaurants
 
     if 'uid' in request.session:
@@ -30,6 +51,10 @@ def index(request):
 def register(request):
     if 'uid' in request.session:
         return redirect('/')
+
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
 
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -69,6 +94,10 @@ def register(request):
 def login(request):
     if 'uid' in request.session:
         return redirect('/')
+
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
 
     if request.method == 'POST':
         data = {}
@@ -117,6 +146,10 @@ def login(request):
 
 
 def logout(request):
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
+
     del request.session['uid']
     del request.session['type']
     messages.success(
@@ -127,6 +160,10 @@ def logout(request):
 def profile(request):
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect('/')
+
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
 
     data = {}
     errors = {}
@@ -179,6 +216,10 @@ def password(request):
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect('/')
 
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
+
     data = {}
     errors = {}
 
@@ -217,6 +258,10 @@ def password(request):
 
 
 def restaurants(request):
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
+
     data = {}
 
     restaurants = Restaurant.objects.order_by('?')
@@ -264,6 +309,10 @@ def restaurants(request):
 
 
 def restaurant(request, id):
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
+
     data = {}
 
     if 'uid' in request.session:
@@ -305,6 +354,10 @@ def restaurant(request, id):
 
 
 def menu(request, id):
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
+
     data = {}
 
     if 'uid' in request.session:
@@ -338,6 +391,10 @@ def menu(request, id):
 
 
 def order(request, id):
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
+
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect(f'/restaurant/{id}/menu')
 
@@ -390,6 +447,10 @@ def order(request, id):
 
 
 def payment(request, id):
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
+
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect(f'/restaurant/{id}menu')
 
@@ -476,6 +537,10 @@ def order_history(request):
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect('/')
 
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
+
     data = {}
 
     uid = request.session['uid']
@@ -510,6 +575,10 @@ def order_history(request):
 def malaysia_food_trend(request):
     if 'uid' not in request.session or request.session['type'] == 'customer':
         return redirect('/')
+
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
 
     data = {}
 
@@ -558,6 +627,10 @@ def malaysia_food_trend(request):
 def food_trend(request):
     if 'uid' not in request.session or request.session['type'] == 'customer':
         return redirect('/')
+
+    if 'lat' in request.session and 'long' in request.session:
+        del request.session['lat']
+        del request.session['long']
 
     data = {}
 
