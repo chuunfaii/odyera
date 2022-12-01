@@ -5,18 +5,20 @@ from client.models import Review, SentimentAnalysis
 
 def calculate_super_score_all():
     reviews = Review.objects.all()
-    polarity_scores = []
-    compound_scores = []
 
     for review in reviews:
+        review_rating = round(review.rating)
         polarity_score = calculate_polarity_score(review)
         compound_score = calculate_compound_score(review)
 
-        polarity_scores.append(polarity_score)
-        compound_scores.append(compound_score)
+        super_score = review_rating + polarity_score * compound_score
 
-    print(polarity_scores)
-    print(compound_scores)
+        SentimentAnalysis.objects.create(
+            polarity_score=polarity_score,
+            compound_score=compound_score,
+            super_score=super_score,
+            review_id=review.id
+        )
 
 
 def calculate_polarity_score(review):

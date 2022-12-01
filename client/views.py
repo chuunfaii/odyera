@@ -45,8 +45,6 @@ def index(request):
             owner.restaurant = restaurant
             data['owner'] = owner
 
-    calculate_super_score_all()
-
     return render(request, 'client/index.html', data)
 
 
