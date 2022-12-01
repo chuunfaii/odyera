@@ -4,7 +4,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.shortcuts import render, redirect
-from .functions import password_check
+from .functions import calculate_super_score_all, password_check
 from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Order, OrderDetail, Payment
 
 
@@ -44,6 +44,8 @@ def index(request):
             restaurant = Restaurant.objects.filter(owner_id=uid).first()
             owner.restaurant = restaurant
             data['owner'] = owner
+
+    calculate_super_score_all()
 
     return render(request, 'client/index.html', data)
 

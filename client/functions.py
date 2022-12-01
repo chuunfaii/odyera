@@ -1,3 +1,23 @@
+from textblob import TextBlob
+from client.models import Review, SentimentAnalysis
+
+
+def calculate_super_score_all():
+    reviews = Review.objects.all()
+    polarity_scores = []
+
+    for review in reviews:
+        polarity_score = calculate_polarity_score(review)
+        polarity_scores.append(polarity_score)
+
+    print(polarity_scores)
+
+
+def calculate_polarity_score(review):
+    res = TextBlob(review.text)
+    polarity_score = res.sentiment.polarity
+    return round(polarity_score)
+
 
 def password_check(password):
     errors = []
