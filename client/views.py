@@ -1,3 +1,5 @@
+import pandas as pd
+from django.shortcuts import render
 import re
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
@@ -5,7 +7,7 @@ from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.shortcuts import render, redirect
 from .functions import calculate_super_score_all, password_check
-from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Order, OrderDetail, Payment
+from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Order, OrderDetail, Payment, SentimentAnalysis
 
 
 def index(request):
@@ -674,3 +676,17 @@ def food_trend(request):
         data['month'] = month
 
     return render(request, 'client/food_trend.html', data)
+
+
+def test(request):
+    data = {}
+    reviews = Review.objects.all().values()
+    reviews_df = pd.DataFrame(reviews)
+    sentiments = SentimentAnalysis.objects.all().values()
+    sentiments_df = pd.DataFrame(sentiments)
+    reviews_df = pd.merge(reviews_df, sentiments_df,
+                          left_index=True, right_index=True)
+    # reviews_df = reviews_df.pivot_table(
+    #     index='author_id', columns='restaurant_id', values='rating')
+    data['reviews_df'] = reviews_df.to_html()
+    return render(request, 'client/test.html', data)

@@ -17,5 +17,6 @@ urlpatterns = [
     path('order-history', views.order_history, name='order_history'),
     path('malaysia-food-trend', views.malaysia_food_trend,
          name='malaysia_food_trend'),
-    path('food-trend', views.food_trend, name='food_trend')
+    path('food-trend', views.food_trend, name='food_trend'),
+    path('test', views.test, name='test')
 ]
