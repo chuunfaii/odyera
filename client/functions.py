@@ -1,6 +1,9 @@
-from textblob import TextBlob
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from client.models import Review, SentimentAnalysis
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import numpy as np
+from textblob import TextBlob
+from scipy import sparse
+from sklearn.metrics.pairwise import cosine_similarity
 
 
 def calculate_super_score_all():
@@ -33,6 +36,37 @@ def calculate_compound_score(review):
     compound_score = polarity_scores['compound']
     print(compound_score)
     return round(compound_score)
+
+
+def get_user_item_sparse_matrix(df):
+    sparse_data = sparse.csr_matrix(
+        (df.super_score, (df.author_id, df.restaurant_id)))
+    return sparse_data
+
+
+def get_average_rating(sparse_matrix, is_user):
+    ax = 1 if is_user else 0
+    sum_of_ratings = sparse_matrix.sum(axis=ax).A1
+    no_of_ratings = (sparse_matrix != 0).sum(axis=ax).A1
+    rows, cols = sparse_matrix.shape
+    average_ratings = {i: sum_of_ratings[i] / no_of_ratings[i]
+                       for i in range(rows if is_user else cols) if no_of_ratings[i] != 0}
+    return average_ratings
+
+
+def compute_user_similarity(sparse_matrix, limit=100):
+    row_index, col_index = sparse_matrix.nonzero()
+    rows = np.unique(row_index)
+    similar_arr = np.zeros(61700).reshape(617, 100)
+
+    for row in rows[:limit]:
+        sim = cosine_similarity(
+            sparse_matrix.getrow(row), sparse_matrix).ravel()
+        similar_indices = sim.argsort()[-limit:]
+        similar = sim[similar_indices]
+        similar_arr[row] = similar
+
+    return similar_arr
 
 
 def password_check(password):

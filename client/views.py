@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from django.shortcuts import render
 import re
 from django.contrib import messages
@@ -6,7 +7,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.shortcuts import render, redirect
-from .functions import calculate_super_score_all, password_check
+from .functions import *
 from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Order, OrderDetail, Payment, SentimentAnalysis
 
 
@@ -684,9 +685,49 @@ def test(request):
     reviews_df = pd.DataFrame(reviews)
     sentiments = SentimentAnalysis.objects.all().values()
     sentiments_df = pd.DataFrame(sentiments)
-    reviews_df = pd.merge(reviews_df, sentiments_df,
-                          left_index=True, right_index=True)
+    reviews_df = pd.merge(reviews_df, sentiments_df)
     # reviews_df = reviews_df.pivot_table(
-    #     index='author_id', columns='restaurant_id', values='rating')
-    data['reviews_df'] = reviews_df.to_html()
+    #     index='author_id', columns='restaurant_id', values='super_score')
+
+    # TODO: begin testing
+
+    restaurant_rating_df = reviews_df[[
+        'restaurant_id', 'author_id', 'super_score']].copy()
+
+    split_value = int(len(restaurant_rating_df) * 0.80)
+    train_data = restaurant_rating_df[:split_value]
+    test_data = restaurant_rating_df[split_value:]
+
+    train_sparse_data = get_user_item_sparse_matrix(train_data)
+    test_sparse_data = get_user_item_sparse_matrix(test_data)
+
+    global_average_rating = train_sparse_data.sum() / train_sparse_data.count_nonzero()
+    # print("Global Average Super Score: {}".format(global_average_rating))
+
+    average_rating_user = get_average_rating(train_sparse_data, True)
+    average_rating_restaurant = get_average_rating(train_sparse_data, False)
+    # print("Average Rating User: {}".format(average_rating_user))
+    # print("Average Rating Restaurant: {}".format(average_rating_restaurant))
+
+    total_users = len(np.unique(restaurant_rating_df['author_id']))
+    train_users = len(average_rating_user)
+    uncommon_users = total_users - train_users
+
+    # print("Total no. of Users = {}".format(total_users))
+    # print("No. of Users in train data= {}".format(train_users))
+    # print("No. of Users not present in train data = {}({}%)".format(
+    #     uncommon_users, np.round((uncommon_users/total_users)*100), 2))
+
+    total_restaurants = len(np.unique(restaurant_rating_df['restaurant_id']))
+    train_restaurants = len(average_rating_restaurant)
+    uncommon_restaurants = total_restaurants - train_restaurants
+
+    # print("Total no. of Movies = {}".format(total_restaurants))
+    # print("No. of Movies in train data= {}".format(train_restaurants))
+    # print("No. of Movies not present in train data = {}({}%)".format(
+    #     uncommon_restaurants, np.round((uncommon_restaurants/total_restaurants)*100), 2))
+
+    # TODO: end testing
+
+    data['reviews_df'] = restaurant_rating_df.to_html()
     return render(request, 'client/test.html', data)
