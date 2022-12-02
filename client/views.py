@@ -680,16 +680,14 @@ def food_trend(request):
 
 
 def test(request):
+    # TODO: Beginning of testing 1
+    # !: https://pub.towardsai.net/recommendation-system-in-depth-tutorial-with-python-for-netflix-using-collaborative-filtering-533ff8a0e444
     data = {}
     reviews = Review.objects.all().values()
     reviews_df = pd.DataFrame(reviews)
     sentiments = SentimentAnalysis.objects.all().values()
     sentiments_df = pd.DataFrame(sentiments)
     reviews_df = pd.merge(reviews_df, sentiments_df)
-    # reviews_df = reviews_df.pivot_table(
-    #     index='author_id', columns='restaurant_id', values='super_score')
-
-    # TODO: begin testing
 
     restaurant_rating_df = reviews_df[[
         'restaurant_id', 'author_id', 'super_score']].copy()
@@ -727,7 +725,41 @@ def test(request):
     # print("No. of Movies not present in train data = {}({}%)".format(
     #     uncommon_restaurants, np.round((uncommon_restaurants/total_restaurants)*100), 2))
 
-    # TODO: end testing
+    compute_user_similarity(train_sparse_data, 3)
 
     data['reviews_df'] = restaurant_rating_df.to_html()
     return render(request, 'client/test.html', data)
+    # TODO: End of testing 1
+
+
+def test2(request):
+    # TODO: Beginning of testing 2
+    # !: https://www.youtube.com/watch?v=3ecNC-So0r4
+    data = {}
+
+    reviews = Review.objects.all().values()
+    sentiments = SentimentAnalysis.objects.all().values()
+
+    reviews_df = pd.DataFrame(reviews)[['id', 'author_id', 'restaurant_id']]
+    reviews_df.rename(columns={'author_id': 'user_id'})
+
+    sentiments_df = pd.DataFrame(
+        sentiments)[['id', 'super_score', 'review_id']]
+
+    ratings_df = reviews_df.merge(sentiments_df)
+
+    ratings_df = ratings_df.pivot_table(
+        index='author_id', columns='restaurant_id', values='super_score')
+
+    ratings_df = ratings_df.fillna(0)
+
+    ratings_std_df = ratings_df.apply(standardize)
+
+    user_similarity = cosine_similarity(ratings_std_df)
+    user_similarity_df = pd.DataFrame(
+        user_similarity, index=ratings_df.index, columns=ratings_df.index)
+
+    data['ratings_df'] = user_similarity_df.to_html()
+
+    return render(request, 'client/test2.html', data)
+    # TODO: End of testing 2
