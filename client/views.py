@@ -774,5 +774,45 @@ def test3(request):
     # !: https://colab.research.google.com/drive/1cN44RlIEaB28FTD30qFiHkN3rqcDgcng?usp=sharing#scrollTo=qJii6XAXNdUL
     data = {}
 
+    reviews = Review.objects.all().values()
+    sentiments = SentimentAnalysis.objects.all().values()
+
+    reviews_df = pd.DataFrame(reviews)[['id', 'author_id', 'restaurant_id']]
+    sentiments_df = pd.DataFrame(sentiments)[['id', 'super_score']]
+
+    ratings_df = reviews_df.merge(sentiments_df)
+
+    # create user-item matrix
+    user_item_matrix = ratings_df.pivot_table(
+        index='author_id', columns='restaurant_id', values='super_score')
+
+    # data normalization
+    user_item_matrix_norm = user_item_matrix.subtract(
+        user_item_matrix.mean(axis=1), axis='rows')
+
+    # identify similar users
+    user_similarity = user_item_matrix_norm.T.corr()
+
+    # pick a user id
+    picked_user_id = 1
+
+    # remove picked user id from the candidate list
+    user_similarity.drop(index=picked_user_id, inplace=True)
+
+    # number of similar users
+    n = 1
+
+    # user similarity threshold
+    user_similarity_threshold = 0.3
+
+    # get top n similar users
+    similar_users = user_similarity[user_similarity[picked_user_id] >
+                                    user_similarity_threshold][picked_user_id].sort_values(ascending=False)[:n]
+
+    # print out top n similar users
+    print(f'The similar users for user {picked_user_id} are', similar_users)
+
+    data['test'] = user_similarity.to_html()
+
     return render(request, 'client/test3.html', data)
     # TODO: End of testing 3
