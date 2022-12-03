@@ -5,5 +5,75 @@
         "fields": {
             "name": "Western"
         }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 2,
+        "fields": {
+            "name": "Fast Food"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 3,
+        "fields": {
+            "name": "European"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 4,
+        "fields": {
+            "name": "Dessert"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 5,
+        "fields": {
+            "name": "Italian"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 6,
+        "fields": {
+            "name": "Malaysian"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 7,
+        "fields": {
+            "name": "Middle Eastern"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 8,
+        "fields": {
+            "name": "Japanese"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 9,
+        "fields": {
+            "name": "English"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 10,
+        "fields": {
+            "name": "French"
+        }
+    },
+    {
+        "model": "client.Cuisine",
+        "pk": 11,
+        "fields": {
+            "name": "South African"
+        }
     }
 ]

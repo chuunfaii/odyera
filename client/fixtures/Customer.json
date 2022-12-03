@@ -3,30 +3,500 @@
         "model": "client.Customer",
         "pk": 1,
         "fields": {
-            "first_name": "Hello",
-            "last_name": "World",
-            "email_address": "hello@world.com",
-            "password": "pbkdf2_sha256$390000$lHEE4NQdj1xMUtINl9S1ty$rjNwbjjcFOUrkSv8a369WPV4BGSu2TPrrwefvLrHsHs="
+            "first_name": "Admin",
+            "last_name": "Chiam",
+            "email_address": "adminchiam@gmail.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
         }
     },
     {
         "model": "client.Customer",
         "pk": 2,
         "fields": {
-            "first_name": "Chun Fai",
-            "last_name": "Lee",
-            "email_address": "chunfai@email.com",
-            "password": "pbkdf2_sha256$390000$6K88RuMAMs9ywB6Hq5jvN6$d5/02eTqJ9REn1LdulYYYyErudS8hf3QdvnPkgg+Vjk="
+            "first_name": "Marcelia",
+            "last_name": "Aireton",
+            "email_address": "maireton1@sohu.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
         }
     },
     {
         "model": "client.Customer",
         "pk": 3,
         "fields": {
-            "first_name": "Test",
-            "last_name": "Account",
-            "email_address": "test@account.com",
-            "password": "pbkdf2_sha256$390000$bHnLpr0pUck4hlBbtnpg9f$YaGsTVFlGEw9dVzcJMdyxc/4M0uA/Hh25wyA6FHPjAU="
+            "first_name": "Cordey",
+            "last_name": "Dive",
+            "email_address": "cdive2@webeden.co.uk",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 4,
+        "fields": {
+            "first_name": "Keriann",
+            "last_name": "Ableson",
+            "email_address": "kableson3@who.int",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 5,
+        "fields": {
+            "first_name": "Jeanette",
+            "last_name": "Antonioni",
+            "email_address": "jantonioni4@home.pl",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 6,
+        "fields": {
+            "first_name": "Rosana",
+            "last_name": "Impleton",
+            "email_address": "rimpleton5@usgs.gov",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 7,
+        "fields": {
+            "first_name": "Jeffry",
+            "last_name": "Hillburn",
+            "email_address": "jhillburn6@webeden.co.uk",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 8,
+        "fields": {
+            "first_name": "Kore",
+            "last_name": "Dohr",
+            "email_address": "kdohr7@admin.ch",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 9,
+        "fields": {
+            "first_name": "Garland",
+            "last_name": "Lillo",
+            "email_address": "glillo8@twitpic.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 10,
+        "fields": {
+            "first_name": "Max",
+            "last_name": "Kenneford",
+            "email_address": "mkenneford9@independent.co.uk",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 11,
+        "fields": {
+            "first_name": "Astrid",
+            "last_name": "MacGrath",
+            "email_address": "amacgratha@craigslist.org",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 12,
+        "fields": {
+            "first_name": "Doralia",
+            "last_name": "Haysham",
+            "email_address": "dhayshamb@wsj.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 13,
+        "fields": {
+            "first_name": "Kerr",
+            "last_name": "Leppington",
+            "email_address": "kleppingtonc@spiegel.de",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 14,
+        "fields": {
+            "first_name": "Annemarie",
+            "last_name": "Milesap",
+            "email_address": "amilesapd@stanford.edu",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 15,
+        "fields": {
+            "first_name": "Sanders",
+            "last_name": "Faccini",
+            "email_address": "sfaccinie@sciencedirect.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 16,
+        "fields": {
+            "first_name": "Kylie",
+            "last_name": "Cleiment",
+            "email_address": "kcleimentf@wunderground.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 17,
+        "fields": {
+            "first_name": "Pennie",
+            "last_name": "Caveau",
+            "email_address": "pcaveaug@sciencedirect.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 18,
+        "fields": {
+            "first_name": "Lisa",
+            "last_name": "Limpricht",
+            "email_address": "llimprichth@wsj.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 19,
+        "fields": {
+            "first_name": "Fayette",
+            "last_name": "Pizzie",
+            "email_address": "fpizziei@pagesperso-orange.fr",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 20,
+        "fields": {
+            "first_name": "Sibylle",
+            "last_name": "Duesberry",
+            "email_address": "sduesberryj@senate.gov",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 21,
+        "fields": {
+            "first_name": "Rouvin",
+            "last_name": "Stollenbeck",
+            "email_address": "rstollenbeckk@mlb.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 22,
+        "fields": {
+            "first_name": "Darice",
+            "last_name": "Westwick",
+            "email_address": "dwestwickl@shutterfly.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 23,
+        "fields": {
+            "first_name": "Davie",
+            "last_name": "Skerritt",
+            "email_address": "dskerrittm@deliciousdays.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 24,
+        "fields": {
+            "first_name": "Doloritas",
+            "last_name": "Garrand",
+            "email_address": "dgarrandn@plala.or.jp",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 25,
+        "fields": {
+            "first_name": "Coral",
+            "last_name": "Styche",
+            "email_address": "cstycheo@biglobe.ne.jp",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 26,
+        "fields": {
+            "first_name": "Hadley",
+            "last_name": "Ziemke",
+            "email_address": "hziemkep@biblegateway.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 27,
+        "fields": {
+            "first_name": "Anne-marie",
+            "last_name": "Corssen",
+            "email_address": "acorssenq@archive.org",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 28,
+        "fields": {
+            "first_name": "Umberto",
+            "last_name": "Danniell",
+            "email_address": "udanniellr@github.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 29,
+        "fields": {
+            "first_name": "Lexi",
+            "last_name": "De La Coste",
+            "email_address": "ldelacostes@joomla.org",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 30,
+        "fields": {
+            "first_name": "Novelia",
+            "last_name": "Attwooll",
+            "email_address": "nattwoollt@deliciousdays.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 31,
+        "fields": {
+            "first_name": "Reinaldos",
+            "last_name": "Vasenkov",
+            "email_address": "rvasenkovu@icio.us",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 32,
+        "fields": {
+            "first_name": "Amandi",
+            "last_name": "Genner",
+            "email_address": "agennerv@jalbum.net",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 33,
+        "fields": {
+            "first_name": "Raviv",
+            "last_name": "Kineton",
+            "email_address": "rkinetonw@zdnet.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 34,
+        "fields": {
+            "first_name": "Thomasina",
+            "last_name": "Trahear",
+            "email_address": "ttrahearx@elpais.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 35,
+        "fields": {
+            "first_name": "Farlay",
+            "last_name": "Peacocke",
+            "email_address": "fpeacockey@csmonitor.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 36,
+        "fields": {
+            "first_name": "Creight",
+            "last_name": "Vasse",
+            "email_address": "cvassez@woothemes.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 37,
+        "fields": {
+            "first_name": "Godfrey",
+            "last_name": "Layton",
+            "email_address": "glayton10@soup.io",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 38,
+        "fields": {
+            "first_name": "Jolynn",
+            "last_name": "Scannell",
+            "email_address": "jscannell11@about.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 39,
+        "fields": {
+            "first_name": "Gilberte",
+            "last_name": "Winkless",
+            "email_address": "gwinkless12@europa.eu",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 40,
+        "fields": {
+            "first_name": "Austen",
+            "last_name": "McCorley",
+            "email_address": "amccorley13@pcworld.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 41,
+        "fields": {
+            "first_name": "Demetri",
+            "last_name": "Varnals",
+            "email_address": "dvarnals14@loc.gov",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 42,
+        "fields": {
+            "first_name": "Taylor",
+            "last_name": "Bett",
+            "email_address": "tbett15@opensource.org",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 43,
+        "fields": {
+            "first_name": "Kathie",
+            "last_name": "Kester",
+            "email_address": "kkester16@reverbnation.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 44,
+        "fields": {
+            "first_name": "Tomlin",
+            "last_name": "Oldland",
+            "email_address": "toldland17@mit.edu",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 45,
+        "fields": {
+            "first_name": "Davie",
+            "last_name": "Gladdor",
+            "email_address": "dgladdor18@abc.net.au",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 46,
+        "fields": {
+            "first_name": "Rockwell",
+            "last_name": "Bricksey",
+            "email_address": "rbricksey19@youtu.be",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 47,
+        "fields": {
+            "first_name": "Mona",
+            "last_name": "Beauchamp",
+            "email_address": "mbeauchamp1a@bbc.co.uk",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 48,
+        "fields": {
+            "first_name": "Lolly",
+            "last_name": "Spillane",
+            "email_address": "lspillane1b@zdnet.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 49,
+        "fields": {
+            "first_name": "Benjamen",
+            "last_name": "Epinay",
+            "email_address": "bepinay1c@newsvine.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
+        }
+    },
+    {
+        "model": "client.Customer",
+        "pk": 50,
+        "fields": {
+            "first_name": "Nicol",
+            "last_name": "Saterweyte",
+            "email_address": "nsaterweyte1d@hc360.com",
+            "password": "pbkdf2_sha256$390000$y2Ft94VNJLFJvvdRP1hlq6$5cS4tsphL4vbhdoRTQ9QntFD7tdUjyktDNA4SEUCcuU="
         }
     }
 ]
