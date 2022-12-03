@@ -89,6 +89,12 @@ def standardize(row):
     return new_row
 
 
+def get_similar_users(user_similarity_df, user_id):
+    similar_score = user_similarity_df[user_id]
+    similar_score = similar_score.sort_values(ascending=False)
+    return similar_score
+
+
 def password_check(password):
     errors = []
 

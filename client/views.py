@@ -7,6 +7,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.shortcuts import render, redirect
+from scipy import sparse
 from .functions import *
 from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Order, OrderDetail, Payment, SentimentAnalysis
 
@@ -756,10 +757,22 @@ def test2(request):
     ratings_std_df = ratings_df.apply(standardize)
 
     user_similarity = cosine_similarity(ratings_std_df)
+
     user_similarity_df = pd.DataFrame(
         user_similarity, index=ratings_df.index, columns=ratings_df.index)
+
+    print(get_similar_users(user_similarity_df, 1))
 
     data['ratings_df'] = user_similarity_df.to_html()
 
     return render(request, 'client/test2.html', data)
     # TODO: End of testing 2
+
+
+def test3(request):
+    # TODO: Beginning of testing 3
+    # !: https://colab.research.google.com/drive/1cN44RlIEaB28FTD30qFiHkN3rqcDgcng?usp=sharing#scrollTo=qJii6XAXNdUL
+    data = {}
+
+    return render(request, 'client/test3.html', data)
+    # TODO: End of testing 3
