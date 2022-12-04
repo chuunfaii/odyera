@@ -800,19 +800,19 @@ def test3(request):
     user_similarity.drop(index=picked_user_id, inplace=True)
 
     # number of similar users
-    n = 1
+    n = 10
 
     # user similarity threshold
-    user_similarity_threshold = 0.3
+    user_similarity_threshold = 0.1
 
     # get top n similar users
     similar_users = user_similarity[user_similarity[picked_user_id] >
                                     user_similarity_threshold][picked_user_id].sort_values(ascending=False)[:n]
 
     # print out top n similar users
-    print(f'The similar users for user {picked_user_id} are', similar_users)
+    # print(f'The similar users for user {picked_user_id} are', similar_users)
 
-    data['test'] = user_similarity.to_html()
+    data['test'] = ratings_df.to_html()
 
     return render(request, 'client/test3.html', data)
     # TODO: End of testing 3

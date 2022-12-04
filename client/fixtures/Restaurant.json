@@ -7,6 +7,7 @@
             "description": "An ideal place for students and employees to release stress.",
             "location_lon": 100.481,
             "location_lat": 5.17818,
+            "location": "SRID=4326;POINT (100.481, 5.17818)",
             "operating_hours_start": "10AM",
             "operating_hours_end": "10PM",
             "owner_id": 1,
