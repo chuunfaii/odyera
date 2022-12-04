@@ -680,95 +680,6 @@ def food_trend(request):
     return render(request, 'client/food_trend.html', data)
 
 
-def test(request):
-    # TODO: Beginning of testing 1
-    # !: https://pub.towardsai.net/recommendation-system-in-depth-tutorial-with-python-for-netflix-using-collaborative-filtering-533ff8a0e444
-    data = {}
-    reviews = Review.objects.all().values()
-    reviews_df = pd.DataFrame(reviews)
-    sentiments = SentimentAnalysis.objects.all().values()
-    sentiments_df = pd.DataFrame(sentiments)
-    reviews_df = pd.merge(reviews_df, sentiments_df)
-
-    restaurant_rating_df = reviews_df[[
-        'restaurant_id', 'author_id', 'super_score']].copy()
-
-    split_value = int(len(restaurant_rating_df) * 0.80)
-    train_data = restaurant_rating_df[:split_value]
-    test_data = restaurant_rating_df[split_value:]
-
-    train_sparse_data = get_user_item_sparse_matrix(train_data)
-    test_sparse_data = get_user_item_sparse_matrix(test_data)
-
-    global_average_rating = train_sparse_data.sum() / train_sparse_data.count_nonzero()
-    # print("Global Average Super Score: {}".format(global_average_rating))
-
-    average_rating_user = get_average_rating(train_sparse_data, True)
-    average_rating_restaurant = get_average_rating(train_sparse_data, False)
-    # print("Average Rating User: {}".format(average_rating_user))
-    # print("Average Rating Restaurant: {}".format(average_rating_restaurant))
-
-    total_users = len(np.unique(restaurant_rating_df['author_id']))
-    train_users = len(average_rating_user)
-    uncommon_users = total_users - train_users
-
-    # print("Total no. of Users = {}".format(total_users))
-    # print("No. of Users in train data= {}".format(train_users))
-    # print("No. of Users not present in train data = {}({}%)".format(
-    #     uncommon_users, np.round((uncommon_users/total_users)*100), 2))
-
-    total_restaurants = len(np.unique(restaurant_rating_df['restaurant_id']))
-    train_restaurants = len(average_rating_restaurant)
-    uncommon_restaurants = total_restaurants - train_restaurants
-
-    # print("Total no. of Movies = {}".format(total_restaurants))
-    # print("No. of Movies in train data= {}".format(train_restaurants))
-    # print("No. of Movies not present in train data = {}({}%)".format(
-    #     uncommon_restaurants, np.round((uncommon_restaurants/total_restaurants)*100), 2))
-
-    compute_user_similarity(train_sparse_data, 3)
-
-    data['reviews_df'] = restaurant_rating_df.to_html()
-    return render(request, 'client/test.html', data)
-    # TODO: End of testing 1
-
-
-def test2(request):
-    # TODO: Beginning of testing 2
-    # !: https://www.youtube.com/watch?v=3ecNC-So0r4
-    data = {}
-
-    reviews = Review.objects.all().values()
-    sentiments = SentimentAnalysis.objects.all().values()
-
-    reviews_df = pd.DataFrame(reviews)[['id', 'author_id', 'restaurant_id']]
-    reviews_df.rename(columns={'author_id': 'user_id'})
-
-    sentiments_df = pd.DataFrame(
-        sentiments)[['id', 'super_score', 'review_id']]
-
-    ratings_df = reviews_df.merge(sentiments_df)
-
-    ratings_df = ratings_df.pivot_table(
-        index='author_id', columns='restaurant_id', values='super_score')
-
-    ratings_df = ratings_df.fillna(0)
-
-    ratings_std_df = ratings_df.apply(standardize)
-
-    user_similarity = cosine_similarity(ratings_std_df)
-
-    user_similarity_df = pd.DataFrame(
-        user_similarity, index=ratings_df.index, columns=ratings_df.index)
-
-    print(get_similar_users(user_similarity_df, 1))
-
-    data['ratings_df'] = user_similarity_df.to_html()
-
-    return render(request, 'client/test2.html', data)
-    # TODO: End of testing 2
-
-
 def test3(request):
     # TODO: Beginning of testing 3
     # !: https://colab.research.google.com/drive/1cN44RlIEaB28FTD30qFiHkN3rqcDgcng?usp=sharing#scrollTo=qJii6XAXNdUL
@@ -794,7 +705,7 @@ def test3(request):
     user_similarity = user_item_matrix_norm.T.corr()
 
     # pick a user id
-    picked_user_id = 1
+    picked_user_id = 32
 
     # remove picked user id from the candidate list
     user_similarity.drop(index=picked_user_id, inplace=True)
@@ -810,9 +721,24 @@ def test3(request):
                                     user_similarity_threshold][picked_user_id].sort_values(ascending=False)[:n]
 
     # print out top n similar users
-    # print(f'The similar users for user {picked_user_id} are', similar_users)
+    print(f'The similar users for user {picked_user_id} are', similar_users)
 
-    data['test'] = ratings_df.to_html()
+    # restaurants that the target user has reviewed
+    picked_user_id_reviewed = user_item_matrix_norm[user_item_matrix_norm.index == picked_user_id].dropna(
+        axis=1, how='all')
+
+    # restaurants that similar users reviewed. remove movies that none of the similar users have reviewed
+    similar_user_restaurants = user_item_matrix_norm[user_item_matrix_norm.index.isin(
+        similar_users.index)].dropna(axis=1, how='all')
+
+    # remove the reviewed restaurants from the restaurant list
+    similar_user_restaurants.drop(
+        picked_user_id_reviewed.columns, axis=1, inplace=True, errors='ignore')
+
+    ranked_item_score = calculate_ranked_item_score(
+        similar_user_restaurants, similar_users)
+
+    data['test'] = ranked_item_score.to_html()
 
     return render(request, 'client/test3.html', data)
     # TODO: End of testing 3
