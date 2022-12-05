@@ -44,6 +44,9 @@ def index(request):
         if 'uid' in request.session and request.session['type'] == 'customer':
             try:
                 restaurants = get_recommended_restaurants(uid)
+
+                if restaurants.count() < 5:
+                    restaurants = Restaurant.objects.all()
             except:
                 pass
 
@@ -339,6 +342,7 @@ def restaurant(request, id):
         rating = request.POST.get('rating')
         Review.objects.create(rating=rating, text=review,
                               author_id=customer.id, restaurant_id=id)
+        calculate_super_score_all()
         messages.success(
             request, 'You have posted your review for this restaurant.')
 
