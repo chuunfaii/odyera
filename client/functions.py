@@ -15,7 +15,7 @@ def calculate_super_score_all():
 
         super_score = review_rating + polarity_score * compound_score
 
-        SentimentAnalysis.objects.create(
+        SentimentAnalysis.objects.update_or_create(
             polarity_score=polarity_score,
             compound_score=compound_score,
             super_score=super_score,
@@ -30,7 +30,7 @@ def calculate_super_score(review):
 
     super_score = review_rating + polarity_score * compound_score
 
-    SentimentAnalysis.objects.create(
+    SentimentAnalysis.objects.update_or_create(
         polarity_score=polarity_score,
         compound_score=compound_score,
         super_score=super_score,

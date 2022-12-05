@@ -342,7 +342,8 @@ def restaurant(request, id):
         rating = request.POST.get('rating')
         Review.objects.create(rating=rating, text=review,
                               author_id=customer.id, restaurant_id=id)
-        calculate_super_score_all()
+        review = Review.objects.latest('id')
+        calculate_super_score(review)
         messages.success(
             request, 'You have posted your review for this restaurant.')
 
