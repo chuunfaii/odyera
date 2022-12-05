@@ -1,0 +1,21 @@
+# To run the server
+./manage.py runserver
+
+# To monitor Tailwind changes
+./manage.py tailwind start
+
+# To make new migrations
+./manage.py makemigrations
+
+# To migrate existing/current migrations
+./manage.py migrate
+
+# To load JSON data files from fixtures
+./manage.py loaddata Cuisine.json
+
+# To open Python shell in the environment
+./manage.py shell
+
+# Must remember to execute this function in the shell after loading data files for the first time
+> from client.functions import calculate_super_score_all
+> calculate_super_score_all()
