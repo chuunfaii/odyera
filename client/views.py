@@ -2,7 +2,6 @@ import pandas as pd
 import re
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.shortcuts import render, redirect
 from .functions import *
@@ -12,27 +11,18 @@ from .models import *
 def index(request):
     data = {}
 
-    if request.method == 'POST':
-        lat = float(request.POST.get('lat'))
-        long = float(request.POST.get('long'))
-        user_location = Point(long, lat, srid=4326)
+    has_location = False
 
-        restaurants = Restaurant.objects.annotate(distance=Distance(
-            'location', user_location)).order_by('distance')
-
-        request.session['lat'] = lat
-        request.session['long'] = long
-    elif 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         lat = float(request.session['lat'])
-        long = float(request.session['long'])
-        user_location = Point(long, lat, srid=4326)
-
-        restaurants = Restaurant.objects.annotate(distance=Distance(
-            'location', user_location)).order_by('distance')
-    else:
-        restaurants = Restaurant.objects.all()
-
-    data['restaurants'] = restaurants
+        lng = float(request.session['lng'])
+        has_location = True
+    elif request.method == 'POST':
+        lat = float(request.POST.get('lat'))
+        lng = float(request.POST.get('lng'))
+        request.session['lat'] = lat
+        request.session['lng'] = lng
+        has_location = True
 
     if 'uid' in request.session:
         uid = request.session['uid']
@@ -45,6 +35,22 @@ def index(request):
             restaurant = Restaurant.objects.filter(owner_id=uid).first()
             owner.restaurant = restaurant
             data['owner'] = owner
+
+    restaurants = Restaurant.objects.all()
+
+    if has_location:
+        user_location = Point(lng, lat, srid=4326)
+
+        if 'uid' in request.session and request.session['type'] == 'customer':
+            try:
+                restaurants = get_recommended_restaurants(uid)
+            except:
+                pass
+
+    restaurants = sort_restaurants_based_closest_location(
+        restaurants, user_location)
+
+    data['restaurants'] = restaurants[:5]
 
     return render(request, 'client/index.html', data)
 
@@ -704,6 +710,9 @@ def test3(request):
     user_similarity = user_item_matrix.T.corr()
 
     # TODO: Replace it with current user id instead.
+    # !: If user does not have any reviews / not enough reviews, will result in KeyError
+    # !: Make sure to use try catch to prevent that, if there is an error, then skip the algorithm
+    # !: And use location-based only
     picked_user_id = 32
 
     # Remove current user id from the candidate list.
