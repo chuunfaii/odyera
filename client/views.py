@@ -1,41 +1,28 @@
 import pandas as pd
-import numpy as np
-from django.shortcuts import render
 import re
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
-from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 from django.shortcuts import render, redirect
-from scipy import sparse
 from .functions import *
-from .models import Customer, RestaurantOwner, Restaurant, Review, MenuItem, Order, OrderDetail, Payment, SentimentAnalysis
+from .models import *
 
 
 def index(request):
     data = {}
 
-    if request.method == 'POST':
-        lat = float(request.POST.get('lat'))
-        long = float(request.POST.get('long'))
-        user_location = Point(long, lat, srid=4326)
+    has_location = False
 
-        restaurants = Restaurant.objects.annotate(distance=Distance(
-            'location', user_location)).order_by('distance')
-
-        request.session['lat'] = lat
-        request.session['long'] = long
-    elif 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         lat = float(request.session['lat'])
-        long = float(request.session['long'])
-        user_location = Point(long, lat, srid=4326)
-
-        restaurants = Restaurant.objects.annotate(distance=Distance(
-            'location', user_location)).order_by('distance')
-    else:
-        restaurants = Restaurant.objects.all()
-
-    data['restaurants'] = restaurants
+        lng = float(request.session['lng'])
+        has_location = True
+    elif request.method == 'POST':
+        lat = float(request.POST.get('lat'))
+        lng = float(request.POST.get('lng'))
+        request.session['lat'] = lat
+        request.session['lng'] = lng
+        has_location = True
 
     if 'uid' in request.session:
         uid = request.session['uid']
@@ -48,6 +35,25 @@ def index(request):
             restaurant = Restaurant.objects.filter(owner_id=uid).first()
             owner.restaurant = restaurant
             data['owner'] = owner
+
+    restaurants = Restaurant.objects.all()
+
+    if has_location:
+        user_location = Point(lng, lat, srid=4326)
+
+        if 'uid' in request.session and request.session['type'] == 'customer':
+            try:
+                restaurants = get_recommended_restaurants(uid)
+
+                if restaurants.count() < 5:
+                    restaurants = Restaurant.objects.all()
+            except:
+                pass
+
+    restaurants = sort_restaurants_based_closest_location(
+        restaurants, user_location)
+
+    data['restaurants'] = restaurants[:5]
 
     return render(request, 'client/index.html', data)
 
@@ -336,6 +342,8 @@ def restaurant(request, id):
         rating = request.POST.get('rating')
         Review.objects.create(rating=rating, text=review,
                               author_id=customer.id, restaurant_id=id)
+        review = Review.objects.latest('id')
+        calculate_super_score(review)
         messages.success(
             request, 'You have posted your review for this restaurant.')
 
@@ -681,8 +689,6 @@ def food_trend(request):
 
 
 def test3(request):
-    # TODO: Beginning of testing 3
-    # !: https://colab.research.google.com/drive/1cN44RlIEaB28FTD30qFiHkN3rqcDgcng?usp=sharing#scrollTo=qJii6XAXNdUL
     data = {}
 
     reviews = Review.objects.all().values()
@@ -693,52 +699,61 @@ def test3(request):
 
     ratings_df = reviews_df.merge(sentiments_df)
 
-    # create user-item matrix
+    # Create a User-Item matrix.
+    # - The rows of the matrix are users (user_id), and the columns of the matrix are restaurants (restaurant_id).
+    # - The value of the matrix is the super score of the restaurant's review if there is a review written by the user. Otherwise, it shows 'NaN'.
     user_item_matrix = ratings_df.pivot_table(
-        index='author_id', columns='restaurant_id', values='super_score')
+        index='author_id',
+        columns='restaurant_id',
+        values='super_score'
+    )
 
-    # data normalization
-    user_item_matrix_norm = user_item_matrix.subtract(
-        user_item_matrix.mean(axis=1), axis='rows')
+    # Identify similar users.
+    # - Calculate the user similarity matrix using Pearson correlation.
+    # - T property is used to transpose index and columns of the dataframe first.
+    # - Then, the corr() method is used to find the pairwise correlation of all columns in the dataframe (Pearson correlation).
+    user_similarity = user_item_matrix.T.corr()
 
-    # identify similar users
-    user_similarity = user_item_matrix_norm.T.corr()
-
-    # pick a user id
+    # TODO: Replace it with current user id instead.
+    # !: If user does not have any reviews / not enough reviews, will result in KeyError
+    # !: Make sure to use try catch to prevent that, if there is an error, then skip the algorithm
+    # !: And use location-based only
     picked_user_id = 32
 
-    # remove picked user id from the candidate list
+    # Remove current user id from the candidate list.
     user_similarity.drop(index=picked_user_id, inplace=True)
 
-    # number of similar users
-    n = 10
-
-    # user similarity threshold
+    # Setting a user similarity threshold.
+    # - As user-based collaborative filtering makes recommendations based on similar users, a positive threshold is needed to be set.
+    # - Setting a 0.1 as the threshold means that a user must have a Pearson correlation coefficient of at least 0.1 to be considered as a similar user.
     user_similarity_threshold = 0.1
 
-    # get top n similar users
+    # Retrieve similar users.
+    # - Sort the user similarity values from the highest to the lowest.
     similar_users = user_similarity[user_similarity[picked_user_id] >
-                                    user_similarity_threshold][picked_user_id].sort_values(ascending=False)[:n]
+                                    user_similarity_threshold][picked_user_id].sort_values(ascending=False)
 
-    # print out top n similar users
-    print(f'The similar users for user {picked_user_id} are', similar_users)
-
-    # restaurants that the target user has reviewed
-    picked_user_id_reviewed = user_item_matrix_norm[user_item_matrix_norm.index == picked_user_id].dropna(
+    # Keep the restaurants that the current user has reviewed.
+    # - Keep only the row where the `user_id` matches the current user id in the User-Item matrix.
+    # - Remove any restaurants that have missing values (no super score).
+    picked_user_id_reviewed = user_item_matrix[user_item_matrix.index == picked_user_id].dropna(
         axis=1, how='all')
 
-    # restaurants that similar users reviewed. remove movies that none of the similar users have reviewed
-    similar_user_restaurants = user_item_matrix_norm[user_item_matrix_norm.index.isin(
+    # Keep only the similar users' restaurants.
+    # - Keep the user ids that were in the similar user lists.
+    # - Remove the restaurants with all missing values.
+    # - All missing values for a restaurant means none of the similar users have reviewed the restaurant before.
+    similar_user_restaurants = user_item_matrix[user_item_matrix.index.isin(
         similar_users.index)].dropna(axis=1, how='all')
 
-    # remove the reviewed restaurants from the restaurant list
+    # Remove the reviewed restaurants from the restaurant list.
     similar_user_restaurants.drop(
         picked_user_id_reviewed.columns, axis=1, inplace=True, errors='ignore')
 
+    # Retrieve the final ranked item scores from the `calculate_ranked_item_score` method.
     ranked_item_score = calculate_ranked_item_score(
         similar_user_restaurants, similar_users)
 
     data['test'] = ranked_item_score.to_html()
 
     return render(request, 'client/test3.html', data)
-    # TODO: End of testing 3

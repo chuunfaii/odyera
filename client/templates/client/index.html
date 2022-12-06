@@ -39,18 +39,16 @@
             <h1 class="text-xl font-semibold mb-4">Recommended for You</h1>
             <div class="flex gap-5">
                 {% for restaurant in restaurants %}
-                    {% if forloop.counter <= 5 %}
-                        <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                    <div class="flex flex-col w-full max-h-[250px] max-w-xs bg-slate-50 shadow-md">
+                        <a href="/restaurant/{{ restaurant.id }}">
+                            <img class="bg-cover h-[180px] w-full" src="{% static '/images/' %}{{ restaurant.image_url }}" alt="Restaurant image">
+                        </a>
+                        <div class="flex flex-col flex-1 justify-center p-2">
                             <a href="/restaurant/{{ restaurant.id }}">
-                                <img class="bg-cover h-[180px] w-full" src="{% static '/images/' %}{{ restaurant.image_url }}" alt="Restaurant image">
+                                <h5 class="text-sm tracking-tight text-gray-900">{{ restaurant.name }}</h5>
                             </a>
-                            <div class="flex flex-col flex-1 justify-center p-2">
-                                <a href="/restaurant/{{ restaurant.id }}">
-                                    <h5 class="text-sm tracking-tight text-gray-900">{{ restaurant.name }}</h5>
-                                </a>
-                            </div>
                         </div>
-                    {% endif %}
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -59,21 +57,21 @@
     <form id="coords-form" method="POST" action="/">
         {% csrf_token %}
         <input id="lat" name="lat" type="hidden" value="" />
-        <input id="long" name="long" type="hidden" value="" />
+        <input id="lng" name="lng" type="hidden" value="" />
     </form>
 
     <script>
         const showPosition = async position => {
             const lat = position.coords.latitude;
-            const long = position.coords.longitude;
+            const lng = position.coords.longitude;
 
             document.querySelector('#lat').value = lat;
-            document.querySelector('#long').value = long;
+            document.querySelector('#lng').value = lng;
 
             document.querySelector('#coords-form').submit();
         }
 
-        {% if 'lat' not in request.session and 'long' not in request.session %}
+        {% if 'lat' not in request.session and 'lng' not in request.session %}
             navigator.geolocation.getCurrentPosition(showPosition);
         {% endif %}
     </script>

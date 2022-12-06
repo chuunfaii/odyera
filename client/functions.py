@@ -1,10 +1,8 @@
-from client.models import Review, SentimentAnalysis
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-import numpy as np
 import pandas as pd
+from client.models import *
+from django.contrib.gis.db.models.functions import Distance
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
-from scipy import sparse
-from sklearn.metrics.pairwise import cosine_similarity
 
 
 def calculate_super_score_all():
@@ -17,7 +15,7 @@ def calculate_super_score_all():
 
         super_score = review_rating + polarity_score * compound_score
 
-        SentimentAnalysis.objects.create(
+        SentimentAnalysis.objects.update_or_create(
             polarity_score=polarity_score,
             compound_score=compound_score,
             super_score=super_score,
@@ -32,7 +30,7 @@ def calculate_super_score(review):
 
     super_score = review_rating + polarity_score * compound_score
 
-    SentimentAnalysis.objects.create(
+    SentimentAnalysis.objects.update_or_create(
         polarity_score=polarity_score,
         compound_score=compound_score,
         super_score=super_score,
@@ -54,85 +52,103 @@ def calculate_compound_score(review):
     return round(compound_score)
 
 
-def get_user_item_sparse_matrix(df):
-    sparse_data = sparse.csr_matrix(
-        (df.super_score, (df.author_id, df.restaurant_id)))
-    return sparse_data
+def get_recommended_restaurants(user_id):
+    reviews = Review.objects.all().values()
+    sentiments = SentimentAnalysis.objects.all().values()
+
+    reviews_df = pd.DataFrame(reviews)[['id', 'author_id', 'restaurant_id']]
+    sentiments_df = pd.DataFrame(sentiments)[['id', 'super_score']]
+
+    ratings_df = reviews_df.merge(sentiments_df)
+
+    # Create a User-Item matrix.
+    # - The rows of the matrix are users (user_id), and the columns of the matrix are restaurants (restaurant_id).
+    # - The value of the matrix is the super score of the restaurant's review if there is a review written by the user. Otherwise, it shows 'NaN'.
+    user_item_matrix = ratings_df.pivot_table(
+        index='author_id',
+        columns='restaurant_id',
+        values='super_score'
+    )
+
+    # Identify similar users.
+    # - Calculate the user similarity matrix using Pearson correlation.
+    # - T property is used to transpose index and columns of the dataframe first.
+    # - Then, the corr() method is used to find the pairwise correlation of all columns in the dataframe (Pearson correlation).
+    user_similarity = user_item_matrix.T.corr()
+
+    # Remove current user id from the candidate list.
+    user_similarity.drop(index=user_id, inplace=True)
+
+    # Setting a user similarity threshold.
+    # - As user-based collaborative filtering makes recommendations based on similar users, a positive threshold is needed to be set.
+    # - Setting a 0.1 as the threshold means that a user must have a Pearson correlation coefficient of at least 0.1 to be considered as a similar user.
+    user_similarity_threshold = 0.1
+
+    # Retrieve similar users.
+    # - Sort the user similarity values from the highest to the lowest.
+    similar_users = user_similarity[user_similarity[user_id] >
+                                    user_similarity_threshold][user_id].sort_values(ascending=False)
+
+    # Keep the restaurants that the current user has reviewed.
+    # - Keep only the row where the `user_id` matches the current user id in the User-Item matrix.
+    # - Remove any restaurants that have missing values (no super score).
+    user_id_reviewed = user_item_matrix[user_item_matrix.index == user_id].dropna(
+        axis=1, how='all')
+
+    # Keep only the similar users' restaurants.
+    # - Keep the user ids that were in the similar user lists.
+    # - Remove the restaurants with all missing values.
+    # - All missing values for a restaurant means none of the similar users have reviewed the restaurant before.
+    similar_user_restaurants = user_item_matrix[user_item_matrix.index.isin(
+        similar_users.index)].dropna(axis=1, how='all')
+
+    # Remove the reviewed restaurants from the restaurant list.
+    similar_user_restaurants.drop(
+        user_id_reviewed.columns, axis=1, inplace=True, errors='ignore')
+
+    # Retrieve the final ranked item scores from the `calculate_ranked_item_score` method.
+    ranked_item_score = calculate_ranked_item_score(
+        similar_user_restaurants, similar_users)
+
+    restaurant_ids = ranked_item_score['restaurant_id'].tolist()
+
+    restaurants = Restaurant.objects.filter(id__in=restaurant_ids)
+
+    return restaurants
 
 
-def get_average_rating(sparse_matrix, is_user):
-    ax = 1 if is_user else 0
-    sum_of_ratings = sparse_matrix.sum(axis=ax).A1
-    no_of_ratings = (sparse_matrix != 0).sum(axis=ax).A1
-    rows, cols = sparse_matrix.shape
-    average_ratings = {i: sum_of_ratings[i] / no_of_ratings[i]
-                       for i in range(rows if is_user else cols) if no_of_ratings[i] != 0}
-    return average_ratings
-
-
-def compute_user_similarity(sparse_matrix, limit=100):
-    row_index, col_index = sparse_matrix.nonzero()
-    rows = np.unique(row_index)
-    similar_arr = np.zeros(61700).reshape(617, 100)
-
-    for row in rows[:limit]:
-        sim = cosine_similarity(
-            sparse_matrix.getrow(row), sparse_matrix).ravel()
-        similar_indices = sim.argsort()[-limit:]
-        similar = sim[similar_indices]
-        similar_arr[row] = similar
-
-    return similar_arr
-
-
-def standardize(row):
-    new_row = (row - row.mean()) / (row.max() - row.min())
-    return new_row
-
-
-def get_similar_users(user_similarity_df, user_id):
-    similar_score = user_similarity_df[user_id]
-    similar_score = similar_score.sort_values(ascending=False)
-    return similar_score
+def sort_restaurants_based_closest_location(restaurants, user_location):
+    return restaurants.annotate(distance=Distance('location', user_location)).order_by('distance')
 
 
 def calculate_ranked_item_score(similar_user_restaurants, similar_users):
-    # a dictionary to store item scores
     item_score = {}
+    TOP = 10
 
-    # loop through items
-    for i in similar_user_restaurants.columns:
-        # get the super scores for restaurant i
-        restaurant_super_score = similar_user_restaurants[i]
-        # create a variable to store the score
+    for restaurant in similar_user_restaurants.columns:
         total = 0
-        # create a variable to store the number of scores
         count = 0
-        # loop through similar users
+
+        restaurant_super_score = similar_user_restaurants[restaurant]
+
         for u in similar_users.index:
-            # if the restaurant has super score
+            # Check if the restaurant has a super score = if the user has reviewed it.
             if pd.isna(restaurant_super_score[u]) == False:
-                # score is the sum of user similarity score multiply by the restaurant super score
+                # Score is the sum of the user similarity score multiply by the restaurant super score.
                 score = similar_users[u] * restaurant_super_score[u]
-                # add the score to the total score for the restaurant so far
                 total += score
-                # add 1 to the count
                 count += 1
-        # get the average score for the item
-        item_score[i] = total / count
+        # Get the average score for the item.
+        item_score[restaurant] = total / count
 
-    # convert dictionary to pandas dataframe
     item_score = pd.DataFrame(item_score.items(), columns=[
-        'restaurant_id', 'super_score'])
+        'restaurant_id', 'restaurant_score'])
 
-    # sort the restaurants by score
+    # Sort the restaurants by restaurants similarity score.
     ranked_item_score = item_score.sort_values(
-        by='super_score', ascending=False)
+        by='restaurant_score', ascending=False)
 
-    # select top m movies
-    m = 10
-
-    return ranked_item_score.head(m)
+    return ranked_item_score.head(TOP)
 
 
 def password_check(password):
