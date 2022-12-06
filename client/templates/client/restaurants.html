@@ -23,7 +23,7 @@
                         <a href="/restaurant/{{ restaurant.id }}">
                             <img class="bg-cover h-[180px] min-w-[180px] max-w-[180px]" src="{% static '/images/' %}{{ restaurant.image_url }}" alt="restaurant image">
                         </a>
-                        <div>
+                        <div class="w-full">
                             <a href="/restaurant/{{ restaurant.id }}" class="block font-bold mb-4">{{ restaurant.name }}</a>
                             <p class="text-gray-700">{{ restaurant.description }}</p>
                         </div>
