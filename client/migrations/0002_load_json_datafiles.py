@@ -7,6 +7,7 @@ from pathlib import Path
 
 R_DATA_FILENAME = 'Restaurant.json'
 RO_DATA_FILENAME = 'RestaurantOwner.json'
+O_DATA_FILENAME = 'Order.json'
 
 
 def load_data(apps, schema_editor):
@@ -15,6 +16,9 @@ def load_data(apps, schema_editor):
 
     Restaurant = apps.get_model('client', 'Restaurant')
     r_jsonfile = Path(__file__).parents[2] / R_DATA_FILENAME
+
+    Order = apps.get_model('client', 'Order')
+    o_jsonfile = Path(__file__).parents[2] / O_DATA_FILENAME
 
     with open(str(ro_jsonfile)) as datafile:
         objects = json.load(datafile)
@@ -43,6 +47,17 @@ def load_data(apps, schema_editor):
                     f'POINT({location_lon} {location_lat})', srid=4326)
                 Restaurant(name=name, description=description, location_lon=location_lon, location_lat=location_lat, operating_hours_start=operating_hours_start,
                            operating_hours_end=operating_hours_end, owner_id=owner_id, image_url=image_url, location=location).save()
+            except KeyError:
+                pass
+
+    with open(str(o_jsonfile)) as datafile:
+        objects = json.load(datafile)
+        for obj in objects:
+            try:
+                total_price = obj['fields']['total_price']
+                customer_id = obj['fields']['customer_id']
+                Order(total_price=total_price,
+                                customer_id=customer_id).save()
             except KeyError:
                 pass
 
