@@ -338,14 +338,23 @@ def restaurant(request, id):
             data['owner'] = owner
 
     if request.method == 'POST':
-        review = request.POST.get('review')
-        rating = request.POST.get('rating')
-        Review.objects.create(rating=rating, text=review,
-                              author_id=customer.id, restaurant_id=id)
-        review = Review.objects.latest('id')
-        calculate_super_score(review)
-        messages.success(
-            request, 'You have posted your review for this restaurant.')
+        reviews = Review.objects.filter(
+            restaurant_id=id, author_id=customer.id
+        )
+        if reviews:
+            messages.warning(
+                request, 'You have already posted a review for this restaurant.'
+            )
+        else:
+            review = request.POST.get('review')
+            rating = request.POST.get('rating')
+            Review.objects.create(rating=rating, text=review,
+                                  author_id=customer.id, restaurant_id=id)
+            review = Review.objects.latest('id')
+            calculate_super_score(review)
+            messages.success(
+                request, 'You have posted your review for this restaurant.'
+            )
 
     restaurant = Restaurant.objects.get(id=id)
     reviews = Review.objects.filter(restaurant_id=id)
