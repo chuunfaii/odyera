@@ -50,8 +50,8 @@ def index(request):
             except:
                 pass
 
-    restaurants = sort_restaurants_based_closest_location(
-        restaurants, user_location)
+        restaurants = sort_restaurants_based_closest_location(
+            restaurants, user_location)
 
     data['restaurants'] = restaurants[:5]
 

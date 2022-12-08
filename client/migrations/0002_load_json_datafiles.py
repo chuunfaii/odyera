@@ -7,7 +7,14 @@ from pathlib import Path
 
 R_DATA_FILENAME = 'Restaurant.json'
 RO_DATA_FILENAME = 'RestaurantOwner.json'
+CU_DATA_FILENAME = 'Cuisine.json'
+MI_DATA_FILENAME = 'MenuItem.json'
 O_DATA_FILENAME = 'Order.json'
+OD_DATA_FILENAME = 'OrderDetail.json'
+C_DATA_FILENAME = 'Customer.json'
+RE_DATA_FILENAME = 'Review.json'
+P_DATA_FILENAME = 'Payment.json'
+
 
 
 def load_data(apps, schema_editor):
@@ -17,8 +24,30 @@ def load_data(apps, schema_editor):
     Restaurant = apps.get_model('client', 'Restaurant')
     r_jsonfile = Path(__file__).parents[2] / R_DATA_FILENAME
 
+    Cuisine = apps.get_model('client', 'Cuisine')
+    cu_jsonfile = Path(__file__).parents[2] / CU_DATA_FILENAME
+
+    MenuItem = apps.get_model('client', 'MenuItem')
+    mi_jsonfile = Path(__file__).parents[2] / MI_DATA_FILENAME
+
+    Customer = apps.get_model('client', 'Customer')
+    c_jsonfile = Path(__file__).parents[2] / C_DATA_FILENAME
+
+    Review = apps.get_model('client', 'Review')
+    re_jsonfile = Path(__file__).parents[2] / RE_DATA_FILENAME
+
     Order = apps.get_model('client', 'Order')
     o_jsonfile = Path(__file__).parents[2] / O_DATA_FILENAME
+
+    OrderDetail = apps.get_model('client', 'OrderDetail')
+    od_jsonfile = Path(__file__).parents[2] / OD_DATA_FILENAME
+
+    Payment = apps.get_model('client', 'Payment')
+    p_jsonfile = Path(__file__).parents[2] / P_DATA_FILENAME
+
+
+
+
 
     with open(str(ro_jsonfile)) as datafile:
         objects = json.load(datafile)
@@ -26,8 +55,9 @@ def load_data(apps, schema_editor):
             try:
                 email_address = obj['fields']['email_address']
                 password = obj['fields']['password']
-                RestaurantOwner(email_address=email_address,
-                                password=password).save()
+                # RestaurantOwner(email_address=email_address,
+                #                 password=password).save()
+                RestaurantOwner.objects.create(email_address=email_address,password=password)
             except KeyError:
                 pass
 
@@ -50,6 +80,66 @@ def load_data(apps, schema_editor):
             except KeyError:
                 pass
 
+    with open(str(cu_jsonfile)) as datafile:
+        objects = json.load(datafile)
+        for obj in objects:
+            try:
+                name = obj['fields']['name']
+                Cuisine(name=name).save()
+            except KeyError:
+                pass
+
+    with open(str(mi_jsonfile)) as datafile:
+        objects = json.load(datafile)
+        for obj in objects:
+            try:
+                name = obj['fields']['name']
+                description = obj['fields']['description']
+                price = obj['fields']['price']
+                image_url = obj['fields']['image_url']
+                cuisine_id = obj['fields']['cuisine_id']
+                restaurant_id = obj['fields']['restaurant_id']
+
+                MenuItem(name=name,
+                           description=description,
+                           price=price,
+                            image_url=image_url,
+                            cuisine_id=cuisine_id,
+                            restaurant_id=restaurant_id).save()
+            except KeyError:
+                pass
+
+
+    with open(str(c_jsonfile)) as datafile:
+        objects = json.load(datafile)
+        for obj in objects:
+            try:
+                first_name = obj['fields']['first_name']
+                last_name = obj['fields']['last_name']
+                email_address = obj['fields']['email_address']
+                password = obj['fields']['password']
+                Customer(first_name=first_name,
+                                last_name=last_name,
+                                email_address=email_address,
+                                password=password).save()
+            except KeyError:
+                pass
+
+    with open(str(re_jsonfile)) as datafile:
+        objects = json.load(datafile)
+        for obj in objects:
+            try:
+                rating = obj['fields']['rating']
+                text = obj['fields']['text']
+                author_id = obj['fields']['author_id']
+                restaurant_id = obj['fields']['restaurant_id']
+                Review(rating=rating,
+                                text=text,
+                                author_id=author_id,
+                                restaurant_id=restaurant_id).save()
+            except KeyError:
+                pass
+
     with open(str(o_jsonfile)) as datafile:
         objects = json.load(datafile)
         for obj in objects:
@@ -58,6 +148,33 @@ def load_data(apps, schema_editor):
                 customer_id = obj['fields']['customer_id']
                 Order(total_price=total_price,
                                 customer_id=customer_id).save()
+            except KeyError:
+                pass
+
+    with open(str(od_jsonfile)) as datafile:
+        objects = json.load(datafile)
+        for obj in objects:
+            try:
+                quantity = obj['fields']['quantity']
+                subtotal_price = obj['fields']['subtotal_price']
+                menu_item_id = obj['fields']['menu_item_id']
+                order_id = obj['fields']['order_id']
+                
+                OrderDetail(quantity=quantity,
+                                subtotal_price=subtotal_price,
+                                menu_item_id=menu_item_id,
+                                order_id=order_id).save()
+            except KeyError:
+                pass
+
+    with open(str(p_jsonfile)) as datafile:
+        objects = json.load(datafile)
+        for obj in objects:
+            try:
+                amount = obj['fields']['amount']
+                order_id = obj['fields']['order_id']
+                Payment(amount=amount,
+                                order_id=order_id).save()
             except KeyError:
                 pass
 

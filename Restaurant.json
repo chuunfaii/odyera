@@ -696,7 +696,7 @@
             "operating_hours_start": "10AM",
             "operating_hours_end": "10PM",
             "owner_id": 50,
-            "image_url": "pbc.jpg"
+            "image_url": "pbc.jpeg"
         }
     },
     {
@@ -1256,7 +1256,7 @@
             "operating_hours_start": "10AM",
             "operating_hours_end": "10PM",
             "owner_id": 90,
-            "image_url": "maglioreCoffee.jpg"
+            "image_url": "miglioreCoffee.jpg"
         }
     },
     {
@@ -2656,7 +2656,7 @@
             "operating_hours_start": "10AM",
             "operating_hours_end": "10PM",
             "owner_id": 190,
-            "image_url": "nandos.jpeg"
+            "image_url": "nandos.jpg"
         }
     },
     {
