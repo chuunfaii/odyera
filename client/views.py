@@ -766,3 +766,7 @@ def test3(request):
     data['test'] = ranked_item_score.to_html()
 
     return render(request, 'client/test3.html', data)
+
+
+def error_404(request, exception):
+    return render(request, '404.html')
