@@ -40,19 +40,23 @@
                     <th scope="col" class="py-3 px-6">
                         Food Name
                     </th>
+                    <th scope="col" class="py-3 px-6">
+                        Quantity
+                    </th>
                 </tr>
             </thead>
             
             <tbody>
-                {% for menu_item in menu_items %}
+                {% for item in sorted_list %}
                 <tr class="border-b border-gray-200">
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        
                         {{ forloop.counter }}
                     </th>
                     <td class="py-4 px-6">
-                        {{ menu_item.name }}
-                        {{ menu_item.quantity_orders}}
+                        {{ item.name }}
+                    </td>
+                    <td class="py-4 px-7">
+                        {{ item.qtt }}
                     </td>
                 </tr>
                 

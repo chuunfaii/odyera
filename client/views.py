@@ -6,6 +6,7 @@ from django.contrib.gis.geos import Point
 from django.shortcuts import render, redirect
 from .functions import *
 from .models import *
+from pprint import pprint
 
 
 def index(request):
@@ -599,6 +600,8 @@ def order_history(request):
 
 
 def malaysia_food_trend(request):
+
+
     if 'uid' not in request.session or request.session['type'] == 'customer':
         return redirect('/')
 
@@ -611,10 +614,45 @@ def malaysia_food_trend(request):
     uid = request.session['uid']
     owner = RestaurantOwner.objects.get(id=uid)
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
-    menu_items = MenuItem.objects.annotate(quantity_orders=Count('orderdetail__quantity')).order_by('-quantity_orders')
+    #menu_items = MenuItem.objects.annotate(quantity_orders=Count('orderdetail__quantity')).order_by('-quantity_orders')
     owner.restaurant = restaurant
     data['owner'] = owner
-    data['menu_items'] = menu_items[:10]
+    #data['menu_items'] = menu_items[:10]
+
+    #create a temporary empty list 
+    temp = []
+    item_qtts = []
+
+    #get all menu_items and order_details
+    menu_items = MenuItem.objects.all()
+    order_details = OrderDetail.objects.all()
+
+    #loop thru menu_items to ALL menu_items name
+    for menu_item in menu_items:
+        temp.append(menu_item.name)
+    
+    #use set() to eliminate duplicated names
+    names =  set(temp)
+
+    #loop thru names and put it in a dictinary (to keep track the qtt for each menu_items name)
+    for item in names:
+        item_dict = {
+            'name' : item,
+            'qtt' : 0
+        }
+        item_qtts.append(item_dict)
+
+    #loop thru all the order details
+    for order_detail in order_details:
+        menu_item = MenuItem.objects.get(id = order_detail.menu_item_id)
+        index = next((i for i , item in enumerate(item_qtts) if item["name"] == menu_item.name),None)
+        item_qtts[index]['qtt'] += order_detail.quantity
+
+    sorted_list = sorted(item_qtts, key=lambda x: x['qtt'], reverse=True)
+    #pprint(sorted_list)
+
+    data['sorted_list'] = sorted_list[0:10]
+
 
     if request.method == 'GET' and request.GET.get('m'):
         m = request.GET.get('m')
@@ -649,11 +687,6 @@ def malaysia_food_trend(request):
         data['m'] = m
         data['month'] = month
 
-        for menu_item in menu_items:
-         print(f"{menu_item.name} has {menu_item.quantity_orders} orders")
-        
-    
-
     return render(request, 'client/malaysia_food_trend.html', data)
 
 
@@ -672,6 +705,42 @@ def food_trend(request):
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
     owner.restaurant = restaurant
     data['owner'] = owner
+
+    print("HI")
+    print(restaurant.name)
+    #create a temporary empty list 
+    temp = []
+    item_qtts = []
+
+    #get all menu_items and order_details
+    menu_items = MenuItem.objects.all()
+    order_details = OrderDetail.objects.all()
+
+    #loop thru menu_items to ALL menu_items name
+    for menu_item in menu_items:
+        temp.append(menu_item.name)
+    
+    #use set() to eliminate duplicated names
+    names =  set(temp)
+
+    #loop thru names and put it in a dictinary (to keep track the qtt for each menu_items name)
+    for item in names:
+        item_dict = {
+            'name' : item,
+            'qtt' : 0
+        }
+        item_qtts.append(item_dict)
+
+    #loop thru all the order details
+    for order_detail in order_details:
+        menu_item = MenuItem.objects.get(id = order_detail.menu_item_id)
+        index = next((i for i , item in enumerate(item_qtts) if item["name"] == menu_item.name),None)
+        item_qtts[index]['qtt'] += order_detail.quantity
+
+    sorted_list = sorted(item_qtts, key=lambda x: x['qtt'], reverse=True)
+    #pprint(sorted_list)
+
+    data['sorted_list'] = sorted_list[0:10]
 
     if request.method == 'GET' and request.GET.get('m'):
         m = request.GET.get('m')
@@ -711,3 +780,39 @@ def food_trend(request):
 
 def error_404(request, exception):
     return render(request, '404.html')
+
+def test(request):
+    temp = []
+    item_qtts = []
+
+    
+    items = MenuItem.objects.all()
+    order_details = OrderDetail.objects.all()
+
+    for item in items:
+        temp.append(item.name)
+
+    temp2 = set(temp)
+    #print(len(temp2))
+    for item in temp2:
+        item_dict = {
+            'name' : item,
+            'qtt' : 0
+        }
+        item_qtts.append(item_dict)
+
+    for order_detail in order_details:
+        menu_item =  MenuItem.objects.get(id = order_detail.menu_item_id)
+        index = next((i for i , item in enumerate(item_qtts) if item["name"] == menu_item.name),None)
+        item_qtts[index]['qtt'] += order_detail.quantity
+    
+
+    #temp3= next((i for i , item in enumerate(item_qtts) if item["name"] == "Blue Berrymore"),None)
+    #print(item_qtts[temp3])
+
+    sorted_list = sorted(item_qtts, key=lambda x: x['qtt'], reverse=True)
+    pprint(sorted_list)
+
+
+
+    return render(request,'client/test.html')
