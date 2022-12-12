@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.gis.db import models
-
+from django.db.models import Count
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=254)

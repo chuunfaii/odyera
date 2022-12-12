@@ -643,8 +643,10 @@ def malaysia_food_trend(request):
     uid = request.session['uid']
     owner = RestaurantOwner.objects.get(id=uid)
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
+    menu_items = MenuItem.objects.annotate(quantity_orders=Count('orderdetail__quantity')).order_by('-quantity_orders')
     owner.restaurant = restaurant
     data['owner'] = owner
+    data['menu_items'] = menu_items[:10]
 
     if request.method == 'GET' and request.GET.get('m'):
         m = request.GET.get('m')
@@ -678,6 +680,11 @@ def malaysia_food_trend(request):
 
         data['m'] = m
         data['month'] = month
+
+        for menu_item in menu_items:
+         print(f"{menu_item.name} has {menu_item.quantity_orders} orders")
+        
+    
 
     return render(request, 'client/malaysia_food_trend.html', data)
 
