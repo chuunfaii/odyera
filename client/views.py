@@ -3,7 +3,9 @@ import re
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.gis.geos import Point
+from django.db.models import Count
 from django.shortcuts import render, redirect
+from pprint import pprint
 from .functions import *
 from .models import *
 from pprint import pprint
@@ -37,9 +39,37 @@ def index(request):
             owner.restaurant = restaurant
             data['owner'] = owner
 
-    featured_restaurants = Restaurant.objects.all()
-
     restaurants = Restaurant.objects.all()
+    featured_restaurants_dict = []
+    featured_restaurants = []
+
+    for restaurant in restaurants:
+        reviews = Review.objects.filter(restaurant=restaurant)
+        total_ratings = 0
+        reviews_amount = 0
+
+        for review in reviews:
+            total_ratings += review.rating
+            reviews_amount += 1
+
+        average_rating = total_ratings / reviews_amount
+
+        featured_restaurants_dict.append(
+            {
+                'id': restaurant.id,
+                'rating': average_rating
+            }
+        )
+
+    featured_restaurants_dict = sorted(
+        featured_restaurants_dict,
+        key=lambda x: x['rating'],
+        reverse=True
+    )
+
+    for restaurant_dict in featured_restaurants_dict:
+        featured_restaurant = Restaurant.objects.get(id=restaurant_dict['id'])
+        featured_restaurants.append(featured_restaurant)
 
     if has_location:
         user_location = Point(lng, lat, srid=4326)
@@ -51,12 +81,14 @@ def index(request):
                 if restaurants.count() < 5:
                     restaurants = Restaurant.objects.all()
             except:
+                pprint('inside except')
                 pass
 
         restaurants = sort_restaurants_based_closest_location(
             restaurants, user_location)
 
-    data['restaurants'] = restaurants[:5]
+    data['featured_restaurants'] = featured_restaurants[:5]
+    data['recommended_restaurants'] = restaurants[:5]
 
     return render(request, 'client/index.html', data)
 
