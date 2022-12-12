@@ -36,6 +36,8 @@ def index(request):
             owner.restaurant = restaurant
             data['owner'] = owner
 
+    featured_restaurants = Restaurant.objects.all()
+
     restaurants = Restaurant.objects.all()
 
     if has_location:
@@ -532,7 +534,10 @@ def payment(request, id):
             return render(request, 'client/payment.html', data)
 
         Order.objects.create(
-            total_price=data['total'], customer_id=data['customer'].id)
+            total_price=data['total'],
+            customer_id=data['customer'].id,
+            restaurant_id=data['restaurant'].id
+        )
 
         latest_order_id = Order.objects.latest('id').id
 
@@ -704,72 +709,5 @@ def food_trend(request):
     return render(request, 'client/food_trend.html', data)
 
 
-def test3(request):
-    data = {}
-
-    reviews = Review.objects.all().values()
-    sentiments = SentimentAnalysis.objects.all().values()
-
-    reviews_df = pd.DataFrame(reviews)[['id', 'author_id', 'restaurant_id']]
-    sentiments_df = pd.DataFrame(sentiments)[['id', 'super_score']]
-
-    ratings_df = reviews_df.merge(sentiments_df)
-
-    # Create a User-Item matrix.
-    # - The rows of the matrix are users (user_id), and the columns of the matrix are restaurants (restaurant_id).
-    # - The value of the matrix is the super score of the restaurant's review if there is a review written by the user. Otherwise, it shows 'NaN'.
-    user_item_matrix = ratings_df.pivot_table(
-        index='author_id',
-        columns='restaurant_id',
-        values='super_score'
-    )
-
-    # Identify similar users.
-    # - Calculate the user similarity matrix using Pearson correlation.
-    # - T property is used to transpose index and columns of the dataframe first.
-    # - Then, the corr() method is used to find the pairwise correlation of all columns in the dataframe (Pearson correlation).
-    user_similarity = user_item_matrix.T.corr()
-
-    # TODO: Replace it with current user id instead.
-    # !: If user does not have any reviews / not enough reviews, will result in KeyError
-    # !: Make sure to use try catch to prevent that, if there is an error, then skip the algorithm
-    # !: And use location-based only
-    picked_user_id = 32
-
-    # Remove current user id from the candidate list.
-    user_similarity.drop(index=picked_user_id, inplace=True)
-
-    # Setting a user similarity threshold.
-    # - As user-based collaborative filtering makes recommendations based on similar users, a positive threshold is needed to be set.
-    # - Setting a 0.1 as the threshold means that a user must have a Pearson correlation coefficient of at least 0.1 to be considered as a similar user.
-    user_similarity_threshold = 0.1
-
-    # Retrieve similar users.
-    # - Sort the user similarity values from the highest to the lowest.
-    similar_users = user_similarity[user_similarity[picked_user_id] >
-                                    user_similarity_threshold][picked_user_id].sort_values(ascending=False)
-
-    # Keep the restaurants that the current user has reviewed.
-    # - Keep only the row where the `user_id` matches the current user id in the User-Item matrix.
-    # - Remove any restaurants that have missing values (no super score).
-    picked_user_id_reviewed = user_item_matrix[user_item_matrix.index == picked_user_id].dropna(
-        axis=1, how='all')
-
-    # Keep only the similar users' restaurants.
-    # - Keep the user ids that were in the similar user lists.
-    # - Remove the restaurants with all missing values.
-    # - All missing values for a restaurant means none of the similar users have reviewed the restaurant before.
-    similar_user_restaurants = user_item_matrix[user_item_matrix.index.isin(
-        similar_users.index)].dropna(axis=1, how='all')
-
-    # Remove the reviewed restaurants from the restaurant list.
-    similar_user_restaurants.drop(
-        picked_user_id_reviewed.columns, axis=1, inplace=True, errors='ignore')
-
-    # Retrieve the final ranked item scores from the `calculate_ranked_item_score` method.
-    ranked_item_score = calculate_ranked_item_score(
-        similar_user_restaurants, similar_users)
-
-    data['test'] = ranked_item_score.to_html()
-
-    return render(request, 'client/test3.html', data)
+def error_404(request, exception):
+    return render(request, '404.html')

@@ -16,14 +16,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Cuisine',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=254)),
             ],
         ),
         migrations.CreateModel(
             name='Customer',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=254)),
                 ('last_name', models.CharField(max_length=254)),
                 ('email_address', models.EmailField(max_length=254, unique=True)),
@@ -33,27 +35,33 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='MenuItem',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=254)),
                 ('description', models.CharField(max_length=254)),
                 ('price', models.DecimalField(decimal_places=2, max_digits=6)),
                 ('image_url', models.CharField(max_length=254)),
-                ('cuisine', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.cuisine')),
+                ('cuisine', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='client.cuisine')),
             ],
         ),
         migrations.CreateModel(
             name='Order',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_time', models.DateTimeField(auto_now_add=True)),
-                ('total_price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.customer')),
+                ('total_price', models.DecimalField(
+                    decimal_places=2, max_digits=6)),
+                ('customer', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='client.customer')),
             ],
         ),
         migrations.CreateModel(
             name='Restaurant',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=254)),
                 ('description', models.CharField(max_length=254)),
                 ('location_lon', models.FloatField()),
@@ -67,7 +75,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RestaurantOwner',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('email_address', models.EmailField(max_length=254, unique=True)),
                 ('password', models.CharField(max_length=254)),
             ],
@@ -75,50 +84,70 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Review',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('rating', models.DecimalField(decimal_places=1, max_digits=2)),
                 ('text', models.CharField(max_length=254)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.customer')),
-                ('restaurant', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.restaurant')),
+                ('author', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='client.customer')),
+                ('restaurant', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='client.restaurant')),
             ],
         ),
         migrations.CreateModel(
             name='SentimentAnalysis',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('polarity_score', models.IntegerField()),
                 ('compound_score', models.IntegerField()),
                 ('super_score', models.IntegerField()),
-                ('review', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.review')),
+                ('review', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='client.review')),
             ],
         ),
         migrations.AddField(
             model_name='restaurant',
             name='owner',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.restaurantowner'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='client.restaurantowner'),
         ),
         migrations.CreateModel(
             name='Payment',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('amount', models.DecimalField(decimal_places=2, max_digits=6)),
                 ('date_time', models.DateTimeField(auto_now_add=True)),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.order')),
+                ('order', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='client.order')),
             ],
         ),
         migrations.CreateModel(
             name='OrderDetail',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.IntegerField()),
-                ('subtotal_price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('menu_item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.menuitem')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.order')),
+                ('subtotal_price', models.DecimalField(
+                    decimal_places=2, max_digits=6)),
+                ('menu_item', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='client.menuitem')),
+                ('order', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='client.order')),
             ],
         ),
         migrations.AddField(
             model_name='menuitem',
             name='restaurant',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='client.restaurant'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='client.restaurant'),
+        ),
+        migrations.AddField(
+            model_name='order',
+            name='restaurant',
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='client.restaurant'),
+            preserve_default=False,
         ),
     ]

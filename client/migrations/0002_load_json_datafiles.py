@@ -16,7 +16,6 @@ RE_DATA_FILENAME = 'Review.json'
 P_DATA_FILENAME = 'Payment.json'
 
 
-
 def load_data(apps, schema_editor):
     RestaurantOwner = apps.get_model('client', 'RestaurantOwner')
     ro_jsonfile = Path(__file__).parents[2] / RO_DATA_FILENAME
@@ -45,19 +44,14 @@ def load_data(apps, schema_editor):
     Payment = apps.get_model('client', 'Payment')
     p_jsonfile = Path(__file__).parents[2] / P_DATA_FILENAME
 
-
-
-
-
     with open(str(ro_jsonfile)) as datafile:
         objects = json.load(datafile)
         for obj in objects:
             try:
                 email_address = obj['fields']['email_address']
                 password = obj['fields']['password']
-                # RestaurantOwner(email_address=email_address,
-                #                 password=password).save()
-                RestaurantOwner.objects.create(email_address=email_address,password=password)
+                RestaurantOwner.objects.create(
+                    email_address=email_address, password=password)
             except KeyError:
                 pass
 
@@ -101,14 +95,13 @@ def load_data(apps, schema_editor):
                 restaurant_id = obj['fields']['restaurant_id']
 
                 MenuItem(name=name,
-                           description=description,
-                           price=price,
-                            image_url=image_url,
-                            cuisine_id=cuisine_id,
-                            restaurant_id=restaurant_id).save()
+                         description=description,
+                         price=price,
+                         image_url=image_url,
+                         cuisine_id=cuisine_id,
+                         restaurant_id=restaurant_id).save()
             except KeyError:
                 pass
-
 
     with open(str(c_jsonfile)) as datafile:
         objects = json.load(datafile)
@@ -119,9 +112,9 @@ def load_data(apps, schema_editor):
                 email_address = obj['fields']['email_address']
                 password = obj['fields']['password']
                 Customer(first_name=first_name,
-                                last_name=last_name,
-                                email_address=email_address,
-                                password=password).save()
+                         last_name=last_name,
+                         email_address=email_address,
+                         password=password).save()
             except KeyError:
                 pass
 
@@ -134,9 +127,9 @@ def load_data(apps, schema_editor):
                 author_id = obj['fields']['author_id']
                 restaurant_id = obj['fields']['restaurant_id']
                 Review(rating=rating,
-                                text=text,
-                                author_id=author_id,
-                                restaurant_id=restaurant_id).save()
+                       text=text,
+                       author_id=author_id,
+                       restaurant_id=restaurant_id).save()
             except KeyError:
                 pass
 
@@ -146,8 +139,12 @@ def load_data(apps, schema_editor):
             try:
                 total_price = obj['fields']['total_price']
                 customer_id = obj['fields']['customer_id']
-                Order(total_price=total_price,
-                                customer_id=customer_id).save()
+                restaurant_id = obj['fields']['restaurant_id']
+                Order(
+                    total_price=total_price,
+                    customer_id=customer_id,
+                    restaurant_id=restaurant_id
+                ).save()
             except KeyError:
                 pass
 
@@ -159,11 +156,11 @@ def load_data(apps, schema_editor):
                 subtotal_price = obj['fields']['subtotal_price']
                 menu_item_id = obj['fields']['menu_item_id']
                 order_id = obj['fields']['order_id']
-                
+
                 OrderDetail(quantity=quantity,
-                                subtotal_price=subtotal_price,
-                                menu_item_id=menu_item_id,
-                                order_id=order_id).save()
+                            subtotal_price=subtotal_price,
+                            menu_item_id=menu_item_id,
+                            order_id=order_id).save()
             except KeyError:
                 pass
 
@@ -174,7 +171,7 @@ def load_data(apps, schema_editor):
                 amount = obj['fields']['amount']
                 order_id = obj['fields']['order_id']
                 Payment(amount=amount,
-                                order_id=order_id).save()
+                        order_id=order_id).save()
             except KeyError:
                 pass
 

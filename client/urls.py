@@ -18,5 +18,6 @@ urlpatterns = [
     path('malaysia-food-trend', views.malaysia_food_trend,
          name='malaysia_food_trend'),
     path('food-trend', views.food_trend, name='food_trend'),
-    path('test3', views.test3, name='test3')
 ]
+
+handler404 = 'client.views.error_404'
