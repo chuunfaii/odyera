@@ -50,6 +50,7 @@ class Order(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
     total_price = models.DecimalField(max_digits=6, decimal_places=2)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
 
 class OrderDetail(models.Model):

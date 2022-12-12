@@ -36,6 +36,8 @@ def index(request):
             owner.restaurant = restaurant
             data['owner'] = owner
 
+    featured_restaurants = Restaurant.objects.all()
+
     restaurants = Restaurant.objects.all()
 
     if has_location:
@@ -532,7 +534,10 @@ def payment(request, id):
             return render(request, 'client/payment.html', data)
 
         Order.objects.create(
-            total_price=data['total'], customer_id=data['customer'].id)
+            total_price=data['total'],
+            customer_id=data['customer'].id,
+            restaurant_id=data['restaurant'].id
+        )
 
         latest_order_id = Order.objects.latest('id').id
 
