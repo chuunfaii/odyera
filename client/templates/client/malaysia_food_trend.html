@@ -33,13 +33,12 @@
                 <tr>
                     <th scope="col" class="py-3 bg-gray-50">
                         Ranking
-                        {% for order_detail in order_details %}
+                        <!-- {% for order_detail in order_details %}
                             {{ order_detail.quantity}}
-                        {% endfor %}
+                        {% endfor %} -->
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Food Name
-                    </th>
                     <th scope="col" class="py-3 px-6">
                         Quantity
                     </th>
@@ -59,6 +58,49 @@
                     <td class="py-4 px-7">
                         {{ item.qtt }}
                     </td>
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+            
+        </table>
+
+        <h1 class="text-xl font-semibold mt-8">
+            Price Cluster
+            <!-- ({% if month %}{{ month }}{% else %}All Time{% endif %}) -->
+        </h1>
+
+        
+        <table class="w-full text-base text-left text-gray-500">
+            <thead class="text-base text-gray-700">
+                <tr>
+                    <th scope="col" class="py-3 px-6">
+                        Min
+                    </th>
+
+                    <th scope="col" class="py-3 px-6">
+                        Max
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Quantity
+                    </th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                
+                {% for min_max, quantity in cluster %}
+                <tr class="border-b border-gray-200">
+                    <td class="py-4 px-6">
+                        {{ min_max.min_price }}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{ min_max.max_price }}
+                    </td>
+                    <td class="py-4 px-6">
+                        {{ quantity }}
+                    </td>
+                   
                 </tr>
                 
                 {% endfor %}

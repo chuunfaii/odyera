@@ -33,93 +33,35 @@
                 <tr>
                     <th scope="col" class="py-3 bg-gray-50">
                         Ranking
+                        {% for order_detail in order_details %}
+                            {{ order_detail.quantity}}
+                        {% endfor %}
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Food Name
                     </th>
+                    <th scope="col" class="py-3 px-6">
+                        Quantity
+                    </th>
                 </tr>
             </thead>
+            
             <tbody>
+                {% for item in sorted_list %}
                 <tr class="border-b border-gray-200">
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        1
+                        
+                        {{ forloop.counter }}
                     </th>
                     <td class="py-4 px-6">
-                        Nasi Lemak
+                        {{ item.name }}
+                    </td>
+                    <td class="py-4 px-7">
+                        {{ item.qtt }}
                     </td>
                 </tr>
-                <tr class="border-b border-gray-200">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        2
-                    </th>
-                    <td class="py-4 px-6">
-                        Roti Canai
-                    </td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        3
-                    </th>
-                    <td class="py-4 px-6">
-                        Hokkien Mee
-                    </td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        4
-                    </th>
-                    <td class="py-4 px-6">
-                        Char Kuey Teow
-                    </td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        5
-                    </th>
-                    <td class="py-4 px-6">
-                        Chicken Rice
-                    </td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        6
-                    </th>
-                    <td class="py-4 px-6">
-                        Fried Rice
-                    </td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        7
-                    </th>
-                    <td class="py-4 px-6">
-                        Wan Tan Mee
-                    </td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        8
-                    </th>
-                    <td class="py-4 px-6">
-                        Nasi Telur
-                    </td>
-                </tr>
-                <tr class="border-b border-gray-200">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        9
-                    </th>
-                    <td class="py-4 px-6">
-                        Tosai
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        10
-                    </th>
-                    <td class="py-4 px-6">
-                        Nasi Kandar
-                    </td>
-                </tr>
+                
+                {% endfor %}
             </tbody>
         </table>
     </div>
