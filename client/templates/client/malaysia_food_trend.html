@@ -4,38 +4,13 @@
     <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 justify-between">
         <h1 class="text-xl font-semibold mt-8">
             Top 10 Most Popular Foods in Malaysia
-            ({% if month %}{{ month }}{% else %}All Time{% endif %})
         </h1>
-
-        <form method="GET" class="flex">
-            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-60 block p-2.5" name="m">
-                <option value="all" {% if m and m == 'all' %} selected {% endif %}>All Time</option>
-                <option value="jan" {% if m and m == 'jan' %} selected {% endif %}>January</option>
-                <option value="feb" {% if m and m == 'feb' %} selected {% endif %}>February</option>
-                <option value="mar" {% if m and m == 'mar' %} selected {% endif %}>March</option>
-                <option value="apr" {% if m and m == 'apr' %} selected {% endif %}>April</option>
-                <option value="may" {% if m and m == 'may' %} selected {% endif %}>May</option>
-                <option value="jun" {% if m and m == 'jun' %} selected {% endif %}>June</option>
-                <option value="jul" {% if m and m == 'jul' %} selected {% endif %}>July</option>
-                <option value="aug" {% if m and m == 'aug' %} selected {% endif %}>August</option>
-                <option value="sep" {% if m and m == 'sep' %} selected {% endif %}>September</option>
-                <option value="oct" {% if m and m == 'oct' %} selected {% endif %}>October</option>
-                <option value="nov" {% if m and m == 'nov' %} selected {% endif %}>November</option>
-                <option value="dec" {% if m and m == 'dec' %} selected {% endif %}>December</option>
-            </select>
-            <button type="submit" class="ml-3 inline-block rounded-lg bg-gray-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700">
-                View
-            </button>
-        </form>
 
         <table class="w-full text-base text-left text-gray-500">
             <thead class="text-base text-gray-700">
                 <tr>
                     <th scope="col" class="py-3 bg-gray-50">
                         Ranking
-                        <!-- {% for order_detail in order_details %}
-                            {{ order_detail.quantity}}
-                        {% endfor %} -->
                     </th>
                     <th scope="col" class="py-3 px-6">
                         Food Name
@@ -44,12 +19,12 @@
                     </th>
                 </tr>
             </thead>
-            
+
             <tbody>
                 {% for item in sorted_list %}
                 <tr class="border-b border-gray-200">
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap bg-gray-50">
-                        
+
                         {{ forloop.counter }}
                     </th>
                     <td class="py-4 px-6">
@@ -59,18 +34,17 @@
                         {{ item.qtt }}
                     </td>
                 </tr>
-                
+
                 {% endfor %}
             </tbody>
-            
+
         </table>
 
         <h1 class="text-xl font-semibold mt-8">
             Price Cluster
-            <!-- ({% if month %}{{ month }}{% else %}All Time{% endif %}) -->
         </h1>
 
-        
+
         <table class="w-full text-base text-left text-gray-500">
             <thead class="text-base text-gray-700">
                 <tr>
@@ -86,9 +60,9 @@
                     </th>
                 </tr>
             </thead>
-            
+
             <tbody>
-                
+
                 {% for min_max, quantity in cluster %}
                 <tr class="border-b border-gray-200">
                     <td class="py-4 px-6">
@@ -100,12 +74,12 @@
                     <td class="py-4 px-6">
                         {{ quantity }}
                     </td>
-                   
+
                 </tr>
-                
+
                 {% endfor %}
             </tbody>
-            
+
         </table>
     </div>
 {% endblock %}
