@@ -1,15 +1,288 @@
 {% extends "base.html" %}
+
 {% block content %}
-<table>
-    <tr>
-      <td>Cluster</td>
-      <td>Quantity</td>
-    </tr>
-    {% for item in Cluster0 %}
-    <tr>
-      <td>Cluster0</td>
-      <td>{{ Cluster0 }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+
+<div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 justify-between">
+  
+
+  <div class="grid grid-cols-2 w-full gap-x-20">
+    <!-- Restaurant sales & orders -->
+    <div class="mt-8 bg-white border border-slate-100 shadow rounded-xl py-5 px-10">
+      <h2 class="font-semibold">You've made a total sales of</h2>
+      <p class="font-bold text-2xl py-2 text-green-500">RM 195,000.00</p>
+      <span class="text-gray-500 ">with a total of <span class="font-semibold">59</span> orders</span>
+    </div>
+    <!-- Price recommendation -->
+    <div class="mt-8 bg-white border border-slate-100 shadow rounded-xl py-5 px-10">
+      <h2 class="font-semibold">Recommended Price Range for Menu Items:</h2>
+      <p class="font-bold text-2xl py-2">RM 15.90 - RM 19.90</p>
+    </div>
+
+    <div>
+      
+      
+
+      <div class="flex flex-col bg-white border border-slate-100 mt-8 shadow rounded-xl ">
+        <h2 class="font-semibold py-3 px-5 text-center pt-8">Top Selling Restaurant's Menu Item</h2>
+        <table class="w-full text-gray-500 mb-4">
+          <tbody>
+            <tr class="border-b border-slate-100 hover:bg-gray-50">
+              <td class="py-4 w-1/2 text-center">
+                1
+              </td>
+              <td class="py-4 w-1/2">
+                Burger
+              </td>
+            </tr>
+            <tr class="border-b border-slate-100 hover:bg-gray-50">
+              <td class="py-4 w-1/2 text-center">
+                2
+              </td>
+              <td class="py-4 w-1/2">
+                Burger
+              </td>
+            </tr>
+            <tr class="border-b border-slate-100 hover:bg-gray-50">
+              <td class="py-4 w-1/2 text-center">
+                3
+              </td>
+              <td class="py-4 w-1/2">
+                Burger
+              </td>
+            </tr>
+            <tr class="border-b border-slate-100 hover:bg-gray-50">
+              <td class="py-4 w-1/2 text-center">
+                4
+              </td>
+              <td class="py-4 w-1/2">
+                Burger
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="py-4 w-1/2 text-center">
+                5
+              </td>
+              <td class="py-4 w-1/2">
+                Burger
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bg-white border border-slate-100 mt-8 shadow rounded-xl mb-8">
+        <canvas class="m-auto self-center" id="chartPie"></canvas>
+      </div>
+
+      
+    </div>
+
+    <!-- Top 10 list of menu items based on restaurant's cuisine -->
+    <div class="mt-8 bg-white border border-slate-100 shadow rounded-xl mb-8">
+      <h2 class="font-semibold py-3 px-5 text-center pt-8">
+        Top 10 Western Menu Items in Malaysia
+      </h2>
+      <table class="w-full text-gray-500">
+        <tbody>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              1
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              2
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              3
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              4
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              5
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              6
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              7
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              8
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="border-b border-slate-100 hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              9
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-4 w-1/2 text-center">
+              10
+            </td>
+            <td class="py-4 w-1/2">
+              Burger
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Restaurant CRUD -->
+  <div class="w-full pb-8">
+  
+    <div class="flex items-center radius-lg justify-between ">
+      <h2 class="font-semibold text-xl py-3 px-2  pt-8">Menu Items</h2>
+      <button class="button bg-white border border-gray-300 text-sm hover:bg-gray-50  rounded-lg px-3 py-2 font-medium border-1 border-gray-300">Add</button>
+    </div>
+  <div class="shadow">
+    
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+            <tr>
+                <th scope="col " class="py-3 px-6">
+                    Image
+                </th> 
+                <th scope="col" class="py-3 px-6">
+                    Name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Description
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Price
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    <span class="sr-only">Edit</span>
+                </th>
+                <th scope="col" class="py-3 px-6">
+                  <span class="sr-only">Delete</span>
+                </th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Image A
+                </th>
+                <td class="py-4 px-6">
+                    Burger ABC
+                </td>
+                <td class="py-4 px-6">
+                    This is a very delicious burger.
+                </td>
+                <td class="py-4 px-6">
+                    RM 10
+                </td>
+                <td class="py-4 px-6 text-right">
+                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+                <td class="py-4 px-6 text-right">
+                  <a href="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
+              </td>
+            </tr>
+
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                Image A
+            </th>
+            <td class="py-4 px-6">
+                Burger ABC
+            </td>
+            <td class="py-4 px-6">
+                This is a very delicious burger.
+            </td>
+            <td class="py-4 px-6">
+                RM 10
+            </td>
+            <td class="py-4 px-6 text-right">
+                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            </td>
+            <td class="py-4 px-6 text-right">
+              <a href="#" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</a>
+          </td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+  </div>
+  
+ 
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const dataPie = {
+    labels: ["JavaScript", "Python", "Ruby", "C++", "Java"],
+    datasets: [
+    {
+      label: "My First Dataset",
+      data: [300, 50, 100, 150, 200],
+      backgroundColor: [
+      "rgb(133, 105, 241)",
+      "rgb(164, 101, 241)",
+      "rgb(101, 143, 241)",
+      "rgb(145, 143, 241)",
+      "rgb(178, 143, 241)",
+      ],
+      hoverOffset: 4,
+    },
+    ],
+  };
+  
+  const configPie = {
+    type: "pie",
+    data: dataPie,
+    options: {},
+  };
+  
+  var chartBar = new Chart(document.getElementById("chartPie"), configPie);
+</script>
+
 {% endblock %}

@@ -660,11 +660,11 @@ def malaysia_food_trend(request):
     menu_items = MenuItem.objects.all()
     order_details = OrderDetail.objects.all()
 
-    #loop thru menu_items to ALL menu_items name
+    #loop thru menu_items to get menu_items name and store in temp list
     for menu_item in menu_items:
         temp.append(menu_item.name)
     
-    #use set() to eliminate duplicated names
+    #use set() to eliminate duplicated names, and store in variable names
     names =  set(temp)
 
     #loop thru names and put it in a dictinary (to keep track the qtt for each menu_items name)
@@ -673,18 +673,22 @@ def malaysia_food_trend(request):
             'name' : item,
             'qtt' : 0
         }
-        #print(item_dict)
+        #store the item_dict in item_qtts list
         item_qtts.append(item_dict)
 
-    #loop thru all the order details
+    #loop thru all the order details, and get all order_detail that matched with menu_item
     for order_detail in order_details:
         menu_item = MenuItem.objects.get(id = order_detail.menu_item_id)
+        #loop thru item_qtts list, if the dict's name is matched with the menu_item.name then return index of that item
         index = next((i for i , item in enumerate(item_qtts) if item["name"] == menu_item.name),None)
+        #add the quantity of the items_qtts list
         item_qtts[index]['qtt'] += order_detail.quantity
 
+    #return the item in item_qtts with the highest qtt
     sorted_list = sorted(item_qtts, key=lambda x: x['qtt'], reverse=True)
     #pprint(sorted_list)
 
+    #show top 10
     data['sorted_list'] = sorted_list[0:10]
 
 
@@ -735,21 +739,24 @@ def malaysia_food_trend(request):
     values = {'quantity': 0}
     menu_detail = menu_detail.fillna(value=values)
 
+    #convert menu_detail quantity from float to int
     menu_detail['quantity'] = menu_detail['quantity'].apply(np.int64)
     
     #choose price and quantity column
     X = menu_detail.iloc[:,[3,8]].values
 
+    #store in menu_detail_df ,price and qtt columns
     menu_detail_df = pd.DataFrame(X,columns=['price','quantity'])
-    #print(menu_detail_df)
+    
+    #config the KMeans to 5 clusters
     kmeans =  KMeans(n_clusters=5,init='k-means++',random_state = 0)
 
     # return a label for each data point based on their cluster 
-
+    #show the result
     Y = kmeans.fit_predict(X)
     
 
-
+    #convert the result into cluster_df
     cluster_df = pd.DataFrame(Y)
 
     
@@ -821,7 +828,7 @@ def malaysia_food_trend(request):
 
 
     data['cluster'] = zip(cluster_min_max,cluster_quantity)
-    print(data['cluster'])
+    
     
 
     return render(request, 'client/malaysia_food_trend.html', data)
@@ -854,6 +861,7 @@ def food_trend(request):
     temp = []
     food_list = []
 
+    #get only menu_items that matched current restaurant
     menu_items = MenuItem.objects.filter(restaurant_id = restaurant.id)
     for menu in menu_items:
         food_list.append(menu.name)
@@ -872,7 +880,6 @@ def food_trend(request):
         menu_item = MenuItem.objects.get(id = order_detail.menu_item_id)
         index = next((i for i , item in enumerate(temp) if item["name"] == menu_item.name),None)
         if index is not None:
-            print(index)
             temp[index]['qtt'] += order_detail.quantity
     
     sorted_list = sorted(temp, key=lambda x: x['qtt'], reverse=True)
@@ -992,7 +999,7 @@ def test1(request):
     cluster_quantity = [len(cluster0),len(cluster1),len(cluster2),len(cluster3),len(cluster4)]
 
     data['cluster_quantity'] = cluster_quantity
-    print(cluster_quantity)
+    # print(cluster_quantity)
 
     cluster0_dict = {
         'min_price':  min(cluster0, key=lambda x:x['price'])['price'],
