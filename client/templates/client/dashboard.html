@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 
+{% load humanize %}
+
 {% block content %}
 
 <div class="mx-auto w-full flex flex-col h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8 justify-between">
-
-
     <div class="grid grid-cols-2 w-full gap-x-20">
-        <!-- Restaurant sales & orders -->
         <div class="mt-8 bg-white border border-slate-100 shadow rounded-xl py-5 px-10">
             <h2 class="font-semibold">You've made a total sales of</h2>
-            <p class="font-bold text-2xl py-2 text-green-500">RM 195,000.00</p>
-            <span class="text-gray-500 ">with a total of <span class="font-semibold">59</span> orders</span>
+            <p class="font-bold text-2xl py-2 text-green-500">RM {{ total_sales|intcomma }}</p>
+            <span class="text-gray-500 ">with a total of <span class="font-semibold">{{ total_orders }}</span> order{% if total_orders > 1 %}s{% endif %}</span>
         </div>
         <!-- Price recommendation -->
         <div class="mt-8 bg-white border border-slate-100 shadow rounded-xl py-5 px-10">
