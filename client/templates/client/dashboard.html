@@ -11,16 +11,11 @@
             <p class="font-bold text-2xl py-2 text-green-500">RM {{ total_sales|intcomma }}</p>
             <span class="text-gray-500 ">with a total of <span class="font-semibold">{{ total_orders }}</span> order{% if total_orders > 1 %}s{% endif %}</span>
         </div>
-        <!-- Price recommendation -->
         <div class="mt-8 bg-white border border-slate-100 shadow rounded-xl py-5 px-10">
             <h2 class="font-semibold">Recommended Price Range for Menu Items:</h2>
-            <p class="font-bold text-2xl py-2">RM 15.90 - RM 19.90</p>
+            <p class="font-bold text-2xl py-2">RM {{ recommended_price_range.min_price }} - RM {{ recommended_price_range.max_price }}</p>
         </div>
-
         <div>
-
-
-
             <div class="flex flex-col bg-white border border-slate-100 mt-8 shadow rounded-xl ">
                 <h2 class="font-semibold py-3 px-5 text-center pt-8">Top Selling Restaurant's Menu Item</h2>
                 <table class="w-full text-gray-500 mb-4">
