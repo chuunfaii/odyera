@@ -1,9 +1,11 @@
 import pandas as pd
+import numpy as np
 from client.models import *
 from django.contrib.gis.db.models.functions import Distance
-from pprint import pprint
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
+from sklearn.cluster import KMeans
+from pprint import pprint
 
 
 def calculate_super_score_all():
@@ -150,6 +152,130 @@ def calculate_ranked_item_score(similar_user_restaurants, similar_users):
         by='restaurant_score', ascending=False)
 
     return ranked_item_score.head(TOP)
+
+
+def get_recommended_price_range():
+    menu_items = MenuItem.objects.all().values()
+    order_details = OrderDetail.objects.all().values()
+
+    menu_items_df = pd.DataFrame(menu_items)[
+        ['id', 'name', 'description', 'price',
+            'image_url', 'cuisine_id', 'restaurant_id']
+    ]
+    order_details_df = pd.DataFrame(order_details)[
+        ['id', 'quantity', 'subtotal_price', 'menu_item_id', 'order_id']
+    ]
+    menu_details_df = pd.merge(
+        menu_items_df, order_details_df,
+        how='left', left_on='id', right_on='menu_item_id'
+    )
+
+    values = {'quantity': 0}
+    menu_details_df = menu_details_df.fillna(value=values)
+    menu_details_df['quantity'] = menu_details_df['quantity'].apply(np.int64)
+
+    # Choose price and quantity column
+    X = menu_details_df.iloc[:, [3, 8]].values
+    menu_details_df = pd.DataFrame(X, columns=['price', 'quantity'])
+    kmeans = KMeans(n_clusters=5, init='k-means++', random_state=0)
+
+    # Return a label for each data point based on their cluster
+    Y = kmeans.fit_predict(X)
+    cluster_df = pd.DataFrame(Y)
+    cluster_df.rename(columns={0: 'Cluster'}, inplace=True)
+
+    results_df = pd.concat([menu_details_df, cluster_df], axis=1)
+
+    cluster0 = []
+    cluster1 = []
+    cluster2 = []
+    cluster3 = []
+    cluster4 = []
+
+    for index in results_df.index:
+        cluster = results_df['Cluster'][index]
+        results_dict = {
+            'id': index+1,
+            'price': results_df['price'][index]
+        }
+        if cluster == 0:
+            cluster0.append(results_dict)
+        elif cluster == 1:
+            cluster1.append(results_dict)
+        elif cluster == 2:
+            cluster2.append(results_dict)
+        elif cluster == 3:
+            cluster3.append(results_dict)
+        elif cluster == 4:
+            cluster4.append(results_dict)
+
+    cluster_min_max = []
+    cluster_quantity = [len(cluster0), len(cluster1), len(
+        cluster2), len(cluster3), len(cluster4)]
+
+    cluster0_dict = {
+        'min_price':  min(cluster0, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster0, key=lambda x: x['price'])['price']
+    }
+    cluster1_dict = {
+        'min_price':  min(cluster1, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster1, key=lambda x: x['price'])['price']
+    }
+    cluster2_dict = {
+        'min_price':  min(cluster2, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster2, key=lambda x: x['price'])['price']
+    }
+    cluster3_dict = {
+        'min_price':  min(cluster3, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster3, key=lambda x: x['price'])['price']
+    }
+    cluster4_dict = {
+        'min_price':  min(cluster4, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster4, key=lambda x: x['price'])['price']
+    }
+
+    cluster_min_max.append(cluster0_dict)
+    cluster_min_max.append(cluster1_dict)
+    cluster_min_max.append(cluster2_dict)
+    cluster_min_max.append(cluster3_dict)
+    cluster_min_max.append(cluster4_dict)
+
+    highest_quantity = max(cluster_quantity)
+    highest_quantity_index = cluster_quantity.index(highest_quantity)
+
+    return cluster_min_max[highest_quantity_index]
+
+
+def get_top_cuisine_items(cuisine_id):
+    cuisine_menu_item_names = []
+    item_quantities = []
+
+    cuisine_menu_items = MenuItem.objects.filter(cuisine_id=cuisine_id)
+    order_details = OrderDetail.objects.all()
+
+    for cuisine_menu_item in cuisine_menu_items:
+        cuisine_menu_item_names.append(cuisine_menu_item.name)
+
+    cuisine_menu_item_names = set(cuisine_menu_item_names)
+
+    for item in cuisine_menu_item_names:
+        item_dict = {
+            'name': item,
+            'quantity': 0
+        }
+        item_quantities.append(item_dict)
+
+    for order_detail in order_details:
+        menu_item = MenuItem.objects.get(id=order_detail.menu_item_id)
+        index = next((i for i, item in enumerate(item_quantities)
+                     if item['name'] == menu_item.name), None)
+        if index is not None:
+            item_quantities[index]['quantity'] += order_detail.quantity
+
+    sorted_list = sorted(
+        item_quantities, key=lambda x: x['quantity'], reverse=True)
+
+    return sorted_list[:10]
 
 
 def password_check(password):

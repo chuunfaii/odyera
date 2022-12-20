@@ -948,102 +948,15 @@ def dashboard(request):
     data['total_sales'] = total_sales['total_sales']
     data['total_orders'] = total_orders['total_orders']
 
+    recommended_price_range = get_recommended_price_range()
+    data['recommended_price_range'] = recommended_price_range
 
-    #K-Means Algo
-    menu_items = MenuItem.objects.all().values()
-    order_details = OrderDetail.objects.all().values()
+    restaurant_first_menu_item = MenuItem.objects.filter(
+        restaurant_id=restaurant.id).first()
+    cuisine = Cuisine.objects.get(id=restaurant_first_menu_item.cuisine_id)
+    top_cuisine_items = get_top_cuisine_items(cuisine.id)
 
-    menu_items_df = pd.DataFrame(menu_items)[
-        ['id', 'name', 'description', 'price', 'image_url', 'cuisine_id', 'restaurant_id']]
-    order_details_df = pd.DataFrame(order_details)[
-        ['id', 'quantity', 'subtotal_price', 'menu_item_id', 'order_id']]
-    menu_detail = pd.merge(menu_items_df, order_details_df,
-                           how='left', left_on='id', right_on='menu_item_id')
-
-    values = {'quantity': 0}
-    menu_detail = menu_detail.fillna(value=values)
-
-    menu_detail['quantity'] = menu_detail['quantity'].apply(np.int64)
-
-    # choose price and quantity column
-    X = menu_detail.iloc[:, [3, 8]].values
-
-    menu_detail_df = pd.DataFrame(X, columns=['price', 'quantity'])
-    # print(menu_detail_df)
-    kmeans = KMeans(n_clusters=5, init='k-means++', random_state=0)
-
-    # return a label for each data point based on their cluster
-
-    Y = kmeans.fit_predict(X)
-
-    cluster_df = pd.DataFrame(Y)
-
-    cluster_df.rename(columns={0: 'Cluster'}, inplace=True)
-
-    # print(cluster_df)
-
-    # print(menu_detail_df.info())
-    # print(cluster_df)
-
-    result_df = pd.concat([menu_detail_df, cluster_df], axis=1)
-
-    cluster0 = []
-    cluster1 = []
-    cluster2 = []
-    cluster3 = []
-    cluster4 = []
-
-    for index in result_df.index:
-        cluster = result_df['Cluster'][index]
-        result_dict = {
-            'id': index+1,
-            'price': result_df['price'][index]
-        }
-        if cluster == 0:
-            cluster0.append(result_dict)
-        elif cluster == 1:
-            cluster1.append(result_dict)
-        elif cluster == 2:
-            cluster2.append(result_dict)
-        elif cluster == 3:
-            cluster3.append(result_dict)
-        elif cluster == 4:
-            cluster4.append(result_dict)
-
-    cluster_min_max = []
-    cluster_quantity = [len(cluster0), len(cluster1), len(
-        cluster2), len(cluster3), len(cluster4)]
-
-    data['cluster_quantity'] = cluster_quantity
-    # print(cluster_quantity)
-
-    cluster0_dict = {
-        'min_price':  min(cluster0, key=lambda x: x['price'])['price'],
-        'max_price':  max(cluster0, key=lambda x: x['price'])['price']
-    }
-    cluster1_dict = {
-        'min_price':  min(cluster1, key=lambda x: x['price'])['price'],
-        'max_price':  max(cluster1, key=lambda x: x['price'])['price']
-    }
-    cluster2_dict = {
-        'min_price':  min(cluster2, key=lambda x: x['price'])['price'],
-        'max_price':  max(cluster2, key=lambda x: x['price'])['price']
-    }
-    cluster3_dict = {
-        'min_price':  min(cluster3, key=lambda x: x['price'])['price'],
-        'max_price':  max(cluster3, key=lambda x: x['price'])['price']
-    }
-    cluster4_dict = {
-        'min_price':  min(cluster4, key=lambda x: x['price'])['price'],
-        'max_price':  max(cluster4, key=lambda x: x['price'])['price']
-    }
-
-    cluster_min_max.append(cluster0_dict)
-    cluster_min_max.append(cluster1_dict)
-    cluster_min_max.append(cluster2_dict)
-    cluster_min_max.append(cluster3_dict)
-    cluster_min_max.append(cluster4_dict)
-
-    data['cluster_min_max'] = cluster_min_max
+    data['cuisine'] = cuisine.name
+    data['top_cuisine_items'] = top_cuisine_items
 
     return render(request, 'client/dashboard.html', data)

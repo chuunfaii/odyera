@@ -11,16 +11,15 @@
             <p class="font-bold text-2xl py-2 text-green-500">RM {{ total_sales|intcomma }}</p>
             <span class="text-gray-500 ">with a total of <span class="font-semibold">{{ total_orders }}</span> order{% if total_orders > 1 %}s{% endif %}</span>
         </div>
-        <!-- Price recommendation -->
         <div class="mt-8 bg-white border border-slate-100 shadow rounded-xl py-5 px-10">
             <h2 class="font-semibold">Recommended Price Range for Menu Items:</h2>
-            <p class="font-bold text-2xl py-2">RM 15.90 - RM 19.90</p>
+            <p class="font-bold text-2xl py-2">RM {{ recommended_price_range.min_price }} - RM {{ recommended_price_range.max_price }}</p>
         </div>
-
         <div>
-
             <div class="flex flex-col bg-white border border-slate-100 mt-8 shadow rounded-xl ">
-                <h2 class="font-semibold py-3 px-5 text-center pt-8">Top Selling Restaurant's Menu Item</h2>
+                <h2 class="font-semibold py-3 px-5 text-center pt-8">
+                    Top Selling Restaurant's Menu Item
+                </h2>
                 <table class="w-full text-gray-500 mb-4">
                     <tbody>
                         <tr class="border-b border-slate-100 hover:bg-gray-50">
@@ -66,105 +65,29 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="bg-white border border-slate-100 mt-8 shadow rounded-xl mb-8">
                 <canvas class="m-auto self-center" id="chartPie"></canvas>
             </div>
-
-
         </div>
-
-        <!-- Top 10 list of menu items based on restaurant's cuisine -->
         <div class="mt-8 bg-white border border-slate-100 shadow rounded-xl mb-8">
             <h2 class="font-semibold py-3 px-5 text-center pt-8">
-                Top 10 Western Menu Items in Malaysia
+                Top 10 {{ cuisine }} Menu Items in Malaysia
             </h2>
             <table class="w-full text-gray-500">
                 <tbody>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            1
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            2
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            3
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            4
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            5
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            6
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            7
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            8
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="border-b border-slate-100 hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            9
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-50">
-                        <td class="py-4 w-1/2 text-center">
-                            10
-                        </td>
-                        <td class="py-4 w-1/2">
-                            Burger
-                        </td>
-                    </tr>
+                    {% for item in top_cuisine_items %}
+                        <tr class="{% if forloop.counter != 10 %}border-b border-slate-100{% endif %} hover:bg-gray-50">
+                            <td class="py-4 w-1/3 text-center">
+                                {{ forloop.counter }}
+                            </td>
+                            <td class="py-4 w-1/2">
+                                {{ item.name }}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
-
     </div>
 
     <!-- Restaurant CRUD -->
