@@ -4,7 +4,7 @@ import re
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.gis.geos import Point
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.shortcuts import render, redirect
 from pprint import pprint
 from .functions import *
@@ -935,14 +935,19 @@ def dashboard(request):
     uid = request.session['uid']
     owner = RestaurantOwner.objects.get(id=uid)
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
-    menu_items = MenuItem.objects.all().values()
-    order_details = OrderDetail.objects.all().values()
 
     owner.restaurant = restaurant
     data['owner'] = owner
 
-    # reviews_df = pd.DataFrame(reviews)[['id', 'author_id', 'restaurant_id']]
-    # sentiments_df = pd.DataFrame(sentiments)[['id', 'super_score']]
+    orders = Order.objects.filter(restaurant_id=restaurant.id)
+    total_sales = orders.aggregate(total_sales=Sum('total_price'))
+    total_orders = orders.aggregate(total_orders=Count('id'))
+
+    data['total_sales'] = total_sales['total_sales']
+    data['total_orders'] = total_orders['total_orders']
+
+    menu_items = MenuItem.objects.all().values()
+    order_details = OrderDetail.objects.all().values()
 
     menu_items_df = pd.DataFrame(menu_items)[
         ['id', 'name', 'description', 'price', 'image_url', 'cuisine_id', 'restaurant_id']]
