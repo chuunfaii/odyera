@@ -20,6 +20,7 @@
 
             <div class="flex flex-1 items-center justify-end md:justify-between">
                 <nav aria-label="Site Nav" class="hidden md:block">
+                    {% if 'type' not in request.session or request.session.type == 'customer' %}
                     <ul class="flex items-center gap-6 text-sm">
                         <li>
                             <a class="text-gray-800 transition hover:text-gray-800/75" href="/">
@@ -32,6 +33,7 @@
                             </a>
                         </li>
                     </ul>
+                    {% endif %}
                 </nav>
 
                 {% if 'uid' not in request.session %}
@@ -70,15 +72,6 @@
                                 </li>
                                 <li>
                                     <a href="/password" class="transition block py-2 px-4 hover:text-gray-800/75">Edit Password</a>
-                                </li>
-                            </ul>
-                        {% elif request.session.type == 'owner' %}
-                            <ul class="py-1 text-sm text-gray-800" aria-labelledby="dropdownDividerButton">
-                                <li>
-                                    <a href="/malaysia-food-trend" class="transition block py-2 px-4 hover:text-gray-800/75">Malaysia Food Trend</a>
-                                </li>
-                                <li>
-                                    <a href="/food-trend" class="transition block py-2 px-4 hover:text-gray-800/75">Own Food Trend</a>
                                 </li>
                             </ul>
                         {% endif %}

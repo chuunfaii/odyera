@@ -13,6 +13,9 @@ from sklearn.cluster import KMeans
 
 
 def index(request):
+    if 'type' in request.session and request.session['type'] == 'owner':
+        return redirect('/dashboard')
+
     data = {}
 
     has_location = False
@@ -183,7 +186,7 @@ def login(request):
                     request.session['type'] = 'owner'
                     messages.success(
                         request, 'You have successfully logged into your account.')
-                    return redirect('/')
+                    return redirect('/dashboard')
             except RestaurantOwner.DoesNotExist:
                 data['invalid_credentials_error'] = 'Invalid email or password. Please try again.'
                 return render(request, 'client/login.html', data)
@@ -634,7 +637,6 @@ def order_history(request):
 
 def malaysia_food_trend(request):
 
-
     if 'uid' not in request.session or request.session['type'] == 'customer':
         return redirect('/')
 
@@ -652,45 +654,45 @@ def malaysia_food_trend(request):
     data['owner'] = owner
     #data['menu_items'] = menu_items[:10]
 
-    #create a temporary empty list 
+    # create a temporary empty list
     temp = []
     item_qtts = []
 
-    #get all menu_items and order_details
+    # get all menu_items and order_details
     menu_items = MenuItem.objects.all()
     order_details = OrderDetail.objects.all()
 
-    #loop thru menu_items to get menu_items name and store in temp list
+    # loop thru menu_items to get menu_items name and store in temp list
     for menu_item in menu_items:
         temp.append(menu_item.name)
-    
-    #use set() to eliminate duplicated names, and store in variable names
-    names =  set(temp)
 
-    #loop thru names and put it in a dictinary (to keep track the qtt for each menu_items name)
+    # use set() to eliminate duplicated names, and store in variable names
+    names = set(temp)
+
+    # loop thru names and put it in a dictinary (to keep track the qtt for each menu_items name)
     for item in names:
         item_dict = {
-            'name' : item,
-            'qtt' : 0
+            'name': item,
+            'qtt': 0
         }
-        #store the item_dict in item_qtts list
+        # store the item_dict in item_qtts list
         item_qtts.append(item_dict)
 
-    #loop thru all the order details, and get all order_detail that matched with menu_item
+    # loop thru all the order details, and get all order_detail that matched with menu_item
     for order_detail in order_details:
-        menu_item = MenuItem.objects.get(id = order_detail.menu_item_id)
-        #loop thru item_qtts list, if the dict's name is matched with the menu_item.name then return index of that item
-        index = next((i for i , item in enumerate(item_qtts) if item["name"] == menu_item.name),None)
-        #add the quantity of the items_qtts list
+        menu_item = MenuItem.objects.get(id=order_detail.menu_item_id)
+        # loop thru item_qtts list, if the dict's name is matched with the menu_item.name then return index of that item
+        index = next((i for i, item in enumerate(item_qtts)
+                     if item["name"] == menu_item.name), None)
+        # add the quantity of the items_qtts list
         item_qtts[index]['qtt'] += order_detail.quantity
 
-    #return the item in item_qtts with the highest qtt
+    # return the item in item_qtts with the highest qtt
     sorted_list = sorted(item_qtts, key=lambda x: x['qtt'], reverse=True)
-    #pprint(sorted_list)
+    # pprint(sorted_list)
 
-    #show top 10
+    # show top 10
     data['sorted_list'] = sorted_list[0:10]
-
 
     if request.method == 'GET' and request.GET.get('m'):
         m = request.GET.get('m')
@@ -725,50 +727,50 @@ def malaysia_food_trend(request):
         data['m'] = m
         data['month'] = month
 
-    #K-Means Clustering Algorithm
-    menu_items  = MenuItem.objects.all().values()
+    # K-Means Clustering Algorithm
+    menu_items = MenuItem.objects.all().values()
     order_details = OrderDetail.objects.all().values()
 
     # reviews_df = pd.DataFrame(reviews)[['id', 'author_id', 'restaurant_id']]
     # sentiments_df = pd.DataFrame(sentiments)[['id', 'super_score']]
 
-    menu_items_df =  pd.DataFrame(menu_items)[['id','name','description','price','image_url','cuisine_id','restaurant_id']]
-    order_details_df = pd.DataFrame(order_details)[['id','quantity','subtotal_price','menu_item_id','order_id']]
-    menu_detail = pd.merge(menu_items_df,order_details_df,how='left',left_on='id',right_on='menu_item_id')
+    menu_items_df = pd.DataFrame(menu_items)[
+        ['id', 'name', 'description', 'price', 'image_url', 'cuisine_id', 'restaurant_id']]
+    order_details_df = pd.DataFrame(order_details)[
+        ['id', 'quantity', 'subtotal_price', 'menu_item_id', 'order_id']]
+    menu_detail = pd.merge(menu_items_df, order_details_df,
+                           how='left', left_on='id', right_on='menu_item_id')
 
     values = {'quantity': 0}
     menu_detail = menu_detail.fillna(value=values)
 
-    #convert menu_detail quantity from float to int
+    # convert menu_detail quantity from float to int
     menu_detail['quantity'] = menu_detail['quantity'].apply(np.int64)
-    
-    #choose price and quantity column
-    X = menu_detail.iloc[:,[3,8]].values
 
-    #store in menu_detail_df ,price and qtt columns
-    menu_detail_df = pd.DataFrame(X,columns=['price','quantity'])
-    
-    #config the KMeans to 5 clusters
-    kmeans =  KMeans(n_clusters=5,init='k-means++',random_state = 0)
+    # choose price and quantity column
+    X = menu_detail.iloc[:, [3, 8]].values
 
-    # return a label for each data point based on their cluster 
-    #show the result
+    # store in menu_detail_df ,price and qtt columns
+    menu_detail_df = pd.DataFrame(X, columns=['price', 'quantity'])
+
+    # config the KMeans to 5 clusters
+    kmeans = KMeans(n_clusters=5, init='k-means++', random_state=0)
+
+    # return a label for each data point based on their cluster
+    # show the result
     Y = kmeans.fit_predict(X)
-    
 
-    #convert the result into cluster_df
+    # convert the result into cluster_df
     cluster_df = pd.DataFrame(Y)
 
-    
-    
-    cluster_df.rename(columns= {0:'Cluster'},inplace=True)
+    cluster_df.rename(columns={0: 'Cluster'}, inplace=True)
 
-    #print(cluster_df)
+    # print(cluster_df)
 
-    #print(menu_detail_df.info())
-    #print(cluster_df)
+    # print(menu_detail_df.info())
+    # print(cluster_df)
 
-    result_df = pd.concat([menu_detail_df,cluster_df],axis=1)
+    result_df = pd.concat([menu_detail_df, cluster_df], axis=1)
 
     cluster0 = []
     cluster1 = []
@@ -779,8 +781,8 @@ def malaysia_food_trend(request):
     for index in result_df.index:
         cluster = result_df['Cluster'][index]
         result_dict = {
-            'id':index+1,
-            'price':result_df['price'][index]
+            'id': index+1,
+            'price': result_df['price'][index]
         }
         if cluster == 0:
             cluster0.append(result_dict)
@@ -794,30 +796,31 @@ def malaysia_food_trend(request):
             cluster4.append(result_dict)
 
     cluster_min_max = []
-    cluster_quantity = [len(cluster0),len(cluster1),len(cluster2),len(cluster3),len(cluster4)]
+    cluster_quantity = [len(cluster0), len(cluster1), len(
+        cluster2), len(cluster3), len(cluster4)]
 
     data['cluster_quantity'] = cluster_quantity
-    #print(cluster_quantity)
+    # print(cluster_quantity)
 
     cluster0_dict = {
-        'min_price':  min(cluster0, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster0, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster0, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster0, key=lambda x: x['price'])['price']
     }
     cluster1_dict = {
-        'min_price':  min(cluster1, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster1, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster1, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster1, key=lambda x: x['price'])['price']
     }
     cluster2_dict = {
-        'min_price':  min(cluster2, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster2, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster2, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster2, key=lambda x: x['price'])['price']
     }
     cluster3_dict = {
-        'min_price':  min(cluster3, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster3, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster3, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster3, key=lambda x: x['price'])['price']
     }
     cluster4_dict = {
-        'min_price':  min(cluster4, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster4, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster4, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster4, key=lambda x: x['price'])['price']
     }
 
     cluster_min_max.append(cluster0_dict)
@@ -826,10 +829,7 @@ def malaysia_food_trend(request):
     cluster_min_max.append(cluster3_dict)
     cluster_min_max.append(cluster4_dict)
 
-
-    data['cluster'] = zip(cluster_min_max,cluster_quantity)
-    
-    
+    data['cluster'] = zip(cluster_min_max, cluster_quantity)
 
     return render(request, 'client/malaysia_food_trend.html', data)
 
@@ -850,19 +850,17 @@ def food_trend(request):
     restaurants = Restaurant.objects.all()
     order_details = OrderDetail.objects.all()
 
-    #print(restaurant)
-    
+    # print(restaurant)
+
     owner.restaurant = restaurant
     data['owner'] = owner
-    
-   
 
-    #create a temporary empty list 
+    # create a temporary empty list
     temp = []
     food_list = []
 
-    #get only menu_items that matched current restaurant
-    menu_items = MenuItem.objects.filter(restaurant_id = restaurant.id)
+    # get only menu_items that matched current restaurant
+    menu_items = MenuItem.objects.filter(restaurant_id=restaurant.id)
     for menu in menu_items:
         food_list.append(menu.name)
 
@@ -870,24 +868,23 @@ def food_trend(request):
 
     for item in foodList:
         item_dict = {
-            'name' : item,
-            'qtt' : 0
+            'name': item,
+            'qtt': 0
         }
         temp.append(item_dict)
 
-     #loop thru all the order details
+     # loop thru all the order details
     for order_detail in order_details:
-        menu_item = MenuItem.objects.get(id = order_detail.menu_item_id)
-        index = next((i for i , item in enumerate(temp) if item["name"] == menu_item.name),None)
+        menu_item = MenuItem.objects.get(id=order_detail.menu_item_id)
+        index = next((i for i, item in enumerate(temp)
+                     if item["name"] == menu_item.name), None)
         if index is not None:
             temp[index]['qtt'] += order_detail.quantity
-    
-    sorted_list = sorted(temp, key=lambda x: x['qtt'], reverse=True)
-    #pprint(sorted_list)
 
+    sorted_list = sorted(temp, key=lambda x: x['qtt'], reverse=True)
+    # pprint(sorted_list)
 
     data['sorted_list'] = sorted_list
-    
 
     if request.method == 'GET' and request.GET.get('m'):
         m = request.GET.get('m')
@@ -928,49 +925,58 @@ def food_trend(request):
 def error_404(request, exception):
     return render(request, '404.html')
 
-def test1(request):
+
+def dashboard(request):
+    if 'uid' not in request.session or request.session['type'] == 'customer':
+        return redirect('/')
 
     data = {}
-    menu_items  = MenuItem.objects.all().values()
+
+    uid = request.session['uid']
+    owner = RestaurantOwner.objects.get(id=uid)
+    restaurant = Restaurant.objects.filter(owner_id=uid).first()
+    menu_items = MenuItem.objects.all().values()
     order_details = OrderDetail.objects.all().values()
+
+    owner.restaurant = restaurant
+    data['owner'] = owner
 
     # reviews_df = pd.DataFrame(reviews)[['id', 'author_id', 'restaurant_id']]
     # sentiments_df = pd.DataFrame(sentiments)[['id', 'super_score']]
 
-    menu_items_df =  pd.DataFrame(menu_items)[['id','name','description','price','image_url','cuisine_id','restaurant_id']]
-    order_details_df = pd.DataFrame(order_details)[['id','quantity','subtotal_price','menu_item_id','order_id']]
-    menu_detail = pd.merge(menu_items_df,order_details_df,how='left',left_on='id',right_on='menu_item_id')
+    menu_items_df = pd.DataFrame(menu_items)[
+        ['id', 'name', 'description', 'price', 'image_url', 'cuisine_id', 'restaurant_id']]
+    order_details_df = pd.DataFrame(order_details)[
+        ['id', 'quantity', 'subtotal_price', 'menu_item_id', 'order_id']]
+    menu_detail = pd.merge(menu_items_df, order_details_df,
+                           how='left', left_on='id', right_on='menu_item_id')
 
     values = {'quantity': 0}
     menu_detail = menu_detail.fillna(value=values)
 
     menu_detail['quantity'] = menu_detail['quantity'].apply(np.int64)
-    
-    #choose price and quantity column
-    X = menu_detail.iloc[:,[3,8]].values
 
-    menu_detail_df = pd.DataFrame(X,columns=['price','quantity'])
-    #print(menu_detail_df)
-    kmeans =  KMeans(n_clusters=5,init='k-means++',random_state = 0)
+    # choose price and quantity column
+    X = menu_detail.iloc[:, [3, 8]].values
 
-    # return a label for each data point based on their cluster 
+    menu_detail_df = pd.DataFrame(X, columns=['price', 'quantity'])
+    # print(menu_detail_df)
+    kmeans = KMeans(n_clusters=5, init='k-means++', random_state=0)
+
+    # return a label for each data point based on their cluster
 
     Y = kmeans.fit_predict(X)
-    
-
 
     cluster_df = pd.DataFrame(Y)
 
-    
-    
-    cluster_df.rename(columns= {0:'Cluster'},inplace=True)
+    cluster_df.rename(columns={0: 'Cluster'}, inplace=True)
 
-    #print(cluster_df)
+    # print(cluster_df)
 
-    #print(menu_detail_df.info())
-    #print(cluster_df)
+    # print(menu_detail_df.info())
+    # print(cluster_df)
 
-    result_df = pd.concat([menu_detail_df,cluster_df],axis=1)
+    result_df = pd.concat([menu_detail_df, cluster_df], axis=1)
 
     cluster0 = []
     cluster1 = []
@@ -981,8 +987,8 @@ def test1(request):
     for index in result_df.index:
         cluster = result_df['Cluster'][index]
         result_dict = {
-            'id':index+1,
-            'price':result_df['price'][index]
+            'id': index+1,
+            'price': result_df['price'][index]
         }
         if cluster == 0:
             cluster0.append(result_dict)
@@ -996,30 +1002,31 @@ def test1(request):
             cluster4.append(result_dict)
 
     cluster_min_max = []
-    cluster_quantity = [len(cluster0),len(cluster1),len(cluster2),len(cluster3),len(cluster4)]
+    cluster_quantity = [len(cluster0), len(cluster1), len(
+        cluster2), len(cluster3), len(cluster4)]
 
     data['cluster_quantity'] = cluster_quantity
     # print(cluster_quantity)
 
     cluster0_dict = {
-        'min_price':  min(cluster0, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster0, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster0, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster0, key=lambda x: x['price'])['price']
     }
     cluster1_dict = {
-        'min_price':  min(cluster1, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster1, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster1, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster1, key=lambda x: x['price'])['price']
     }
     cluster2_dict = {
-        'min_price':  min(cluster2, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster2, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster2, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster2, key=lambda x: x['price'])['price']
     }
     cluster3_dict = {
-        'min_price':  min(cluster3, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster3, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster3, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster3, key=lambda x: x['price'])['price']
     }
     cluster4_dict = {
-        'min_price':  min(cluster4, key=lambda x:x['price'])['price'],
-        'max_price':  max(cluster4, key=lambda x:x['price'])['price']
+        'min_price':  min(cluster4, key=lambda x: x['price'])['price'],
+        'max_price':  max(cluster4, key=lambda x: x['price'])['price']
     }
 
     cluster_min_max.append(cluster0_dict)
@@ -1028,8 +1035,6 @@ def test1(request):
     cluster_min_max.append(cluster3_dict)
     cluster_min_max.append(cluster4_dict)
 
-   
-
     data['cluster_min_max'] = cluster_min_max
 
-    return render(request,'client/test1.html',data)
+    return render(request, 'client/dashboard.html', data)
