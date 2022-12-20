@@ -935,9 +935,11 @@ def dashboard(request):
     uid = request.session['uid']
     owner = RestaurantOwner.objects.get(id=uid)
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
+    menus = MenuItem.objects.filter(restaurant_id=restaurant.id)
 
-    owner.restaurant = restaurant
-    data['owner'] = owner
+
+
+   
 
     orders = Order.objects.filter(restaurant_id=restaurant.id)
     total_sales = orders.aggregate(total_sales=Sum('total_price'))
@@ -946,6 +948,8 @@ def dashboard(request):
     data['total_sales'] = total_sales['total_sales']
     data['total_orders'] = total_orders['total_orders']
 
+
+    #K-Means Algo
     menu_items = MenuItem.objects.all().values()
     order_details = OrderDetail.objects.all().values()
 
