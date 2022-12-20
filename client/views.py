@@ -935,7 +935,18 @@ def dashboard(request):
     uid = request.session['uid']
     owner = RestaurantOwner.objects.get(id=uid)
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
-    menus = MenuItem.objects.filter(restaurant_id=restaurant.id)
+    menu_items = MenuItem.objects.filter(restaurant_id=restaurant.id)
+
+    items = []
+    for menu_item in menu_items:
+        items.append({
+            'name': menu_item.name,
+            'description': menu_item.description,
+            'price': menu_item.price,
+            'image_url': menu_item.image_url
+        })
+    
+    data['menu_items'] = items
 
 
 
