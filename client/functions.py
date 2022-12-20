@@ -5,6 +5,7 @@ from django.contrib.gis.db.models.functions import Distance
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from sklearn.cluster import KMeans
+from pprint import pprint
 
 
 def calculate_super_score_all():
@@ -243,6 +244,38 @@ def get_recommended_price_range():
     highest_quantity_index = cluster_quantity.index(highest_quantity)
 
     return cluster_min_max[highest_quantity_index]
+
+
+def get_top_cuisine_items(cuisine_id):
+    cuisine_menu_item_names = []
+    item_quantities = []
+
+    cuisine_menu_items = MenuItem.objects.filter(cuisine_id=cuisine_id)
+    order_details = OrderDetail.objects.all()
+
+    for cuisine_menu_item in cuisine_menu_items:
+        cuisine_menu_item_names.append(cuisine_menu_item.name)
+
+    cuisine_menu_item_names = set(cuisine_menu_item_names)
+
+    for item in cuisine_menu_item_names:
+        item_dict = {
+            'name': item,
+            'quantity': 0
+        }
+        item_quantities.append(item_dict)
+
+    for order_detail in order_details:
+        menu_item = MenuItem.objects.get(id=order_detail.menu_item_id)
+        index = next((i for i, item in enumerate(item_quantities)
+                     if item['name'] == menu_item.name), None)
+        if index is not None:
+            item_quantities[index]['quantity'] += order_detail.quantity
+
+    sorted_list = sorted(
+        item_quantities, key=lambda x: x['quantity'], reverse=True)
+
+    return sorted_list[:10]
 
 
 def password_check(password):

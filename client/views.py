@@ -949,4 +949,12 @@ def dashboard(request):
     recommended_price_range = get_recommended_price_range()
     data['recommended_price_range'] = recommended_price_range
 
+    restaurant_first_menu_item = MenuItem.objects.filter(
+        restaurant_id=restaurant.id).first()
+    cuisine = Cuisine.objects.get(id=restaurant_first_menu_item.cuisine_id)
+    top_cuisine_items = get_top_cuisine_items(cuisine.id)
+
+    data['cuisine'] = cuisine.name
+    data['top_cuisine_items'] = top_cuisine_items
+
     return render(request, 'client/dashboard.html', data)
