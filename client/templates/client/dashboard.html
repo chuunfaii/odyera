@@ -22,46 +22,16 @@
                 </h2>
                 <table class="w-full text-gray-500 mb-4">
                     <tbody>
-                        <tr class="border-b border-slate-100 hover:bg-gray-50">
-                            <td class="py-4 w-1/2 text-center">
-                                1
-                            </td>
-                            <td class="py-4 w-1/2">
-                                Burger
-                            </td>
-                        </tr>
-                        <tr class="border-b border-slate-100 hover:bg-gray-50">
-                            <td class="py-4 w-1/2 text-center">
-                                2
-                            </td>
-                            <td class="py-4 w-1/2">
-                                Burger
-                            </td>
-                        </tr>
-                        <tr class="border-b border-slate-100 hover:bg-gray-50">
-                            <td class="py-4 w-1/2 text-center">
-                                3
-                            </td>
-                            <td class="py-4 w-1/2">
-                                Burger
-                            </td>
-                        </tr>
-                        <tr class="border-b border-slate-100 hover:bg-gray-50">
-                            <td class="py-4 w-1/2 text-center">
-                                4
-                            </td>
-                            <td class="py-4 w-1/2">
-                                Burger
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="py-4 w-1/2 text-center">
-                                5
-                            </td>
-                            <td class="py-4 w-1/2">
-                                Burger
-                            </td>
-                        </tr>
+                        {% for item in top_restaurant_items %}
+                            <tr class="{% if forloop.counter != 5 %}border-b border-slate-100{% endif %} hover:bg-gray-50">
+                                <td class="py-4 w-1/3 text-center">
+                                    {{ forloop.counter }}
+                                </td>
+                                <td class="py-4 w-full">
+                                    {{ item.name }}
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -125,9 +95,9 @@
                 <tbody>
                     {% for item in menu_items%}
 
-                    
+
                     <tr class="bg-white border-b hover:bg-gray-50">
-                        
+
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                             <img src="{% static '/images/' %}{{item.image_url}}" width="50px" height="50px">
                         </th>
@@ -146,9 +116,9 @@
                         <td class="py-4 px-6 text-right">
                             <a href="#" class="font-medium text-red-600 hover:underline">Delete</a>
                         </td>
-                    
+
                     </tr>
-                    
+
                     {% endfor %}
 
                 </tbody>
@@ -164,20 +134,27 @@
 
 <script>
     const dataPie = {
-        labels: ["JavaScript", "Python", "Ruby", "C++", "Java"],
+        labels: [
+            {% for item in top_restaurant_items %}
+                "{{ item.name }}",
+            {% endfor %}
+        ],
         datasets: [
-        {
-            label: "My First Dataset",
-            data: [300, 50, 100, 150, 200],
-            backgroundColor: [
-            "rgb(133, 105, 241)",
-            "rgb(164, 101, 241)",
-            "rgb(101, 143, 241)",
-            "rgb(145, 143, 241)",
-            "rgb(178, 143, 241)",
-            ],
-            hoverOffset: 4,
-        },
+            {
+                data: [
+                    {% for item in top_restaurant_items %}
+                        {{ item.quantity }},
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                "#9BBFE0",
+                "#E8A09A",
+                "#FBE29F",
+                "#C6D68F",
+                "#64C2A6",
+                ],
+                hoverOffset: 4,
+            },
         ],
     };
 

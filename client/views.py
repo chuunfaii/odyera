@@ -937,20 +937,9 @@ def dashboard(request):
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
     menu_items = MenuItem.objects.filter(restaurant_id=restaurant.id)
 
-    items = []
-    for menu_item in menu_items:
-        items.append({
-            'name': menu_item.name,
-            'description': menu_item.description,
-            'price': menu_item.price,
-            'image_url': menu_item.image_url
-        })
-    
-    data['menu_items'] = items
-
-
-
-   
+    owner.restaurant = restaurant
+    data['owner'] = owner
+    data['menu_items'] = menu_items
 
     orders = Order.objects.filter(restaurant_id=restaurant.id)
     total_sales = orders.aggregate(total_sales=Sum('total_price'))
@@ -961,6 +950,9 @@ def dashboard(request):
 
     recommended_price_range = get_recommended_price_range()
     data['recommended_price_range'] = recommended_price_range
+
+    top_restaurant_items = get_top_restaurant_items(restaurant.id)
+    data['top_restaurant_items'] = top_restaurant_items
 
     restaurant_first_menu_item = MenuItem.objects.filter(
         restaurant_id=restaurant.id).first()

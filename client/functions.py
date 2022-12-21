@@ -278,6 +278,38 @@ def get_top_cuisine_items(cuisine_id):
     return sorted_list[:10]
 
 
+def get_top_restaurant_items(restaurant_id):
+    menu_item_names = []
+    item_quantities = []
+
+    menu_items = MenuItem.objects.filter(restaurant_id=restaurant_id)
+    order_details = OrderDetail.objects.all()
+
+    for menu_item in menu_items:
+        menu_item_names.append(menu_item.name)
+
+    menu_item_names = set(menu_item_names)
+
+    for item in menu_item_names:
+        item_dict = {
+            'name': item,
+            'quantity': 0
+        }
+        item_quantities.append(item_dict)
+
+    for order_detail in order_details:
+        menu_item = MenuItem.objects.get(id=order_detail.menu_item_id)
+        index = next((i for i, item in enumerate(item_quantities)
+                     if item['name'] == menu_item.name), None)
+        if index is not None:
+            item_quantities[index]['quantity'] += order_detail.quantity
+
+    sorted_list = sorted(
+        item_quantities, key=lambda x: x['quantity'], reverse=True)
+
+    return sorted_list[:5]
+
+
 def password_check(password):
     errors = []
 
