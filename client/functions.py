@@ -332,3 +332,8 @@ def password_check(password):
         errors.append('Password should have at least one lowercase letter.')
 
     return errors
+
+def handle_uploaded_files(f):
+    with open('static/images/'+f.name,'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)

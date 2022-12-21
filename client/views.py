@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from pprint import pprint
 from .functions import *
 from .models import *
+from client.functions import handle_uploaded_files
 from sklearn.cluster import KMeans
 
 
@@ -958,6 +959,24 @@ def dashboard(request):
         restaurant_id=restaurant.id).first()
     cuisine = Cuisine.objects.get(id=restaurant_first_menu_item.cuisine_id)
     top_cuisine_items = get_top_cuisine_items(cuisine.id)
+   
+    # add menu item function
+    if request.method == 'POST':
+        food_name = request.POST.get('food_name')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+        food_image = MenuItem(request.POST,request.FILES)
+        
+
+        if len(request.FILES) != 0:
+            food_image =  handle_uploaded_files() 
+
+        MenuItem.objects.create(
+            name = food_name,description = description,price =  price, image_url = food_image, cuisine_id = cuisine.id ,restaurant_id = restaurant.id
+        )
+        messages.success(request,'Add menu item success.')
+        return redirect('/dashboard')
+
 
     data['cuisine'] = cuisine.name
     data['top_cuisine_items'] = top_cuisine_items
