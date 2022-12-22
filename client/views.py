@@ -969,7 +969,7 @@ def dashboard(request):
         
 
         if len(request.FILES) != 0:
-            food_image =  handle_uploaded_files() 
+            food_image =  request.FILES['food_image']
 
         MenuItem.objects.create(
             name = food_name,description = description,price =  price, image_url = food_image, cuisine_id = cuisine.id ,restaurant_id = restaurant.id

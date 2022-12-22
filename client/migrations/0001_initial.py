@@ -150,4 +150,14 @@ class Migration(migrations.Migration):
                 on_delete=django.db.models.deletion.CASCADE, to='client.restaurant'),
             preserve_default=False,
         ),
+        migrations.AlterField(
+            model_name='menuitem',
+            name='image_url',
+            field=models.ImageField(blank=True, max_length=254, null=True, upload_to='images/'),
+        ),
+         migrations.AlterField(
+            model_name='menuitem',
+            name='image_url',
+            field=models.ImageField(blank=True, max_length=254, null=True, upload_to=''),
+        ),
     ]

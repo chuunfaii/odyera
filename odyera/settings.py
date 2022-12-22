@@ -133,6 +133,9 @@ mimetypes.add_type("image/svg+xml", ".svg", True)
 mimetypes.add_type("image/svg+xml", ".svgz", True)
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'client/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'client/static/images')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'client/static'), ]
 
 # Default primary key field type

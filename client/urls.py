@@ -1,5 +1,6 @@
 from django.urls import path
-
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -19,6 +20,6 @@ urlpatterns = [
          name='malaysia_food_trend'),
     path('food-trend', views.food_trend, name='food_trend'),
     path('dashboard', views.dashboard, name='dashboard')
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'client.views.error_404'
