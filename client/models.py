@@ -45,6 +45,7 @@ class MenuItem(models.Model):
     # image_url = models.CharField(max_length=254)
     cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    deleted_at = models.DateTimeField(null=True)
 
 
 class Order(models.Model):

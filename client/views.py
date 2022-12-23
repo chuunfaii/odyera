@@ -10,6 +10,7 @@ from pprint import pprint
 from .functions import *
 from .models import *
 from client.functions import handle_uploaded_files
+from datetime import datetime
 from sklearn.cluster import KMeans
 
 
@@ -936,7 +937,14 @@ def dashboard(request):
     uid = request.session['uid']
     owner = RestaurantOwner.objects.get(id=uid)
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
+    hidden = request.POST.get('action')
+    menu_item = MenuItem.objects.get(id = hidden)
+    # menu_item_test = MenuItem.objects.get(restaurant_id=restaurant.id)
     menu_items = MenuItem.objects.filter(restaurant_id=restaurant.id)
+    # print(menu_item_test.name)
+    print("HIHI")
+    
+    
 
     owner.restaurant = restaurant
     data['owner'] = owner
@@ -961,7 +969,7 @@ def dashboard(request):
     top_cuisine_items = get_top_cuisine_items(cuisine.id)
    
     # add menu item function
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.get('action') == 'add':
         food_name = request.POST.get('food_name')
         description = request.POST.get('description')
         price = request.POST.get('price')
@@ -977,6 +985,20 @@ def dashboard(request):
         messages.success(request,'Add menu item success.')
         return redirect('/dashboard')
 
+    #delete function
+    if request.method == 'POST': #and request.POST.get('action') == 'delete':
+        print(hidden)
+        
+       
+        currentdatetime =  datetime.now()
+        menu_item.deleted_at = currentdatetime
+
+        menu_item.save()
+
+            
+        
+        #MenuItem.objects.values(MenuItem_id = hidden)
+        
 
     data['cuisine'] = cuisine.name
     data['top_cuisine_items'] = top_cuisine_items

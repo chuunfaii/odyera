@@ -160,4 +160,9 @@ class Migration(migrations.Migration):
             name='image_url',
             field=models.ImageField(blank=True, max_length=254, null=True, upload_to=''),
         ),
+         migrations.AddField(
+            model_name='menuitem',
+            name='deleted_at',
+            field=models.DateTimeField(null=True),
+        ),
     ]
