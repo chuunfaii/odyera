@@ -938,11 +938,9 @@ def dashboard(request):
     owner = RestaurantOwner.objects.get(id=uid)
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
     hidden = request.POST.get('action')
-    menu_item = MenuItem.objects.get(id = hidden)
-    # menu_item_test = MenuItem.objects.get(restaurant_id=restaurant.id)
-    menu_items = MenuItem.objects.filter(restaurant_id=restaurant.id)
-    # print(menu_item_test.name)
-    print("HIHI")
+    #test = MenuItem.objects.exclude(deleted_at__isnull = False)
+    print("HHIH")
+    menu_items = MenuItem.objects.filter(restaurant_id=restaurant.id).filter(deleted_at__isnull = True)
     
     
 
@@ -987,16 +985,11 @@ def dashboard(request):
 
     #delete function
     if request.method == 'POST': #and request.POST.get('action') == 'delete':
-        print(hidden)
-        
-       
+        menu_item = MenuItem.objects.get(id = hidden)
         currentdatetime =  datetime.now()
         menu_item.deleted_at = currentdatetime
 
         menu_item.save()
-
-            
-        
         #MenuItem.objects.values(MenuItem_id = hidden)
         
 
