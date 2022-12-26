@@ -436,7 +436,7 @@ def menu(request, id):
 
     restaurant = Restaurant.objects.get(id=id)
     reviews = Review.objects.filter(restaurant_id=id)
-    menu_items = MenuItem.objects.filter(restaurant_id=id)
+    menu_items = MenuItem.objects.filter(restaurant_id=id).filter(deleted_at__isnull = True)
 
     total_ratings = 0
     ratings_amount = 0
@@ -933,13 +933,13 @@ def dashboard(request):
         return redirect('/')
 
     data = {}
+    errors = {}
 
     uid = request.session['uid']
     owner = RestaurantOwner.objects.get(id=uid)
     restaurant = Restaurant.objects.filter(owner_id=uid).first()
-    hidden = request.POST.get('action')
+    hidden = request.POST.get('test')
     #test = MenuItem.objects.exclude(deleted_at__isnull = False)
-    print("HHIH")
     menu_items = MenuItem.objects.filter(restaurant_id=restaurant.id).filter(deleted_at__isnull = True)
     
     
@@ -965,6 +965,9 @@ def dashboard(request):
         restaurant_id=restaurant.id).first()
     cuisine = Cuisine.objects.get(id=restaurant_first_menu_item.cuisine_id)
     top_cuisine_items = get_top_cuisine_items(cuisine.id)
+
+    data['cuisine'] = cuisine.name
+    data['top_cuisine_items'] = top_cuisine_items
    
     # add menu item function
     if request.method == 'POST' and request.POST.get('action') == 'add':
@@ -977,23 +980,58 @@ def dashboard(request):
         if len(request.FILES) != 0:
             food_image =  request.FILES['food_image']
 
+        if not re.match(r'^\d+\.?\d*$', price):
+            errors['price_error'] = 'Price must be in number.'
+
+        if errors:
+            data['errors'] = errors
+            return render(request, 'client/dashboard.html',data)
+
         MenuItem.objects.create(
             name = food_name,description = description,price =  price, image_url = food_image, cuisine_id = cuisine.id ,restaurant_id = restaurant.id
         )
         messages.success(request,'Add menu item success.')
         return redirect('/dashboard')
 
+    #edit function
+    if request.method == 'POST' and request.POST.get('action') == 'edit':
+        menu_item = MenuItem.objects.get(id = hidden)
+        food_name = request.POST.get('food_name')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+        # food_image = MenuItem(request.POST,request.FILES)
+       
+
+        if len(request.FILES) != 0:
+            food_image =  request.FILES['food_image']
+            menu_item.image_url = food_image
+
+        if not re.match(r'^\d+\.?\d*$', price):
+            errors['price_error'] = 'Price must be in number.'
+
+        if errors:
+            data['errors'] = errors
+            return render(request, 'client/dashboard.html',data)
+            
+
+        # MenuItem.objects.get(id = hidden).update(name =  food_name,description = description, price = price)
+        menu_item.name = food_name
+        menu_item.description = description
+        menu_item.price = price
+        
+        menu_item.save()
+
+        
+
     #delete function
-    if request.method == 'POST': #and request.POST.get('action') == 'delete':
+    if request.method == 'POST' and request.POST.get('action') == 'delete':
         menu_item = MenuItem.objects.get(id = hidden)
         currentdatetime =  datetime.now()
         menu_item.deleted_at = currentdatetime
-
         menu_item.save()
-        #MenuItem.objects.values(MenuItem_id = hidden)
+
         
 
-    data['cuisine'] = cuisine.name
-    data['top_cuisine_items'] = top_cuisine_items
+    
 
     return render(request, 'client/dashboard.html', data)
