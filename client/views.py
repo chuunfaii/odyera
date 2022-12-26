@@ -92,6 +92,11 @@ def index(request):
         restaurants = sort_restaurants_based_closest_location(
             restaurants, user_location)
 
+    restaurants = filter_restaurants(restaurants)
+
+    if restaurants.count() < 5:
+        restaurants = Restaurant.objects.order_by('?')
+
     data['featured_restaurants'] = featured_restaurants[:5]
     data['recommended_restaurants'] = restaurants[:5]
 

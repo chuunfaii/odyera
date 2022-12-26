@@ -5,6 +5,7 @@ from django.contrib.gis.db.models.functions import Distance
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from sklearn.cluster import KMeans
+from pprint import pprint
 
 
 def calculate_super_score_all():
@@ -115,6 +116,14 @@ def get_recommended_restaurants(user_id):
 
     restaurants = Restaurant.objects.filter(id__in=restaurant_ids)
 
+    return restaurants
+
+
+def sort_restaurants_based_closest_location(restaurants, user_location):
+    return restaurants.annotate(distance=Distance('location', user_location)).order_by('distance')
+
+
+def filter_restaurants(restaurants):
     restaurant_names = []
     restaurant_ids = []
 
@@ -123,13 +132,10 @@ def get_recommended_restaurants(user_id):
             restaurant_names.append(restaurant.name)
             restaurant_ids.append(restaurant.id)
 
-    recommended_restaurants = Restaurant.objects.filter(id__in=restaurant_ids)
+    recommended_restaurants = Restaurant.objects.filter(
+        id__in=restaurant_ids)
 
     return recommended_restaurants
-
-
-def sort_restaurants_based_closest_location(restaurants, user_location):
-    return restaurants.annotate(distance=Distance('location', user_location)).order_by('distance')
 
 
 def calculate_ranked_item_score(similar_user_restaurants, similar_users):
