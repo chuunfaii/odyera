@@ -87,11 +87,15 @@ def index(request):
                 if restaurants.count() < 5:
                     restaurants = Restaurant.objects.all()
             except:
-                pprint('inside except')
                 pass
 
         restaurants = sort_restaurants_based_closest_location(
             restaurants, user_location)
+
+    restaurants = filter_restaurants(restaurants)
+
+    if restaurants.count() < 5:
+        restaurants = Restaurant.objects.order_by('?')
 
     data['featured_restaurants'] = featured_restaurants[:5]
     data['recommended_restaurants'] = restaurants[:5]
@@ -103,9 +107,9 @@ def register(request):
     if 'uid' in request.session:
         return redirect('/')
 
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
@@ -146,9 +150,9 @@ def login(request):
     if 'uid' in request.session:
         return redirect('/')
 
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     if request.method == 'POST':
         data = {}
@@ -197,9 +201,9 @@ def login(request):
 
 
 def logout(request):
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     del request.session['uid']
     del request.session['type']
@@ -212,9 +216,9 @@ def profile(request):
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect('/')
 
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     data = {}
     errors = {}
@@ -267,9 +271,9 @@ def password(request):
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect('/')
 
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     data = {}
     errors = {}
@@ -309,9 +313,9 @@ def password(request):
 
 
 def restaurants(request):
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     data = {}
 
@@ -360,9 +364,9 @@ def restaurants(request):
 
 
 def restaurant(request, id):
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     data = {}
 
@@ -416,9 +420,9 @@ def restaurant(request, id):
 
 
 def menu(request, id):
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     data = {}
 
@@ -453,9 +457,9 @@ def menu(request, id):
 
 
 def order(request, id):
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect(f'/restaurant/{id}/menu')
@@ -509,9 +513,9 @@ def order(request, id):
 
 
 def payment(request, id):
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect(f'/restaurant/{id}menu')
@@ -585,9 +589,6 @@ def payment(request, id):
         menu_items = data['menu_items']
 
         for menu_item, quantity in menu_items:
-            print('inside for loop')
-            print(menu_item)
-            print(quantity)
             subtotal = menu_item.price * quantity
             OrderDetail.objects.create(order_id=latest_order_id, menu_item_id=menu_item.id,
                                        quantity=quantity, subtotal_price=subtotal)
@@ -602,9 +603,9 @@ def order_history(request):
     if 'uid' not in request.session or request.session['type'] == 'owner':
         return redirect('/')
 
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     data = {}
 
@@ -642,9 +643,9 @@ def malaysia_food_trend(request):
     if 'uid' not in request.session or request.session['type'] == 'customer':
         return redirect('/')
 
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     data = {}
 
@@ -691,7 +692,6 @@ def malaysia_food_trend(request):
 
     # return the item in item_qtts with the highest qtt
     sorted_list = sorted(item_qtts, key=lambda x: x['qtt'], reverse=True)
-    # pprint(sorted_list)
 
     # show top 10
     data['sorted_list'] = sorted_list[0:10]
@@ -840,9 +840,9 @@ def food_trend(request):
     if 'uid' not in request.session or request.session['type'] == 'customer':
         return redirect('/')
 
-    if 'lat' in request.session and 'long' in request.session:
+    if 'lat' in request.session and 'lng' in request.session:
         del request.session['lat']
-        del request.session['long']
+        del request.session['lng']
 
     data = {}
 
@@ -974,11 +974,10 @@ def dashboard(request):
         food_name = request.POST.get('food_name')
         description = request.POST.get('description')
         price = request.POST.get('price')
-        food_image = MenuItem(request.POST,request.FILES)
-        
+        food_image = MenuItem(request.POST, request.FILES)
 
         if len(request.FILES) != 0:
-            food_image =  request.FILES['food_image']
+            food_image = request.FILES['food_image']
 
         if not re.match(r'^\d+\.?\d*$', price):
             errors['price_error'] = 'Price must be in number.'
@@ -988,9 +987,9 @@ def dashboard(request):
             return render(request, 'client/dashboard.html',data)
 
         MenuItem.objects.create(
-            name = food_name,description = description,price =  price, image_url = food_image, cuisine_id = cuisine.id ,restaurant_id = restaurant.id
+            name=food_name, description=description, price=price, image_url=food_image, cuisine_id=cuisine.id, restaurant_id=restaurant.id
         )
-        messages.success(request,'Add menu item success.')
+        messages.success(request, 'Add menu item success.')
         return redirect('/dashboard')
 
     #edit function
