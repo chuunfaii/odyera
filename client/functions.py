@@ -5,7 +5,6 @@ from django.contrib.gis.db.models.functions import Distance
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from sklearn.cluster import KMeans
-from pprint import pprint
 
 
 def calculate_super_score_all():
@@ -51,7 +50,6 @@ def calculate_compound_score(review):
     sia = SentimentIntensityAnalyzer()
     polarity_scores = sia.polarity_scores(review.text)
     compound_score = polarity_scores['compound']
-    print(compound_score)
     return round(compound_score)
 
 
@@ -117,7 +115,17 @@ def get_recommended_restaurants(user_id):
 
     restaurants = Restaurant.objects.filter(id__in=restaurant_ids)
 
-    return restaurants
+    restaurant_names = []
+    restaurant_ids = []
+
+    for restaurant in restaurants:
+        if restaurant.name not in restaurant_names:
+            restaurant_names.append(restaurant.name)
+            restaurant_ids.append(restaurant.id)
+
+    recommended_restaurants = Restaurant.objects.filter(id__in=restaurant_ids)
+
+    return recommended_restaurants
 
 
 def sort_restaurants_based_closest_location(restaurants, user_location):
@@ -333,7 +341,8 @@ def password_check(password):
 
     return errors
 
+
 def handle_uploaded_files(f):
-    with open('static/images/'+f.name,'wb+') as destination:
+    with open('static/images/'+f.name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
